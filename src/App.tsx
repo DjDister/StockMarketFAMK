@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import { useAppSelector, useAppDispatch } from "./hooks/reduxHooks";
+import { logIn } from "./redux/profileSlice";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  const profile = useAppSelector((state) => state.profile);
+  const dispatch = useAppDispatch();
   return (
     <div className="App">
       <div>
@@ -27,8 +30,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div onClick={() => dispatch(logIn())}>LogIn</div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
