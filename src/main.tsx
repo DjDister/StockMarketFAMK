@@ -5,11 +5,15 @@ import "./index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/AboutUs",
+    element: <AboutUsPage />,
   },
 ]);
 
