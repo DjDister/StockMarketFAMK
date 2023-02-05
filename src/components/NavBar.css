@@ -1,0 +1,97 @@
+.navBar {
+  width: 100%;
+  height: 12%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2b3144;
+}
+
+* {
+  outline: 1px solid green;
+}
+.leftNavMobile {
+  /* padding-left: 10px; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rightNavMobile {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rightNavMobileWithX {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.MenuOpen {
+  z-index: 10;
+}
+
+.FAMK {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.line {
+  height: 40%;
+  width: 3px;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.hamburgerMenuBar {
+  position: fixed;
+  top: 18%;
+  left: 5%;
+  width: 90%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #2b3144;
+  /* border-radius: 1rem; */
+}
+
+.userSmallInfo {
+  width: 100%;
+  height: 10%;
+  margin-top: 10px;
+  /* margin-left: 25px; */
+  display: flex;
+  flex-direction: row;
+  /* gap: 5%; */
+  align-items: center;
+}
+.circleIcon {
+  width: 40px;
+  height: 40px;
+  /* border-radius: 5rem; */
+  background-color: white;
+}
+
+.name {
+  color: white;
+  font-weight: bold;
+}
+
+.Email {
+  color: grey;
+}
+
+.hamLine {
+  width: 90%;
+  height: 1px;
+  background-color: grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
