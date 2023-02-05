@@ -5,11 +5,16 @@ import "./index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 

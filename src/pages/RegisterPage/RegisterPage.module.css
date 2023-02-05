@@ -1,0 +1,131 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.backGroundContainer{
+    width: 100%;
+    height: 100%;
+    background-color: #8ac8ff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.backGroundCircle{
+    position: absolute;
+    background-color: #9ed1ff;
+    height: 100%;
+    left:0px;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    width: 80%;
+    border-radius: 0% 150% 0% 0%;
+}
+
+.registerPanelContainer{
+    width: 85%;
+    height: 60%;
+    background-color: #121318;  
+    margin-bottom: 10px;  
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.inputsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+.label{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.input{
+width: 100%;
+height: 40px;
+background-color: #080808;
+display: flex;
+align-items: center;
+color:#6C7080;
+}
+
+
+.acceptPrivacyContainer{
+    display: flex;
+    align-items: flex-start;
+    margin-top: 15px;
+  
+}
+
+.acceptText{
+    color: white;
+    font-size: 14px;
+    margin-left: 15px;
+   
+}
+
+.rulesLink{
+    color: #5263f7;
+
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;   
+    background-color: #5367FF;
+}
+
+.redirectToLoginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.line{
+    width: 100%;
+    height: 1.5px;
+    background-color: white;
+    margin-top: 30px;
+    position: relative;
+}
+
+.lineTextOver{
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #121318;
+    padding: 0 10px;
+}
+
+.otherOptionsToLoginContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    position: relative;
+    margin-top: 25px;
+    gap: 30px;
+}
