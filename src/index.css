@@ -14,10 +14,4 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-
-}
+body { margin: 0; padding: 0; }
