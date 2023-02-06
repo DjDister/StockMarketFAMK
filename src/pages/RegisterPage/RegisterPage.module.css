@@ -26,7 +26,20 @@
     border-radius: 0% 150% 0% 0%;
 }
 
+.image{
+    position: absolute;
+    bottom: calc(100% - 35px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    aspect-ratio: 1/1;
+    z-index: 2;
+}
+
+
+
 .registerPanelContainer{
+    position: relative;
     width: 85%;
     background-color: #121318;  
     margin-bottom: 10px;  
@@ -35,6 +48,41 @@
     padding: 14px;
     border-radius: 15px;
     z-index: 1;
+}
+
+.backgroundContainerColor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 992px) {
+    .backGroundContainer{
+        justify-content: flex-end
+    }
+    .backgroundContainerColor{
+        width: 50%;
+        z-index: 1;
+        height: 100%;
+        background-color: #121318;
+    }
+    .image{
+        width: 100%;
+        bottom:50%;
+        left: calc(-50% );
+        transform: translate(-50%, 50%);
+        max-width: 600px;
+    }
+   .backGroundCircle{
+    position: absolute;
+    background-color: #9ed1ff;
+    height: 100%;
+    left:0px;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    width: 40%;
+    border-radius: 0% 150% 0% 0%;
+   }
 }
 
 .inputsContainer{
