@@ -7,12 +7,21 @@ import MenuClose from "../assets/icons/MenuClose";
 import MarketIcon from "../assets/icons/MarketIcon";
 import CustomLink from "./CustomLink";
 import RightArrow from "../assets/icons/RightArrow";
+import { useLocation } from "react-router-dom";
+import Watchlist from "../assets/icons/WatchList";
+import Portfolio from "../assets/icons/Portfolio";
+import Learn from "../assets/icons/Learn";
+import Wallet from "../assets/icons/Wallet";
+import DropDownMenu from "./DropDownMenu";
+import Globe from "../assets/icons/Globe";
 
 const navElements = ["Market", "Watchlist", "Portfolio", "Learn"];
+
 export default function NavBar() {
   const [hamburger, setHamburger] = useState(false);
-
-  console.log(hamburger);
+  const [currency, setCurrency] = useState(false);
+  const currencies = ["PLN", "USD", "ARS", "AUD", "BGN"];
+  const languages = ["Polish", "English", "German", "French", "Spanish"];
 
   return (
     <div className="navBar">
@@ -26,7 +35,9 @@ export default function NavBar() {
           hamburger === true ? "rightNavMobileWithX" : "rightNavMobile"
         }
       >
-        {hamburger === true ? null : <SearchTool width="30" height="30" />}
+        <div>
+          {hamburger === true ? null : <SearchTool width="30" height="30" />}
+        </div>
 
         <div className="MenuOpen" onClick={() => setHamburger(!hamburger)}>
           {hamburger === true ? (
@@ -47,13 +58,56 @@ export default function NavBar() {
             </div>
           </div>
 
+          <div className="hamLine1"></div>
+
+          <div className="linksContainer">
+            <CustomLink
+              leftIcon={<MarketIcon width="30" height="30" />}
+              text={"Market"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+
+            <CustomLink
+              leftIcon={<Watchlist width="30" height="30" />}
+              text={"Watchlist"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+
+            <CustomLink
+              leftIcon={<Portfolio width="30" height="30" />}
+              text={"Portfolio"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+
+            <CustomLink
+              leftIcon={<MarketIcon width="30" height="30" />}
+              text={"Trade History"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+
+            <CustomLink
+              leftIcon={<Wallet width="30" height="30" />}
+              text={"Wallet"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+
+            <CustomLink
+              leftIcon={<Learn width="30" height="30" />}
+              text={"Learn"}
+              rightIcon={<RightArrow width="30" height="30" />}
+            />
+          </div>
+
           <div className="hamLine"></div>
 
-          <CustomLink
-            leftIcon={<MarketIcon />}
-            text={"Market"}
-            rightIcon={<RightArrow />}
-          />
+          {/* <div>language/currency (INC)</div> */}
+          <DropDownMenu leftIcon={<Globe />} text={"English"} text2={"USD"} />
+
+          <div className="hamLine1"></div>
+          <div className="logRegButtons">
+            <div className="loginButton">Sign in</div>
+            <div className="registerButton">Register</div>
+          </div>
         </div>
       ) : null}
     </div>

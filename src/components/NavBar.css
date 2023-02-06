@@ -1,22 +1,22 @@
 .navBar {
-  width: 100%;
+  width: 90vw;
   height: 12%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #2b3144;
+  background-color: #121318;
+  position: absolute;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
-* {
-  outline: 1px solid green;
-}
 .leftNavMobile {
-  /* padding-left: 10px; */
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 10px;
 }
 
 .rightNavMobile {
@@ -24,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-right: 10px;
 }
 
 .rightNavMobileWithX {
@@ -31,15 +32,18 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-right: 10px;
 }
 
 .MenuOpen {
   z-index: 10;
+  margin-left: 15px;
 }
 
 .FAMK {
   font-size: 1.5rem;
   color: white;
+  font-weight: bold;
 }
 
 .line {
@@ -50,48 +54,109 @@
 }
 
 .hamburgerMenuBar {
-  position: fixed;
-  top: 18%;
+  position: absolute;
+  top: 150%;
   left: 5%;
+  right: 5%;
   width: 90%;
-  height: 75%;
+  /* bottom: 5%; */
+  /* height: 75%; */
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #2b3144;
-  /* border-radius: 1rem; */
+  background-color: #121318;
+  border-radius: 1rem;
+  /* overflow-y: scroll; */
 }
 
 .userSmallInfo {
-  width: 100%;
+  width: 90%;
   height: 10%;
   margin-top: 10px;
   /* margin-left: 25px; */
   display: flex;
   flex-direction: row;
-  /* gap: 5%; */
+  gap: 15px;
   align-items: center;
+  /* background-color: red; */
 }
 .circleIcon {
   width: 40px;
   height: 40px;
-  /* border-radius: 5rem; */
+  border-radius: 5rem;
   background-color: white;
 }
 
 .name {
   color: white;
   font-weight: bold;
+  /* background-color: green; */
+  text-align: left;
 }
 
 .Email {
   color: grey;
+  /* background-color: blue; */
+  text-align: left;
 }
 
+.hamLine1 {
+  width: 90%;
+  height: 2px;
+  background-color: grey;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
 .hamLine {
   width: 90%;
-  height: 1px;
+  height: 2px;
   background-color: grey;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  /* background-color: red; */
+}
+
+.logRegButtons {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.loginButton {
+  color: rgb(83, 103, 254);
+  background-color: white;
+  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 1rem;
+  font-weight: bold;
+}
+
+.loginButton:active {
+  color: white;
+  background-color: rgb(83, 103, 254);
+}
+
+.registerButton {
+  color: white;
+  background-color: rgb(83, 103, 254);
+  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 1rem;
+  font-weight: bold;
+}
+
+.registerButton:active {
+  color: rgb(83, 103, 254);
+  background-color: white;
 }

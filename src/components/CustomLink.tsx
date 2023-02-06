@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./CustomLink.css";
 
 export default function CustomLink({
@@ -12,6 +13,10 @@ export default function CustomLink({
   rightIcon: JSX.Element;
   onClick?: () => void;
 }) {
+  const changeColor = useLocation();
+  if (changeColor.pathname === text.toLocaleLowerCase()) {
+    console.log("xD");
+  }
   return (
     <div className="wholeLink">
       <div className="iconAndText">

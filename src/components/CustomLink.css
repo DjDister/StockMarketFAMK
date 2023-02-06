@@ -1,9 +1,23 @@
+/* ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: blue;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 5rem;
+  height: 20px;
+} */
 .wholeLink {
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
   /* background-color: blue; */
 }
 
@@ -20,3 +34,7 @@
   color: grey;
   font-size: 1.5rem;
 }
+
+/* .text:active {
+  color: rgb(83, 103, 254);
+} */
