@@ -4,6 +4,7 @@ import EyeOff from "../../assets/icons/EyeOff";
 import EyeOn from "../../assets/icons/EyeOn";
 import Facebook from "../../assets/icons/Facebook";
 import Google from "../../assets/icons/Google";
+import Checkbox from "../../components/CheckBox/CheckBox";
 import Input from "../../components/Input/Input";
 import styles from "./RegisterPage.module.css";
 
@@ -40,7 +41,12 @@ export default function RegisterPage() {
             />
           </div>
           <div className={styles.acceptPrivacyContainer}>
-            <div>C</div>
+            <Checkbox
+              style={{
+                minWidth: 16,
+                height: 16,
+              }}
+            />
             <div className={styles.acceptText}>
               By Register I agree that I'm 18 years of age or older, ot the{" "}
               <span className={styles.rulesLink}>

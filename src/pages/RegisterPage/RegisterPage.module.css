@@ -63,14 +63,15 @@ color:#6C7080;
 .acceptPrivacyContainer{
     display: flex;
     align-items: flex-start;
-    margin-top: 15px;
-  
+    justify-content: space-between;
+    margin-top: 15px;   
+    width: 100%;
+    gap: 10px;
 }
 
 .acceptText{
     color: white;
     font-size: 14px;
-    margin-left: 15px;
    
 }
 
