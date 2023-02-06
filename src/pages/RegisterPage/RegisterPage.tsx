@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Apple from "../../assets/icons/Apple";
 import EyeOff from "../../assets/icons/EyeOff";
+import EyeOn from "../../assets/icons/EyeOn";
 import Facebook from "../../assets/icons/Facebook";
 import Google from "../../assets/icons/Google";
 import Input from "../../components/Input/Input";
 import styles from "./RegisterPage.module.css";
 
 export default function RegisterPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className={styles.container}>
       <div className={styles.backGroundCircle} />
@@ -20,17 +23,19 @@ export default function RegisterPage() {
               onChange={(e) => console.log(e.target.value)}
             />
             <Input
+              type={showPassword ? "text" : "password"}
               style={{ height: 40 }}
               placeholder="Password"
-              icon={<EyeOff />}
-              onClick={() => console.log("click1")}
+              icon={showPassword ? <EyeOn /> : <EyeOff />}
+              onClick={() => setShowPassword(!showPassword)}
               onChange={(e) => console.log(e.target.value)}
             />
             <Input
+              type={showPassword ? "text" : "password"}
               style={{ height: 40 }}
               placeholder="Confirm Password"
-              icon={<EyeOff />}
-              onClick={() => console.log("click2")}
+              icon={showPassword ? <EyeOn /> : <EyeOff />}
+              onClick={() => setShowPassword(!showPassword)}
               onChange={(e) => console.log(e.target.value)}
             />
           </div>
