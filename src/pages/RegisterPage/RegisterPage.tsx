@@ -1,7 +1,9 @@
 import React from "react";
 import Apple from "../../assets/icons/Apple";
+import EyeOff from "../../assets/icons/EyeOff";
 import Facebook from "../../assets/icons/Facebook";
 import Google from "../../assets/icons/Google";
+import Input from "../../components/Input/Input";
 import styles from "./RegisterPage.module.css";
 
 export default function RegisterPage() {
@@ -12,9 +14,25 @@ export default function RegisterPage() {
         <div className={styles.registerPanelContainer}>
           <div className={styles.label}>Create an account</div>
           <div className={styles.inputsContainer}>
-            <div className={styles.input}>Input</div>
-            <div className={styles.input}>Input</div>
-            <div className={styles.input}>Input</div>
+            <Input
+              style={{ height: 40 }}
+              placeholder="Enter Email or phone number"
+              onChange={(e) => console.log(e.target.value)}
+            />
+            <Input
+              style={{ height: 40 }}
+              placeholder="Password"
+              icon={<EyeOff />}
+              onClick={() => console.log("click1")}
+              onChange={(e) => console.log(e.target.value)}
+            />
+            <Input
+              style={{ height: 40 }}
+              placeholder="Confirm Password"
+              icon={<EyeOff />}
+              onClick={() => console.log("click2")}
+              onChange={(e) => console.log(e.target.value)}
+            />
           </div>
           <div className={styles.acceptPrivacyContainer}>
             <div>C</div>
