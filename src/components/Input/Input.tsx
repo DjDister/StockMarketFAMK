@@ -1,19 +1,9 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import Error from "../../assets/icons/Error";
 import Warning from "../../assets/icons/Warning";
 import styles from "./Input.module.css";
-export default function Input({
-  icon,
-  placeholder,
-  onChange,
-  onClick,
-  style,
-  error,
 
-  warning,
-  onKeyDown,
-  customContainerStyle,
-}: {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,14 +11,27 @@ export default function Input({
   onClick?: () => void;
   error?: string;
   warning?: string;
-
   customContainerStyle?: React.CSSProperties;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-}) {
+}
+
+export default function Input({
+  icon,
+  placeholder,
+  onChange,
+  onClick,
+  style,
+  error,
+  warning,
+  onKeyDown,
+  customContainerStyle,
+  ...rest
+}: InputProps) {
   return (
     <div className={styles.container} style={customContainerStyle}>
       <div className={styles.inputContainer} style={style}>
         <input
+          {...rest}
           onChange={(e) => onChange(e)}
           className={styles.input}
           placeholder={placeholder}
