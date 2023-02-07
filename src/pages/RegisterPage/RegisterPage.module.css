@@ -1,0 +1,224 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.backGroundContainer{
+    width: 100%;
+    height: 100%;
+    background-color: #8ac8ff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.backGroundCircle{
+    position: absolute;
+    background-color: #9ed1ff;
+    height: 100%;
+    left:0px;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    width: 80%;
+    border-radius: 0% 150% 0% 0%;
+}
+
+.image{
+    position: absolute;
+    bottom: calc(100% - 35px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    aspect-ratio: 1/1;
+    z-index: 2;
+}
+
+
+
+.registerPanelContainer{
+    position: relative;
+    width: 85%;
+    background-color: #121318;  
+    margin-bottom: 10px;  
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.backgroundContainerColor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.customInput{
+    background-color: #080808;
+}
+
+.inputsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+.label{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.error{
+    color: #EF4444;
+    line-height: 42px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.input{
+width: 100%;
+height: 40px;
+background-color: #080808;
+display: flex;
+align-items: center;
+color:#6C7080;
+}
+
+
+.acceptPrivacyContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 15px;   
+    width: 100%;
+    gap: 10px;
+}
+
+.acceptText{
+    color: white;
+    font-size: 14px;
+   
+}
+
+.rulesLink{
+    color: #5263f7;
+    cursor: pointer;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;   
+    background-color: #5367FF;
+}
+
+.redirectToLoginContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.line{
+    width: 100%;
+    height: 1.5px;
+    background-color: white;
+    margin-top: 30px;
+    position: relative;
+}
+
+.lineTextOver{
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: #121318;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+.otherOptionsToLoginContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    position: relative;
+    margin-top: 25px;
+    gap: 30px;
+}
+
+@media only screen and (min-width: 992px) {
+    .paragraph{
+        font-size: 42px;
+    }
+    .label{
+        font-size: 32px;
+    }
+    .error{
+        font-size: 25px;
+        float: bottom;
+    }
+    .customInput{
+        background-color: #121318;
+    }
+    .backGroundContainer{
+        justify-content: flex-end
+    }
+    .registerPanelContainer{
+        background-color: #080808;
+    }
+    .backgroundContainerColor{
+        width: 50%;
+        z-index: 1;
+        height: 100%;
+        background-color: #080808;
+    }
+    .image{
+        width: 100%;
+        bottom:50%;
+        left: calc(-50% );
+        transform: translate(-50%, 50%);
+        max-width: 600px;
+    }
+   .backGroundCircle{
+    position: absolute;
+    background-color: #9ed1ff;
+    height: 100%;
+    left:0px;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    width: 40%;
+    border-radius: 0% 150% 0% 0%;
+   }
+   .inputsContainer{
+    gap:30px;
+   }
+   .otherOptionsToLoginContainer{
+    margin-top: 50px;
+   }
+   .line{
+    margin-top: 50px;
+   }
+   .buttonContainer{
+    margin-top: 30px;
+   }
+   .redirectToLoginContainer{
+    flex-direction: row;
+   }
+}

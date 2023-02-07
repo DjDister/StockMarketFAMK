@@ -1,23 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProfileState {
-  isLoggedIn: boolean;
+  isLoading: boolean;
+  userId: null | string;
+  error: null | string;
 }
 
 const initialState: ProfileState = {
-  isLoggedIn: false,
+  isLoading: false,
+  userId: null,
+  error: null,
 };
 
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    logIn: (state) => {
-      state.isLoggedIn = true;
+    startLogin: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    loginSuccess: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.userId = action.payload;
+      state.error = null;
+    },
+    loginFailure: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.userId = null;
+      state.error = action.payload;
+    },
+    logOut: (state) => {
+      state.isLoading = false;
+      state.userId = null;
+      state.error = null;
     },
   },
 });
 
-export const { logIn } = profileSlice.actions;
+export const { startLogin, loginFailure, loginSuccess, logOut } =
+  profileSlice.actions;
 
 export default profileSlice.reducer;
