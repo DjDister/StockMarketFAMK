@@ -67,6 +67,7 @@ select:-webkit-autofill:focus {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: inherit;
 }
 .errorContainer{
     position: absolute;

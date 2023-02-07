@@ -4,12 +4,11 @@ import EyeOff from "../../assets/icons/EyeOff";
 import EyeOn from "../../assets/icons/EyeOn";
 import Facebook from "../../assets/icons/Facebook";
 import Google from "../../assets/icons/Google";
-import Checkbox from "../../components/CheckBox/CheckBox";
 import Input from "../../components/Input/Input";
-import styles from "./RegisterPage.module.css";
+import styles from "../RegisterPage/RegisterPage.module.css";
 import womanPng from "../../assets/images/womanPng.png";
 import { auth } from "../../../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import errorHandlers from "../../utils/errorHandlersAuth";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
@@ -18,7 +17,8 @@ import {
   loginSuccess,
   startLogin,
 } from "../../redux/profileSlice";
-export default function RegisterPage() {
+
+export default function LoginPage() {
   const profile = useAppSelector((state) => state.profile);
 
   useEffect(() => {
@@ -31,29 +31,14 @@ export default function RegisterPage() {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
     isPrivacyAccepted: false,
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleRegister = () => {
-    if (loginData.password !== loginData.confirmPassword) {
-      setError("Passwords are not the same");
-      return;
-    }
-    if (!loginData.isPrivacyAccepted) {
-      setError("You must accept privacy policy");
-      return;
-    }
-
-    if (loginData.password.length < 3) {
-      setError("Password is too short");
-      return;
-    }
-
+  const handleLogin = () => {
     dispatch(startLogin());
-    createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
+    signInWithEmailAndPassword(auth, loginData.email, loginData.password)
       .then((userCredential) => {
         setError("");
         const user = userCredential.user;
@@ -77,16 +62,19 @@ export default function RegisterPage() {
           <div className={styles.registerPanelContainer}>
             <img className={styles.image} src={womanPng} />
             <div className={styles.label}>
-              <span className={styles.paragraph}>Create an account</span>
+              <span className={styles.paragraph}>Sign in</span>
               {error.length > 0 && (
-                <span className={styles.error}> {error}</span>
+                <span className={`${styles.paragraph} ${styles.error}`}>
+                  {" "}
+                  {error}
+                </span>
               )}
             </div>
             <div className={styles.inputsContainer}>
               <Input
                 className={styles.customInput}
                 autoComplete="off"
-                style={{ height: 40 }}
+                style={{ height: 50 }}
                 placeholder="Enter Email"
                 onChange={(e) =>
                   setLoginData((prev) => ({ ...prev, email: e.target.value }))
@@ -96,7 +84,7 @@ export default function RegisterPage() {
                 className={styles.customInput}
                 autoComplete="off"
                 type={showPassword ? "text" : "password"}
-                style={{ height: 40 }}
+                style={{ height: 50 }}
                 placeholder="Password"
                 icon={showPassword ? <EyeOn /> : <EyeOff />}
                 onClick={() => setShowPassword(!showPassword)}
@@ -107,53 +95,27 @@ export default function RegisterPage() {
                   }))
                 }
               />
-              <Input
-                className={styles.customInput}
-                type={showPassword ? "text" : "password"}
-                style={{ height: 40 }}
-                placeholder="Confirm Password"
-                icon={showPassword ? <EyeOn /> : <EyeOff />}
-                onClick={() => setShowPassword(!showPassword)}
-                onChange={(e) =>
-                  setLoginData((prev) => ({
-                    ...prev,
-                    confirmPassword: e.target.value,
-                  }))
-                }
-              />
             </div>
-            <div className={styles.acceptPrivacyContainer}>
-              <Checkbox
-                style={{
-                  minWidth: 16,
-                  maxWidth: 16,
-                  height: 16,
-                }}
-                onCheckboxChange={(isChecked) =>
-                  setLoginData((prev) => ({
-                    ...prev,
-                    isPrivacyAccepted: isChecked,
-                  }))
-                }
-              />
-              <div className={styles.acceptText}>
-                By Register I agree that I'm 18 years of age or older, ot the{" "}
-                <span className={styles.rulesLink}>
-                  User Agreements, Privacy Policy, Cookie Policy.
-                </span>
-              </div>
+            <div className={styles.forgotPassowrdContainer}>
+              <span
+                style={{ float: "right", marginTop: 20, marginBottom: 20 }}
+                className={styles.rulesLink}
+              >
+                Forgot password?
+              </span>
             </div>
-            <div onClick={handleRegister} className={styles.buttonContainer}>
-              Register
+
+            <div onClick={handleLogin} className={styles.buttonContainer}>
+              Login
             </div>
             <div className={styles.redirectToLoginContainer}>
-              Already have an account?
+              If you don't have an account, you can
               <span
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/register")}
                 className={styles.rulesLink}
               >
                 {" "}
-                Sign in
+                Register Here!
               </span>
             </div>
             <div className={styles.line}>

@@ -24,12 +24,19 @@ export default function Input({
   error,
   warning,
   onKeyDown,
+  className,
   customContainerStyle,
   ...rest
 }: InputProps) {
   return (
-    <div className={styles.container} style={customContainerStyle}>
-      <div className={styles.inputContainer} style={style}>
+    <div
+      className={`${styles.container} ${className}`}
+      style={customContainerStyle}
+    >
+      <div
+        className={styles.inputContainer}
+        style={{ ...{ backgroundColor: "inherit" }, ...style }}
+      >
         <input
           {...rest}
           onChange={(e) => onChange(e)}

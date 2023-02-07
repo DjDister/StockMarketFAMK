@@ -54,35 +54,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
-@media only screen and (min-width: 992px) {
-    .backGroundContainer{
-        justify-content: flex-end
-    }
-    .backgroundContainerColor{
-        width: 50%;
-        z-index: 1;
-        height: 100%;
-        background-color: #121318;
-    }
-    .image{
-        width: 100%;
-        bottom:50%;
-        left: calc(-50% );
-        transform: translate(-50%, 50%);
-        max-width: 600px;
-    }
-   .backGroundCircle{
-    position: absolute;
-    background-color: #9ed1ff;
-    height: 100%;
-    left:0px;
-    bottom: 0px;
-    transform: translate(0%,0%);
-    width: 40%;
-    border-radius: 0% 150% 0% 0%;
-   }
+.customInput{
+    background-color: #080808;
 }
 
 .inputsContainer{
@@ -99,8 +75,8 @@
 }
 
 .error{
-    color: #DC2626;
-    font-size: 14px;
+    color: #EF4444;
+    line-height: 42px;
     font-weight: 600;
     margin-top: 5px;
 }
@@ -132,7 +108,7 @@ color:#6C7080;
 
 .rulesLink{
     color: #5263f7;
-
+    cursor: pointer;
 }
 
 .buttonContainer{
@@ -148,6 +124,7 @@ color:#6C7080;
 
 .redirectToLoginContainer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 4px;
@@ -172,6 +149,7 @@ color:#6C7080;
     transform: translate(-50%, -50%);
     background-color: #121318;
     padding: 0 10px;
+    white-space: nowrap;
 }
 
 .otherOptionsToLoginContainer{
@@ -183,4 +161,64 @@ color:#6C7080;
     position: relative;
     margin-top: 25px;
     gap: 30px;
+}
+
+@media only screen and (min-width: 992px) {
+    .paragraph{
+        font-size: 42px;
+    }
+    .label{
+        font-size: 32px;
+    }
+    .error{
+        font-size: 25px;
+        float: bottom;
+    }
+    .customInput{
+        background-color: #121318;
+    }
+    .backGroundContainer{
+        justify-content: flex-end
+    }
+    .registerPanelContainer{
+        background-color: #080808;
+    }
+    .backgroundContainerColor{
+        width: 50%;
+        z-index: 1;
+        height: 100%;
+        background-color: #080808;
+    }
+    .image{
+        width: 100%;
+        bottom:50%;
+        left: calc(-50% );
+        transform: translate(-50%, 50%);
+        max-width: 600px;
+    }
+   .backGroundCircle{
+    position: absolute;
+    background-color: #9ed1ff;
+    height: 100%;
+    left:0px;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    width: 40%;
+    border-radius: 0% 150% 0% 0%;
+   }
+   .inputsContainer{
+    gap:30px;
+   }
+   .otherOptionsToLoginContainer{
+    margin-top: 50px;
+   }
+   .line{
+    margin-top: 50px;
+   }
+   .buttonContainer{
+    margin-top: 30px;
+   }
+   .redirectToLoginContainer{
+    flex-direction: row;
+   }
 }

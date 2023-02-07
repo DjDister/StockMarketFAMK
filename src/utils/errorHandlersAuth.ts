@@ -15,6 +15,12 @@ const errorHandlers: {
   "auth/weak-password": (error) => {
     return "Weak password";
   },
+  "auth/user-not-found": (error) => {
+    return "User not found";
+  },
+  "auth/wrong-password": (error) => {
+    return "Wrong password";
+  },
   default: (error) => {
     return "Something went wrong";
   },
