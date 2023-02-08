@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    color: #676a79;
+    height: 40px;
+}
+
+.iconContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
