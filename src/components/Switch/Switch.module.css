@@ -1,0 +1,59 @@
+.switchContainer {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+  
+  .label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+  }
+  
+  .switchInput {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -9999px;
+  }
+  
+  .switchLabel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .switchButton {
+    width: 100%;
+    height: 100%;
+    
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s;
+  }
+  
+  .switchInput:checked + .switchLabel .switchButton {
+    left: calc(100% - 100%);
+ 
+  }
+
+  .switchDot {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
