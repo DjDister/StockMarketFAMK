@@ -6,8 +6,9 @@ interface SwitchProps {
   offColor?: string;
   style?: React.CSSProperties;
   className?: string;
-  onSwitchChange?: (checked: boolean) => void;
-  defaultValue?: boolean;
+  id: string;
+  isOn?: boolean;
+  handleToggle?: () => void;
 }
 
 export default function Switch({
@@ -15,26 +16,20 @@ export default function Switch({
   offColor,
   style,
   className,
-  onSwitchChange,
-  defaultValue = false,
+  isOn = false,
+  handleToggle,
+  id,
 }: SwitchProps) {
-  const [isOn, setIsOn] = useState(defaultValue);
-
-  const handleToggle = () => {
-    setIsOn(!isOn);
-    onSwitchChange && onSwitchChange(!isOn);
-  };
-
   return (
     <div className={`${styles.switchContainer} ${className}`} style={style}>
       <input
         type="checkbox"
-        id="switch"
+        id={`switch-${id}`}
         checked={isOn}
         onChange={handleToggle}
         className={styles.switchInput}
       />
-      <label htmlFor="switch" className={styles.switchLabel}>
+      <label htmlFor={`switch-${id}`} className={styles.switchLabel}>
         <span
           className={styles.switchButton}
           style={{
