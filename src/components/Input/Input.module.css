@@ -46,12 +46,7 @@ input{
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
--webkit-box-shadow: 0 0 0 30px none inset !important;
-}
-input:-webkit-autofill,
+input:-webkit-autofill:active ,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
@@ -60,9 +55,8 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-  box-shadow: 0 0 0px 1000px white inset !important;
-  -webkit-text-fill-color: initial !important;
+    -webkit-box-shadow: 0 0 0 30px #080808 inset !important;
+    -webkit-text-fill-color: #4d566d !important;
 }
 
 .iconContainer{
@@ -73,6 +67,7 @@ select:-webkit-autofill:focus {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: inherit;
 }
 .errorContainer{
     position: absolute;
