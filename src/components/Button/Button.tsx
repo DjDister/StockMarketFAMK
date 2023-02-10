@@ -11,6 +11,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   iconLeftToChild?: React.ReactNode;
   rightIconColor?: string;
+  flex?: boolean;
 }
 export default function Button({
   leftIcon,
@@ -22,13 +23,19 @@ export default function Button({
   iconLeftToChild,
   style,
   rightIconColor,
+  flex,
   ...rest
 }: ButtonProps) {
   return (
     <div
       onClick={onClick}
       className={`${styles.container} ${className}`}
-      style={style}
+      style={{
+        ...(flex
+          ? { display: "flex", alignItems: "center", justifyContent: "center" }
+          : {}),
+        ...style,
+      }}
     >
       {leftIcon}
       <div
