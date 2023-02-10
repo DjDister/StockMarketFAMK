@@ -15,9 +15,10 @@ import ArrowLeft from "../../assets/icons/ArrowLeft";
 import Edit2 from "../../assets/icons/Edit2";
 import Security from "../../components/Security/Security";
 import useWindowSize from "../../hooks/useWindowSize";
+import MyProfile from "../../components/MyProfile.tsx/MyProfile";
 
 const profileSettings = [
-  { label: "My Profile", icon: <Person />, element: <></> },
+  { label: "My Profile", icon: <Person />, element: <MyProfile /> },
   { label: "Security", icon: <Lock />, element: <Security /> },
   {
     label: "Notifications Preferences",

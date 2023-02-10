@@ -150,5 +150,8 @@ color: white;
     width: 40%;
     height: 100%;
 }
-
+.label{
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
 }  

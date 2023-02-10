@@ -1,0 +1,95 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100vh;
+}
+
+.label{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.informationContainer{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.informationLabel{
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.inputsContainer{
+    width: 100%;
+}
+
+.inputContainer{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 40px;
+    
+}
+.inputLabel{
+    width: 100%;
+}
+
+.input{
+    width: 100%;
+    background-color: #080808;
+    color:white;
+    margin-top: 10px;
+}
+
+.inputDisabled{
+    margin-top: 10px;
+    width: 100%;
+    background-color: #080808;
+    
+}
+
+@media screen and (min-width: 992px) {
+    .label{
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+    .container{
+        height: 100%;
+        justify-content: flex-start;
+    }
+    .inputsContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .doubleContainer{
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+    }
+    .inputContainer{
+        width: 50%;
+    }
+    .lineSeparator{
+        width: 100%;
+        height: 1px;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        background-color: #e0e0e0;
+        opacity: 50%;
+    }
+    .informationContainer{
+        margin-top: 40px;
+    }
+    .informationLabel{
+        margin-bottom: 20px;
+    }
+}
