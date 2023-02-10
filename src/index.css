@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #080808;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,4 +14,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body { margin: 0; padding: 0; }
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  height: 10px;
+  border-radius: 100vw;
+}
