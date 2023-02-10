@@ -1,12 +1,15 @@
 import React from "react";
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <NavBar />
-    </div>
+    <Layout>
+      <div style={{ width: "100%", height: "100%", backgroundColor: "red" }}>
+        asasssasssssssssssssdas
+        <div style={{ height: "1000px" }}></div>
+      </div>
+    </Layout>
   );
 }
 
