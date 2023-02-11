@@ -1,16 +1,15 @@
 .navBar {
   width: 100%;
   height: 12%;
+  min-height: 12%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-color: #121318;
-  position: absolute;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  /* white-space: nowrap; */
-  /* background-color: red; */
+
 }
 
 .leftNavMobile {
@@ -56,9 +55,10 @@
 
 .hamburgerMenuBar {
   position: absolute;
-  top: 140%;
+  top: 14%;
   left: 5%;
   right: 5%;
+  z-index: 100;
   width: 90%;
   display: flex;
   align-items: center;
@@ -122,13 +122,11 @@
   display: flex;
   width: 90%;
   flex-direction: row;
-  /* justify-content: space-between; */
   justify-content: center;
   gap: 20px;
   align-items: center;
   margin-top: 15px;
   margin-bottom: 20px;
-  /* background-color: red; */
 }
 
 .loginButton {

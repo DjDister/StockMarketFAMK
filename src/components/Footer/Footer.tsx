@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Footer.module.css";
-import GitHub from "../../assets/icons/GitHub";
 import Windows from "../../assets/icons/Windows";
 import MacOs from "../../assets/icons/MacOs";
 import AppStore from "../../assets/icons/AppStore";
@@ -24,11 +23,6 @@ export default function Footer() {
           <h2 className={styles.tytultekst}> StockFAMK</h2>
         </div>
         <div className={styles.Przyciski}>
-          {/* <button className={styles.Przycisk}></button>
-          <button className={styles.Przycisk}></button>
-          <button className={styles.Przycisk}></button>
-          <button className={styles.Przycisk}></button> */}
-
           <div className={styles.icon}>
             <GooglePlay fill="white" />
 
@@ -123,11 +117,6 @@ export default function Footer() {
               onChange={() => null}
             />
 
-            {/* <input
-              type="text"
-              placeholder=" Enter your email"
-              className={styles.input}
-            ></input> */}
             <button className={styles.button}>Send</button>
           </div>
           <p>We accept the following payment system</p>
@@ -148,7 +137,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.stopka}>
-        <p className={styles.paragraf}>© 2023 dynamic. All right reserved</p>
+        <p className={styles.paragraf}>© 2023 FAMK. All right reserved</p>
 
         <div className={styles.podstopka}>
           <div className={styles.podstopka1}>Privacy</div>
