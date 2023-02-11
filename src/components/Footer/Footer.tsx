@@ -137,7 +137,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.stopka}>
-        <p className={styles.paragraf}>© 2023 dynamic. All right reserved</p>
+        <p className={styles.paragraf}>© 2023 FAMK. All right reserved</p>
 
         <div className={styles.podstopka}>
           <div className={styles.podstopka1}>Privacy</div>

@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <NavBar />
 
       {children}
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", backgroundColor: "#121318" }}>
         <Footer />
       </div>
     </div>

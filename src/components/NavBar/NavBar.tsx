@@ -51,43 +51,36 @@ export default function NavBar() {
       text: "Market",
       url: "market",
       leftIcon: <MarketIcon />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "Watchlist",
       url: "watchlist",
       leftIcon: <Watchlist />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "Portfolio",
       url: "portfolio",
       leftIcon: <Portfolio />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "Trade History",
       url: "tradehistory",
       leftIcon: <MarketIcon />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "Wallet",
       url: "wallet",
       leftIcon: <Wallet />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "Learn",
       url: "learn",
       leftIcon: <Learn />,
-      rightIcon: <RightArrow />,
     },
     {
       text: "About us",
       url: "aboutus",
       leftIcon: <AboutUs />,
-      rightIcon: <RightArrow />,
     },
   ];
 
@@ -278,7 +271,7 @@ export default function NavBar() {
                   }
                   leftIcon={elem.leftIcon}
                   text={elem.text}
-                  rightIcon={elem.rightIcon}
+                  rightIcon={<RightArrow />}
                 />
               </Link>
             ))}
