@@ -88,6 +88,8 @@ export default function ProfilPage() {
                     height: `65px`,
                     color: item === activeSettings ? "#4556d3" : "",
                   }}
+                  disabled={item.element.type === React.Fragment}
+                  showWip={item.element.type === React.Fragment}
                   key={index}
                   iconLeftToChild={React.cloneElement(
                     item.icon,
