@@ -86,7 +86,6 @@ export default function NavBar() {
     },
   ];
 
-  console.log(user);
   return (
     <div className={styles.navBar}>
       <div className={styles.leftNavMobile}>
