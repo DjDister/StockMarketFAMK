@@ -16,6 +16,8 @@ import Edit2 from "../../assets/icons/Edit2";
 import Security from "../../components/Security/Security";
 import useWindowSize from "../../hooks/useWindowSize";
 import MyProfile from "../../components/MyProfile.tsx/MyProfile";
+import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 const profileSettings = [
   { label: "My Profile", icon: <Person />, element: <MyProfile /> },
@@ -58,7 +60,9 @@ export default function ProfilPage() {
             <div className={styles.header}>{activeSettings?.label}</div>
             <Edit2 fill="white" style={{ marginRight: 8 }} />
           </>
-        ) : null}
+        ) : (
+          <NavBar />
+        )}
       </div>
       <div className={styles.menuAndSettingContainer}>
         <div
@@ -110,6 +114,7 @@ export default function ProfilPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
