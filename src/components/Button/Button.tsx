@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Button.module.css";
-
+import Wip from "../Wip/Wip";
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactElement;
@@ -12,6 +12,8 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   iconLeftToChild?: React.ReactNode;
   rightIconColor?: string;
   flex?: boolean;
+  disabled?: boolean;
+  showWip?: boolean;
 }
 export default function Button({
   leftIcon,
@@ -24,8 +26,11 @@ export default function Button({
   style,
   rightIconColor,
   flex,
+  disabled,
+  showWip,
   ...rest
 }: ButtonProps) {
+  const [isWipShown, setIsWipShown] = useState(false);
   return (
     <div
       onClick={onClick}
@@ -34,9 +39,13 @@ export default function Button({
         ...(flex
           ? { display: "flex", alignItems: "center", justifyContent: "center" }
           : {}),
+        ...(showWip && { position: "relative" }),
         ...style,
       }}
+      onMouseEnter={showWip ? () => setIsWipShown(true) : undefined}
+      onMouseLeave={showWip ? () => setIsWipShown(false) : undefined}
     >
+      {isWipShown && disabled ? <Wip /> : null}
       {leftIcon}
       <div
         style={{
