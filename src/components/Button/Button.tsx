@@ -33,7 +33,7 @@ export default function Button({
   const [isWipShown, setIsWipShown] = useState(false);
   return (
     <div
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={`${styles.container} ${className}`}
       style={{
         ...(flex
