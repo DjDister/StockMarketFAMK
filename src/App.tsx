@@ -1,17 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import React from "react";
 import "./App.css";
-import { useAppSelector, useAppDispatch } from "./hooks/reduxHooks";
-import { logIn } from "./redux/profileSlice";
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const profile = useAppSelector((state) => state.profile);
-  const dispatch = useAppDispatch();
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <div onClick={() => dispatch(logIn())}>LogIn</div>
-    </div>
+    <Layout>
+      <div style={{ width: "100%", height: "100%" }}>Welcome</div>
+    </Layout>
   );
 }
 

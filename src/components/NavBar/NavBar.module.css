@@ -1,0 +1,330 @@
+.navBar {
+  width: 100%;
+  height: 12%;
+  min-height: 12%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #121318;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+}
+
+.leftNavMobile {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.rightNavMobile {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.rightNavMobileWithX {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.MenuOpen {
+  margin-left: 15px;
+}
+
+.FAMK {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.line {
+  height: 40%;
+  width: 3px;
+  margin-left: 10px;
+  background-color: grey;
+}
+
+.hamburgerMenuBar {
+  position: absolute;
+  top: 14%;
+  left: 5%;
+  right: 5%;
+  z-index: 100;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #121318;
+  border-radius: 1rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.userSmallInfo {
+  width: 90%;
+  height: 10%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+.circleIcon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 5rem;
+  background-color: white;
+}
+
+.name {
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+.Email {
+  color: grey;
+  text-align: left;
+}
+
+.hamLine1 {
+  width: 90%;
+  height: 1px;
+  background-color: grey;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.hamLine {
+  width: 90%;
+  height: 1px;
+  background-color: grey;
+  margin-bottom: 15px;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.logRegButtons {
+  white-space: nowrap;
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.loginButton {
+  color: rgb(83, 103, 254);
+  background-color: white;
+  padding: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.loginButton:active {
+  color: white;
+  background-color: rgb(83, 103, 254);
+}
+
+.registerButton {
+  color: white;
+  background-color: rgb(83, 103, 254);
+  padding: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.registerButton:active {
+  color: rgb(83, 103, 254);
+  background-color: white;
+}
+
+.searchBar {
+  display: none;
+}
+
+@media (max-width: 350px) {
+  .loginButton {
+    color: rgb(83, 103, 254);
+    background-color: white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1rem;
+    font-weight: bold;
+  }
+
+  .registerButton {
+    color: white;
+    background-color: rgb(83, 103, 254);
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1rem;
+    font-weight: bold;
+  }
+}
+
+.desktopNavBar {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .FAMK {
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  .rightNavMobile {
+    display: none;
+  }
+
+  .rightNavMobileWithX {
+    display: none;
+  }
+
+  .hamburgerMenuBar {
+    display: none;
+  }
+
+  .desktopNavBar {
+    display: flex;
+    flex-direction: row;
+    height: 12vh;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .centerElements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+  }
+
+  .elemCenter {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 1rem;
+    color: "white";
+  }
+
+  .rightElements {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    justify-content: end;
+    margin-right: 50px;
+  }
+
+  .logRegButtonsDesktop {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  .userSmallInfoDesktop {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+  }
+  .dropMenuContainer {
+    height: 100%;
+  }
+
+  .registerButtonDesktop {
+    font-size: 0.9rem;
+    color: white;
+    background-color: rgb(83, 103, 254);
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+  }
+
+  .registerButtonDesktop:active {
+    background-color: white;
+    color: rgb(83, 103, 254);
+  }
+
+  .loginButtonDesktop {
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: rgb(83, 103, 254);
+  }
+
+  .loginButtonDesktop:active {
+    color: white;
+  }
+
+  .nameAndEmail {
+    font-size: 0.9rem;
+  }
+
+  .blueTextCenter {
+    color: rgb(83, 103, 254);
+  }
+
+  .whiteTextCenter {
+    color: white;
+  }
+
+  .blueUnderlineCenter {
+    border-bottom: 2px solid rgb(83, 103, 254);
+  }
+
+  .blackUnderlineCenter {
+    border-bottom: 2px solid #080808;
+  }
+}
+
+@media (max-width: 837px) and (min-width: 769px) {
+  .FAMK {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+  }
+  .nameAndEmail {
+    font-size: 0.7rem;
+  }
+
+  .elemCenter {
+    font-size: 0.9rem;
+  }
+}

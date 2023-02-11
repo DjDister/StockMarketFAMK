@@ -1,0 +1,177 @@
+
+.tytul {
+  margin-left: 15px;
+}
+
+.Footer {
+
+  width: 100%;
+  height: 12%;
+  bottom: 0;
+  left: 0;
+  right:0;
+}
+.Navbar {
+  display: flex;
+  padding-top:10px;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.Przyciski {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2%;
+  float: right;
+  height: 100%;
+}
+
+.listy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+span {
+  color: grey;
+  float: left;
+}
+ul {
+  list-style-type: none;
+}
+.listhead {
+  color: white;
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+
+}
+.lista1,
+.lista2,
+.lista3,
+.lista4 {
+  width: 45%;
+  max-width: 200px;
+  padding: 3px;
+  white-space: wrap;
+}
+.icon {
+  background-color: black;
+  border-radius: 5px;
+  width: 33px;
+  height: 33px;
+  fill: white;
+  margin-right: 5px;
+}
+
+.newsletterdiv {
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 100%;
+  padding-bottom: 30px;
+}
+.icons2 {
+  display: flex;
+}
+.stopka {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-wrap: wrap;
+
+  border-top: 1px solid gray;
+
+  padding-top: 15px;
+  padding-bottom: 30px;
+}
+
+.button {
+  height: 39.5px;
+  border-radius: 3px;
+
+  background-color: rgb(82, 103, 254);
+  color: white;
+  width: 20%;
+}
+.input {
+  width: 75%;
+  height: 37.5px;
+  outline: 1px solid white;
+  border-radius: 3px;
+}
+
+.inputbutton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  height: 37.5px;
+  gap: 4px;
+}
+
+.podstopka {
+  display: flex;
+
+  margin: 0 auto;
+}
+.podstopka1 {
+  padding: 10px;
+  border-left: 1px solid gray;
+}
+
+.icons4 {
+  display: flex;
+
+  margin: 0 auto;
+  padding: 5px;
+  padding-top: 25px;
+}
+.ikona {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.icon3 {
+  background-color: black;
+  border-radius: 5px;
+  width: 33px;
+  height: 33px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 10px;
+}
+.tekst {
+  display: none;
+}
+
+@media only screen and (min-width: 1010px) {
+  .podstopka {
+    float: left;
+  }
+  .icons4 {
+    float: inline-end;
+
+    margin-right: 2%;
+  }
+  .stopka {
+    align-items: center;
+  }
+  .newsletterdiv {
+    max-width: 300px;
+  }
+  .icon {
+    width: 200px;
+    height: auto;
+    display: flex;
+    padding-left: 5px;
+  }
+  .tekst {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tekst2 {
+    color: white;
+    padding-left: 10px;
+  }
+}
