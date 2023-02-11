@@ -16,10 +16,12 @@ import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import Globe from "../../assets/icons/Globe";
 import UpArrow from "../../assets/icons/UpArrow";
 import AboutUs from "../../assets/icons/AboutUs";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 export default function NavBar() {
+  const user = useAppSelector((state) => state.profile);
   const [hamburger, setHamburger] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(user.userId ? true : false);
   const locationData = useLocation();
 
   const languageArray = [
@@ -84,6 +86,7 @@ export default function NavBar() {
     },
   ];
 
+  console.log(user);
   return (
     <div className={styles.navBar}>
       <div className={styles.leftNavMobile}>
@@ -158,8 +161,20 @@ export default function NavBar() {
           </div>
           {isLoggedIn === false ? (
             <div className={styles.logRegButtonsDesktop}>
-              <div className={styles.loginButtonDesktop}>Sign in</div>
-              <div className={styles.registerButtonDesktop}>Register</div>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={"/login"}
+                className={styles.loginButtonDesktop}
+              >
+                Sign in
+              </Link>
+              <Link
+                to={"/register"}
+                style={{ textDecoration: "none" }}
+                className={styles.registerButtonDesktop}
+              >
+                Register
+              </Link>
             </div>
           ) : (
             <>
@@ -192,7 +207,11 @@ export default function NavBar() {
                   }}
                 />
               </div>
-              <div className={styles.userSmallInfoDesktop}>
+              <Link
+                to={"/profile"}
+                style={{ textDecoration: "none" }}
+                className={styles.userSmallInfoDesktop}
+              >
                 <div className={styles.circleIcon}></div>
                 <div className={styles.nameAndEmail}>
                   <div
@@ -202,7 +221,7 @@ export default function NavBar() {
                     Krystian Kiejno
                   </div>
                 </div>
-              </div>
+              </Link>
             </>
           )}
         </div>
@@ -239,13 +258,17 @@ export default function NavBar() {
               <div className={styles.registerButton}>Register</div>
             </div>
           ) : (
-            <div className={styles.userSmallInfo}>
+            <Link
+              to={"/profile"}
+              style={{ textDecoration: "none" }}
+              className={styles.userSmallInfo}
+            >
               <div className={styles.circleIcon}></div>
               <div>
                 <div className={styles.name}>Krystian Kiejno</div>
                 <div className={styles.Email}>kkiejno@gmail.com</div>
               </div>
-            </div>
+            </Link>
           )}
 
           <div className={styles.hamLine1}></div>
