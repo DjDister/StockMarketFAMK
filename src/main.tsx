@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-
+import MarketPage from "./pages/MarketPage/MarketPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/market",
-    element: <App />,
+    element: <MarketPage />,
   },
   {
     path: "/watchlist",
