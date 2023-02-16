@@ -8,7 +8,7 @@ import Checkbox from "../../components/CheckBox/CheckBox";
 import Input from "../../components/Input/Input";
 import styles from "./RegisterPage.module.css";
 import womanPng from "../../assets/images/womanPng.png";
-import { auth } from "../../../firebaseConfig";
+import db, { auth } from "../../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import errorHandlers from "../../utils/errorHandlersAuth";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ import {
   loginSuccess,
   startLogin,
 } from "../../redux/profileSlice";
+import { addDoc, collection } from "@firebase/firestore";
 export default function RegisterPage() {
   const profile = useAppSelector((state) => state.profile);
 
@@ -54,9 +55,18 @@ export default function RegisterPage() {
 
     dispatch(startLogin());
     createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         setError("");
         const user = userCredential.user;
+        await addDoc(collection(db, "users"), {
+          email: user.email,
+          uid: user.uid,
+          display: user.email,
+          photoUrl: user.photoURL,
+          phoneNumber: user.phoneNumber,
+          createdAt: user.metadata.creationTime,
+        });
+
         dispatch(loginSuccess(user.uid));
         navigate("/");
       })
