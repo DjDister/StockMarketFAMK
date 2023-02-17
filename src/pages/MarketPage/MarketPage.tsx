@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MarketPage.module.css";
-
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
 import Crypto from "../../components/Marketitem/Marketitem";
@@ -13,6 +13,9 @@ import Market2 from "../../assets/icons/Market2";
 import Market3 from "../../assets/icons/Market3";
 import DownArrow from "../../assets/icons/DownArrow";
 import TriangleUp from "../../assets/icons/TriangleUp";
+import Pagination from "../../components/Pagination";
+let amount = 0;
+
 const button = [
   { name: "Category" },
   { name: "Algorithm" },
@@ -39,24 +42,36 @@ const navbarcrypto = [
   { name: "Top Loses" },
   { name: "New in market" },
 ];
-const i = 1;
+
 const cryptolist = [
   { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
   { name: "Etherium", shortname: "ETH", price: 1500, counter: "" },
   { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
   { name: "Atom", shortname: "ATM", price: 14, counter: "" },
+  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
+  { name: "Etherium2", shortname: "ETH", price: 1500, counter: "" },
+  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
+  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
+  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
+  { name: "Etherium3", shortname: "ETH", price: 1500, counter: "" },
+  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
+  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
+  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
+  { name: "Etherium4", shortname: "ETH", price: 1500, counter: "" },
+  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
+  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
 ];
 
 export default function MarketPage() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSortedByName, setIsSortedByName] = useState(false);
-  const [cryptoarray, setCryptoarray] = useState(cryptolist);
-  const [isSortedByPrice, setIsSortedByPrice] = useState(false);
-
   const [sortedArr, setSortedArr] = useState(cryptolist);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(6);
 
-  console.log(isSortedByPrice);
-  console.log(isSortedByName);
+  const lastostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastostIndex - postPerPage;
+  const currentPost = cryptolist.slice(firstPostIndex, lastostIndex);
+
+  console.log(sortedArr);
 
   return (
     <Layout>
@@ -89,8 +104,9 @@ export default function MarketPage() {
           </div>
           <div className={styles.overallbuttons}>
             <div className={styles.przyciski}>
-              {button.map((x) => (
+              {button.map((x, index) => (
                 <Button
+                  key={index}
                   flex
                   className={styles.przycisk}
                   onClick={() => <div></div>}
@@ -112,17 +128,20 @@ export default function MarketPage() {
           <div className={styles.sortowanie}>
             {sortcrypto.map((y, index) => (
               <div
+                key={index}
                 className={styles.sortbutton}
                 onClick={
                   (index === 0
-                    ? () =>
+                    ? () => {
                         setSortedArr(
                           cryptolist.sort((a, b) => {
                             if (a.name < b.name) return -1;
                             if (a.name > b.name) return 1;
                             return 0;
                           })
-                        )
+                        );
+                        console.log(sortedArr);
+                      }
                     : undefined) ||
                   (index === 2
                     ? () =>
@@ -138,8 +157,8 @@ export default function MarketPage() {
             ))}
           </div>
           <div className={styles.sortowanie2}>
-            {sortcryptoweb.map((y) => (
-              <div className={styles.sortbutton}>
+            {sortcryptoweb.map((y, index) => (
+              <div className={styles.sortbutton} key={index}>
                 {y.name}
                 {<TriangleUp fill="white" height="10px" />}
               </div>
@@ -147,12 +166,13 @@ export default function MarketPage() {
           </div>
 
           <div className={styles.cryptocontainer}>
-            {sortedArr.map((x, index) => (
+            {currentPost.map((x, index) => (
               <Crypto
-                counter={index + 1}
+                counter={index + 1 + (currentPage - 1) * postPerPage}
                 name={x.name}
                 shortname={x.shortname}
                 price={x.price}
+                key={index}
               />
             ))}
 
@@ -161,49 +181,81 @@ export default function MarketPage() {
             </div>
           </div>
           <div className={styles.last}>
-            <div>assets</div>
-            <div> 1... 2... 3...4</div>
+            <div className={styles.pagination}>
+              <Pagination
+                totalPosts={cryptolist.length}
+                postPerPage={postPerPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
+            <div>
+              {1 + (currentPage - 1) * postPerPage}-
+              {postPerPage * currentPage > cryptolist.length
+                ? cryptolist.length
+                : postPerPage * currentPage}{" "}
+              of {cryptolist.length}
+            </div>
           </div>
         </div>
         <div className={styles.part2}>
           <div className={styles.navbar}>
             {" "}
             <div className={styles.navbarcrypto}>
-              {navbarcrypto.map((y) => (
-                <div className={styles.navbarbutton}>{y.name}</div>
+              {navbarcrypto.map((y, index) => (
+                <div className={styles.navbarbutton} key={index}>
+                  {y.name}
+                </div>
               ))}
             </div>
           </div>
           <div className={styles.sortowanie3}>
-            {sortcrypto.map((y) => (
-              <div className={styles.sortbutton}>
+            {sortcrypto.map((y, index) => (
+              <div className={styles.sortbutton} key={index}>
                 {y.name}
                 {<TriangleUp fill="white" height="10px" />}
               </div>
             ))}
           </div>
           <div className={styles.cryptocontainer}>
-            {cryptolist.map((x) => (
-              <Crypto name={x.name} shortname={x.shortname} price={x.price} />
+            {currentPost.map((x, index) => (
+              <Crypto
+                counter={index + 1 + (currentPage - 1) * postPerPage}
+                name={x.name}
+                shortname={x.shortname}
+                price={x.price}
+                key={index}
+              />
             ))}
           </div>
           <div className={styles.last}>
-            <div>assets</div>
+            <div>
+              <Pagination
+                totalPosts={cryptolist.length}
+                postPerPage={postPerPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
             <div> 1... 2... 3...4</div>
           </div>
 
           <div className={styles.watchlist}>Watchlist</div>
           <div className={styles.sortowanie3}>
-            {sortcrypto.map((y) => (
-              <div className={styles.sortbutton}>
+            {sortcrypto.map((y, index) => (
+              <div className={styles.sortbutton} key={index}>
                 {y.name}
                 {<TriangleUp fill="white" height="10px" />}
               </div>
             ))}
           </div>
           <div className={styles.cryptocontainer}>
-            {cryptolist.map((x) => (
-              <Crypto name={x.name} shortname={x.shortname} price={x.price} />
+            {currentPost.map((x, index) => (
+              <Crypto
+                counter={index + 1 + (currentPage - 1) * postPerPage}
+                name={x.name}
+                shortname={x.shortname}
+                price={x.price}
+                key={index}
+              />
             ))}
           </div>
         </div>
