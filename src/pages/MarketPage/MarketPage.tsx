@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./MarketPage.module.css";
 
 import { useState } from "react";
@@ -40,23 +40,58 @@ const navbarcrypto = [
   { name: "New in market" },
 ];
 const i = 1;
-const cryptolist = [
-  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
-  { name: "Etherium", shortname: "ETH", price: 1500, counter: "" },
-  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
-  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
-];
+
+type cryptoType = {
+  name: string;
+  shortname: string;
+  price: number;
+  counter: string;
+};
 
 export default function MarketPage() {
-  const [isOpen, setIsOpen] = useState(false);
+  const cryptolist: cryptoType[] = [
+    { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
+    { name: "Etherium", shortname: "ETH", price: 1500, counter: "" },
+    { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
+    { name: "Atom", shortname: "ATM", price: 14, counter: "" },
+  ];
   const [isSortedByName, setIsSortedByName] = useState(false);
-  const [cryptoarray, setCryptoarray] = useState(cryptolist);
   const [isSortedByPrice, setIsSortedByPrice] = useState(false);
 
-  const [sortedArr, setSortedArr] = useState(cryptolist);
+  const [sortedArr, setSortedArr] = useState<cryptoType[]>(cryptolist);
 
-  console.log(isSortedByPrice);
-  console.log(isSortedByName);
+  // useEffect(() => {
+  //   const socket = new WebSocket("wss://ws.coinapi.io/v1/");
+  //   socket.addEventListener("open", (event) => {
+  //     console.log("WebSocket connection opened!");
+  //     // Send an authentication message to the server after the connection is opened
+  //     const authMessage = {
+  //       type: "hello",
+  //       apikey: API_KEY,
+  //       heartbeat: false,
+  //       subscribe_data_type: ["trade"],
+  //       subscribe_filter_symbol_id: ["BITSTAMP_SPOT_BTC_USD"],
+  //     };
+  //     socket.send(JSON.stringify(authMessage));
+  //   });
+
+  //   socket.addEventListener("message", (event) => {
+  //     console.log(event.data);
+  //     // Handle incoming messages here
+  //   });
+
+  //   socket.addEventListener("error", (event) => {
+  //     console.error("WebSocket error:", event);
+  //   });
+
+  //   socket.addEventListener("close", (event) => {
+  //     console.log("WebSocket connection closed!");
+  //   });
+
+  //   return () => {
+  //     socket.close();
+  //   };
+  // }, []);
 
   return (
     <Layout>
@@ -113,24 +148,28 @@ export default function MarketPage() {
             {sortcrypto.map((y, index) => (
               <div
                 className={styles.sortbutton}
-                onClick={
-                  (index === 0
-                    ? () =>
-                        setSortedArr(
-                          cryptolist.sort((a, b) => {
-                            if (a.name < b.name) return -1;
-                            if (a.name > b.name) return 1;
-                            return 0;
-                          })
-                        )
-                    : undefined) ||
-                  (index === 2
-                    ? () =>
-                        setSortedArr(
-                          cryptolist.sort((a, b) => a.price - b.price)
-                        )
-                    : undefined)
-                }
+                onClick={() => {
+                  if (index === 0) {
+                    setIsSortedByPrice(false);
+                    setIsSortedByName(!isSortedByName);
+                    setSortedArr(
+                      [...sortedArr].sort((a, b) =>
+                        isSortedByName
+                          ? b.name.localeCompare(a.name)
+                          : a.name.localeCompare(b.name)
+                      )
+                    );
+                  }
+                  if (index === 2) {
+                    setIsSortedByName(false);
+                    setIsSortedByPrice(!isSortedByPrice);
+                    setSortedArr(
+                      [...sortedArr].sort((a, b) =>
+                        isSortedByPrice ? a.price - b.price : b.price - a.price
+                      )
+                    );
+                  }
+                }}
               >
                 {y.name}
                 {<TriangleUp fill="white" height="10px" />}

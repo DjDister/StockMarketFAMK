@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import MarketPage from "./pages/MarketPage/MarketPage";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/market",
-    element: <App />,
+    element: <MarketPage />,
   },
   {
     path: "/watchlist",
@@ -50,7 +51,6 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
 ]);
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
