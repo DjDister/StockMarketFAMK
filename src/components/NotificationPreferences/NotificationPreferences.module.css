@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+  
+}
+
+.label{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+}
+
+@media screen and (min-width: 992px) {
+    .label{
+        font-size: 1.5rem;
+    }
+}
+    
