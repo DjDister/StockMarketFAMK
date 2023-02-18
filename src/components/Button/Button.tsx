@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Wip from "../Wip/Wip";
 import styles from "./Button.module.css";
-
+import Wip from "../Wip/Wip";
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactElement;
@@ -34,7 +33,7 @@ export default function Button({
   const [isWipShown, setIsWipShown] = useState(false);
   return (
     <div
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={`${styles.container} ${className}`}
       style={{
         ...(flex
