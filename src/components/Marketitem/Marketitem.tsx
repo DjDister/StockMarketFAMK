@@ -3,8 +3,8 @@ import styles from "../../pages/MarketPage/MarketPage.module.css";
 
 interface CryptoProps {
   icon?: JSX.Element;
-  name: string;
-  shortname: string;
+  name?: string;
+  shortname?: string;
   graph?: JSX.Element;
   price?: number;
   changeprice?: string;
@@ -26,9 +26,11 @@ export default function Crypto({
       <div className={styles.icon}>{icon}</div>
       <div className={styles.nazwy}>
         <div className={styles.name}>{name}</div>
-        <div className={styles.shortname}>{shortname}</div>
+        <div className={styles.shortname} style={{ color: "rgb(54, 54, 153)" }}>
+          {shortname}
+        </div>
       </div>
-      <div className={styles.graph}>{}</div>
+      <div className={styles.graph}>wykres</div>
       <div className={styles.overallprice}>
         <div className={styles.price}>{price}</div>
         <div className={styles.pricechanges}>{changeprice}</div>

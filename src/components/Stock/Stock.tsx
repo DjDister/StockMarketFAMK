@@ -2,8 +2,12 @@ import React, { Component, useEffect, useState } from "react";
 import axios from "axios";
 import { async } from "@firebase/util";
 
-function MyComponent() {
+export default function Stock() {
   const [data, setData] = useState([]);
+
+  interface Todo {
+    id: string;
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -12,6 +16,7 @@ function MyComponent() {
       );
       setData(response.data);
     }
+    console.log(data);
     fetchData();
   }, []);
   return <div></div>;

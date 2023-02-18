@@ -1,7 +1,5 @@
 .Market {
   width: 100%;
-
-  margin-left: 10px;
 }
 .part1 {
   border-radius: 10px;
@@ -10,6 +8,8 @@
   margin: 15px;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
+  height: 850px;
 }
 .part2 {
   border-radius: 10px;
@@ -38,6 +38,8 @@
 }
 .tytul {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .square {
@@ -104,8 +106,11 @@ p {
 
 .crypto {
   display: flex;
-  background-color: rgb(19, 22, 17);
+  justify-content: space-between;
   gap: 10px;
+}
+.crypto:hover {
+  background-color: black;
 }
 .price {
   padding-left: 20px;
@@ -113,7 +118,6 @@ p {
 .cryptocontainer {
   gap: 15px;
   align-items: center;
-  border-bottom: 1px solid gray;
 }
 .buysellbutton {
   width: 100%;
@@ -131,13 +135,19 @@ p {
 }
 .buyselltekst {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .last {
   display: flex;
+  width: 100%;
+
+  position: absolute;
+  bottom: 0;
+  top: auto;
   justify-content: space-between;
+  margin-left: -10px;
+  margin-bottom: 10px;
 }
 .przyciski::-webkit-scrollbar {
   height: 0.1px;
@@ -154,11 +164,11 @@ p {
   font-size: 20px;
   margin-top: 15px;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.navbarbutton:hover {
-  color: rgb(54, 54, 153);
-  border-bottom: 3px solid rgb(54, 54, 153);
-}
+
 .inputdiv {
   border: 1px gray solid;
 
@@ -176,7 +186,32 @@ p {
 .sortowanie2 {
   display: none;
 }
-
+.pagination:hover {
+  color: rgb(54, 54, 153);
+}
+.pagination {
+  gap: 5px;
+}
+.paginationdiv {
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+}
+.arrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.last2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.numberof {
+  padding-top: 25px;
+  margin-right: 5px;
+}
 @media screen and (min-width: 1100px) {
   .Market {
     width: 93%;
@@ -191,6 +226,7 @@ p {
   }
   .part1 {
     width: 75%;
+    height: 1250px;
   }
   .part2 {
     width: 22%;
@@ -268,5 +304,11 @@ p {
   }
   .crypto {
     gap: 20px;
+  }
+  .pagination2 {
+    display: none;
+  }
+  .last2 {
+    display: none;
   }
 }
