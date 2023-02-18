@@ -18,7 +18,7 @@ import {
   loginSuccess,
   startLogin,
 } from "../../redux/profileSlice";
-import { addDoc, collection } from "@firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
 export default function RegisterPage() {
   const profile = useAppSelector((state) => state.profile);
 
@@ -58,7 +58,7 @@ export default function RegisterPage() {
       .then(async (userCredential) => {
         setError("");
         const user = userCredential.user;
-        await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, "users", user.uid), {
           email: user.email,
           uid: user.uid,
           display: user.email,
