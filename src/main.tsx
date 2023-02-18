@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
 
+import MarketPage from "./pages/MarketPage/MarketPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/market",
-    element: <App />,
+    element: <MarketPage />,
   },
   {
     path: "/watchlist",
@@ -51,7 +52,6 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
 ]);
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>

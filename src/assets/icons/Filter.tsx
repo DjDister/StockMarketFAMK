@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Bitcoin({
+export default function Filter({
   width,
   height,
   fill,
@@ -26,8 +26,8 @@ export default function Bitcoin({
       <g id="SVGRepo_iconCarrier">
         {" "}
         <path
-          d="M12 8V6M12 18V16M9 12H13C14.1046 12 15 11.1046 15 10C15 8.89543 14.1046 8 13 8H9V12ZM9 12H14C15.1046 12 16 12.8954 16 14C16 15.1046 15.1046 16 14 16H9V12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-          stroke="#000000"
+          d="M17.8258 5H6.17422C5.31987 5 4.85896 6.00212 5.41496 6.65079L9.75926 11.7191C9.91461 11.9004 10 12.1312 10 12.3699V17.382C10 17.7607 10.214 18.107 10.5528 18.2764L12.5528 19.2764C13.2177 19.6088 14 19.1253 14 18.382V12.3699C14 12.1312 14.0854 11.9004 14.2407 11.7191L18.585 6.65079C19.141 6.00212 18.6801 5 17.8258 5Z"
+          stroke="gray"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
