@@ -11,6 +11,7 @@ import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
 
 import MarketPage from "./pages/MarketPage/MarketPage";
 import ProtectedRoute from "./redux/ProtectedRoute";
+import ProfilPage from "./pages/ProfilePage/ProfilPage";
 
 const RootRouter = () => {
   return (
@@ -28,7 +29,10 @@ const RootRouter = () => {
           element={<ProtectedRoute component={App} />}
         />
         <Route path="/wallet" element={<ProtectedRoute component={App} />} />
-        <Route path="/profile" element={<ProtectedRoute component={App} />} />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute component={ProfilPage} />}
+        />
         <Route path="/aboutus" element={<App />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
