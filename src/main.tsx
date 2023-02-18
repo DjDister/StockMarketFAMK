@@ -28,11 +28,13 @@ const RootRouter = () => {
           path="/tradehistory"
           element={<ProtectedRoute component={App} />}
         />
+
         <Route path="/wallet" element={<ProtectedRoute component={App} />} />
         <Route
           path="/profile"
           element={<ProtectedRoute component={ProfilPage} />}
         />
+        <Route path="/learn" element={<App />} />
         <Route path="/aboutus" element={<App />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
