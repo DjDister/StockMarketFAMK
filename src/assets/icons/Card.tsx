@@ -17,25 +17,25 @@ export default function Card({
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}
         <path
           stroke="#535358"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M5 7h22c1 0 2 1 2 2v14c0 1-1 2-2 2H5c-1 0-2-1-2-2V9c0-1 1-2 2-2z"
         ></path>{" "}
         <path
           stroke="#535358"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M11 20h8M3 13h26M23 20h2"
         ></path>{" "}
       </g>

@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProfileState {
   isLoading: boolean;
-  userId: null | string;
+  userId: string;
   error: null | string;
 }
 
 const initialState: ProfileState = {
   isLoading: false,
-  userId: null,
+  userId: "",
   error: null,
 };
 
@@ -27,12 +27,12 @@ export const profileSlice = createSlice({
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.userId = null;
+      state.userId = "";
       state.error = action.payload;
     },
     logOut: (state) => {
       state.isLoading = false;
-      state.userId = null;
+      state.userId = "";
       state.error = null;
     },
   },
