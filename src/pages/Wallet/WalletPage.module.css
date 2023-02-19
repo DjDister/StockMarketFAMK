@@ -1,0 +1,185 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.flexContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+}
+
+
+.leftContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.walletContainer{
+    background-color: #121318;
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.walletTitleCont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+}
+
+.updateDate{
+    font-size: 0.8rem;
+    color: #8C8C8C;
+}
+
+.walletBalance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.walletText{
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #8C8C8C;
+}
+
+.flexCenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.walletTotals{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80px;
+    border-radius: 4px;
+    background-color: #080808;
+    justify-self: center;
+    align-items: center;
+}
+
+.totalCont{
+    height: 50%;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.totalAmount{
+    width: 35%;
+    display: flex;
+    gap: 5px;
+}
+
+.transactionsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 15px;
+    
+    border-radius: 8px;
+    background-color: #121318;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.transactionsTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.3rem;
+  
+}
+
+.walletButtonCont{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    color:#8C8C8C;
+    width: 100%;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid grey;
+
+}
+.depositContainer{
+    width: 100%;
+}
+
+.depositItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+
+}
+
+.activityCont{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.depositDate{
+    font-size: 0.8rem;
+    color: #8C8C8C;
+}
+
+
+
+@media only screen and (min-width: 1002px) {
+    .summaryContainer{
+        display:flex;
+        margin-top: 20px;
+    }
+    .walletBalance{
+        flex-direction: column;
+        align-items: flex-start;
+        }
+.avalibeAmount{
+    font-size: 1.7rem;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.walletTotals{
+    width:60%;
+}
+    .transactionsTitle  {
+        font-size: 1.5rem;
+    }
+}
