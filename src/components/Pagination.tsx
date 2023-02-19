@@ -1,9 +1,7 @@
-import React, { JSXElementConstructor } from "react";
-import Button from "./Button/Button";
+import React from "react";
 import styles from "../pages/MarketPage/MarketPage.module.css";
 import RightArrow from "../assets/icons/RightArrow";
 import LeftArrow from "../assets/icons/LeftArrow";
-import { current } from "immer";
 interface PaginationProps {
   totalPosts: number;
   postPerPage: number;
@@ -17,28 +15,25 @@ function Pagination({
   setCurrentPage,
   currentPage,
 }: PaginationProps) {
-  let pages = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
-    pages.push(i);
-  }
-  0;
+  const numberOfPages = Math.ceil(totalPosts / postPerPage);
 
   return (
-    <div className={styles.paginationdiv} style={{}}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <button
         style={{
           backgroundColor: "#121318",
-
           color: "gray",
           border: "#121318",
         }}
         className={styles.arrow}
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => {
+          if (currentPage === 1) setCurrentPage(numberOfPages);
+          else setCurrentPage(currentPage - 1);
+        }}
       >
         {<LeftArrow height="17px" fill="white" />}{" "}
       </button>
-
-      {pages.map((page, index) => {
+      {Array.from({ length: numberOfPages }, (_, index) => {
         return (
           <button
             style={{
@@ -48,11 +43,13 @@ function Pagination({
               display: "flex",
               alignItems: "center",
             }}
-            onClick={() => setCurrentPage(page)}
+            onClick={() => {
+              setCurrentPage(index + 1);
+            }}
             key={index}
             className={styles.pagination}
           >
-            {page}
+            {index + 1}
           </button>
         );
       })}
@@ -62,7 +59,10 @@ function Pagination({
           color: "gray",
           border: "#121318",
         }}
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => {
+          if (currentPage === numberOfPages) setCurrentPage(1);
+          else setCurrentPage(currentPage + 1);
+        }}
         className={styles.arrow}
       >
         {" "}

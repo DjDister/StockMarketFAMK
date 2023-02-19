@@ -11,7 +11,7 @@ import TriangleUp from "../../assets/icons/TriangleUp";
 import Button from "../Button/Button";
 import Pagination from "../Pagination";
 import { useState } from "react";
-import Crypto from "../Marketitem/Marketitem";
+import Crypto from "../MarketItem/MarketItem";
 const button = [
   { name: "Category" },
   { name: "Algorithm" },

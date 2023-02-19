@@ -118,6 +118,7 @@ p {
 .cryptocontainer {
   gap: 15px;
   align-items: center;
+  background-color: antiquewhite;
 }
 .buysellbutton {
   width: 100%;

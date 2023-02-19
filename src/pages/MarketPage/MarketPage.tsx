@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, ChangeEvent } from "react";
 import styles from "./MarketPage.module.css";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
-import Crypto from "../../components/Marketitem/Marketitem";
+import Crypto from "../../components/MarketItem/MarketItem";
 import Input from "../../components/Input/Input";
 import Loupe from "../../assets/icons/Loupe";
 import Filter from "../../assets/icons/Filter";
@@ -15,6 +15,7 @@ import Pagination from "../../components/Pagination";
 import Stock from "../../components/Stock/Stock";
 import RightArrow from "../../assets/icons/RightArrow";
 import axios from "axios";
+import MarketList from "../../components/MarketList/MarketList";
 
 interface CryptoItemType {
   id: string;
@@ -22,7 +23,7 @@ interface CryptoItemType {
   price_change_24h: number;
   symbol: string;
   current_price: number;
-  image?: JSX.Element;
+  image?: string;
 }
 
 const button = [
@@ -122,9 +123,10 @@ export default function MarketPage() {
       const response = await axios.get(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       );
+      console.log(response.data);
+
       setData(response.data);
     }
-    console.log(data);
     fetchData();
   }, []);
 
@@ -141,11 +143,19 @@ export default function MarketPage() {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
-  console.log({ value });
+
   return (
     <Layout>
       <div className={styles.Market}>
-        <div className={styles.part1}>
+        <MarketList
+          howManyToShowPerPage={10}
+          customStyles={{ width: "70%" }}
+          cryptoCoins={data}
+          howManyDetails={5}
+          ElementToRenderInList={Crypto}
+          showPagination
+        ></MarketList>
+        {/* <div className={styles.part1}>
           <div className={styles.linia1}>
             <div className={styles.tytul}>
               <span className={styles.title}>Market Coins{<Stock />}</span>
@@ -171,7 +181,7 @@ export default function MarketPage() {
               <div className={styles.square}></div>
             </div>
           </div>
-          <div></div>
+   
           <div className={styles.overallbuttons}>
             <div className={styles.przyciski}>
               {button.map((x, index) => (
@@ -242,7 +252,7 @@ export default function MarketPage() {
               x.name.toLowerCase().includes(value.toLowerCase()) ? (
                 <Crypto
                   // counter={index + 1 + (currentPage - 1) * postPerPage}
-                  // icon={x.image}
+                  icon={x.image}
                   name={x.name}
                   shortname={x.symbol}
                   price={x.current_price}
@@ -279,8 +289,8 @@ export default function MarketPage() {
               of {data.length}
             </div>
           </div>
-        </div>
-        <div className={styles.part2}>
+        </div> */}
+        {/* <div className={styles.part2}>
           <div className={styles.navbar}>
             {" "}
             <div className={styles.navbarcrypto}>
@@ -314,15 +324,15 @@ export default function MarketPage() {
           <div className={styles.cryptocontainer2}>
             {currentPost.map((x, index) =>
               x.name.toLowerCase().includes(value.toLowerCase()) ? (
-                <Crypto
-                  // counter={index + 1 + (currentPage - 1) * postPerPage}
-                  // icon={x.image}
-                  name={x.name}
-                  shortname={x.symbol}
-                  price={x.current_price}
-                  key={index}
-                />
+                <></> // <Crypto
               ) : (
+                //   // counter={index + 1 + (currentPage - 1) * postPerPage}
+                //   // icon={x.image}
+                //   name={x.name}
+                //   shortname={x.symbol}
+                //   price={x.current_price}
+                //   key={index}
+                // />
                 <div></div>
               )
             )}
@@ -367,16 +377,17 @@ export default function MarketPage() {
           </div>
           <div className={styles.cryptocontainer}>
             {currentPost.map((x, index) => (
-              <Crypto
-                counter={index + 1 + (currentPage - 1) * postPerPage}
-                name={x.name}
-                shortname={x.symbol}
-                price={x.current_price}
-                key={index}
-              />
+              <></>
+              // <Crypto
+              //   counter={index + 1 + (currentPage - 1) * postPerPage}
+              //   name={x.name}
+              //   shortname={x.symbol}
+              //   price={x.current_price}
+              //   key={index}
+              // />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
