@@ -1,4 +1,6 @@
+import { doc, getDoc } from "@firebase/firestore";
 import React, { useEffect, useState } from "react";
+import db from "../../../firebaseConfig";
 import CardRight from "../../assets/icons/CardRight";
 import Download from "../../assets/icons/Download";
 import EyeOff from "../../assets/icons/EyeOff";
@@ -7,10 +9,27 @@ import Upload from "../../assets/icons/Upload";
 import Wallet from "../../assets/icons/Wallet";
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { UserData, WalletType } from "../../types";
+import converter from "../../utils/converter";
 import styles from "./WalletPage.module.css";
 export default function WalletPage() {
-  const [userWallet, setUserWallet] = useState([]);
-  useEffect(() => {}, []);
+  const profile = useAppSelector((state) => state.profile);
+  const [userWallet, setUserWallet] = useState<WalletType | undefined>(
+    undefined
+  );
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const docRef = doc(db, "users", profile.userId).withConverter(
+        converter<UserData>()
+      );
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserWallet(docSnap.data().wallet);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <Layout>
@@ -34,7 +53,9 @@ export default function WalletPage() {
                     Wallet Balance
                   </div>
                   <div className={styles.flexCenter}>
-                    <div className={styles.avalibeAmount}>$32,455.12</div>
+                    <div className={styles.avalibeAmount}>
+                      ${userWallet?.totalBalanceDollars}
+                    </div>
                     <EyeOff
                       fill={"grey"}
                       style={{ backgroundColor: "#080808", padding: 1 }}
@@ -85,7 +106,7 @@ export default function WalletPage() {
                 </Button>
               </div>
               <div className={styles.depositContainer}>
-                {Array.from({ length: 10 }, (_, i) => (
+                {userWallet?.transactionHistory.map((transaction, i) => (
                   <div key={i} className={styles.depositItem}>
                     <div className={styles.activityCont}>
                       <CardRight
@@ -93,12 +114,28 @@ export default function WalletPage() {
                         style={{ alignSelf: "flex-start", marginTop: 3 }}
                       />
                       <div>
-                        Deposited
-                        <div className={styles.depositDate}>Feb 03, 2022</div>
+                        {transaction.type === "deposit"
+                          ? "Deposit"
+                          : "Withdrawal"}
+                        <div className={styles.depositDate}>
+                          {new Date(transaction.date).toLocaleDateString(
+                            "en-US",
+                            { month: "short", day: "numeric", year: "numeric" }
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div>$50,000.00</div>
-                    <div style={{ color: "#039763" }}> Successful</div>
+                    <div>${transaction.amount}</div>
+                    <div
+                      style={{
+                        color:
+                          transaction.status === "success" ? "#039763" : "red",
+                      }}
+                    >
+                      {transaction.status === "success"
+                        ? "Successful"
+                        : "Declined"}
+                    </div>
                   </div>
                 ))}
               </div>
