@@ -65,6 +65,19 @@ export default function RegisterPage() {
           photoUrl: user.photoURL,
           phoneNumber: user.phoneNumber,
           createdAt: user.metadata.creationTime,
+          wallet: {
+            totalBalanceDollars: 500000,
+            transactionHistory: [
+              ...Array.from({ length: 10 }, (_, i) => {
+                return {
+                  amount: 500000,
+                  date: new Date().toISOString(),
+                  type: "deposit",
+                  status: "success",
+                };
+              }),
+            ],
+          },
           portfolio: [],
         });
 

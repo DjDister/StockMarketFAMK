@@ -8,10 +8,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
-
-import MarketPage from "./pages/MarketPage/MarketPage";
 import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
+import WalletPage from "./pages/Wallet/WalletPage";
 
 const RootRouter = () => {
   return (
@@ -29,7 +28,10 @@ const RootRouter = () => {
           element={<ProtectedRoute component={App} />}
         />
 
-        <Route path="/wallet" element={<ProtectedRoute component={App} />} />
+        <Route
+          path="/wallet"
+          element={<ProtectedRoute component={WalletPage} />}
+        />
         <Route
           path="/profile"
           element={<ProtectedRoute component={ProfilPage} />}
