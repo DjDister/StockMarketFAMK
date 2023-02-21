@@ -1,0 +1,125 @@
+.BigTrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* background-color: blue; */
+}
+
+.BigTrade2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.download {
+  color: #5367fe;
+  text-align: center;
+  text-shadow: 0.5px 0 #5367fe;
+}
+
+.anyText {
+  color: white;
+  font-size: 1.33rem;
+  text-shadow: 1px 0 #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  /* background-color: pink; */
+}
+
+.anySmallText {
+  text-align: center;
+  max-width: 800px;
+  /* background-color: red; */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  row-gap: 15px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: blue; */
+  padding: 5px;
+  /* background-color: #121318; */
+  /* background-color: #080808; */
+}
+
+/* .card:hover {
+  opacity: 0.8;
+  background-color: red;
+} */
+
+.img11 {
+  width: 90%;
+  max-width: 400px;
+  aspect-ratio: 2/2;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img2 {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .img11 {
+    display: none;
+  }
+
+  .img2 {
+    max-width: 400px;
+    aspect-ratio: 2/2;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .BigTrade {
+    flex-direction: row;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .download {
+    width: 70%;
+    text-align: left;
+    font-size: 1.5rem;
+  }
+
+  .anySmallText {
+    width: 70%;
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  .anyText {
+    width: 70%;
+    text-align: left;
+  }
+}

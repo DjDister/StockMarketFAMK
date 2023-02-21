@@ -1,6 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import RightArrow from "../../assets/icons/RightArrow";
 import styles from "./CustomLink.module.css";
 
 export default function CustomLink({
@@ -23,7 +21,13 @@ export default function CustomLink({
   linkWidth?: string;
 }) {
   return (
-    <div className={styles.wholeLink} style={style}>
+    <div
+      className={styles.wholeLink}
+      style={style}
+      onClick={() => {
+        onClick ? onClick() : undefined;
+      }}
+    >
       <div className={styles.iconAndText}>
         {leftIcon ? (
           <div style={{ display: "flex", alignItems: "center" }}>
