@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import MarketPage from "./pages/MarketPage/MarketPage";
+import CryptoPage from "./pages/CryptoPage/cryptoPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/watchlist",
-    element: <App />,
+    element: <CryptoPage />,
   },
   {
     path: "/portfolio",
