@@ -54,19 +54,14 @@ export default function PortfolioPage() {
         const totalReturn = await (
           await Promise.all(
             data.map(async (curr) => {
-              const response = await axios.request({
-                method: "GET",
-                baseURL: "https://rest.coinapi.io/v1",
-                url: `/exchangerate/${curr.symbol}/USD`,
-                headers: {
-                  "X-CoinAPI-Key": "976C4BA7-395F-4529-86B7-888A9F92493C",
-                },
-              });
+              const lowerName = curr.name.toLowerCase();
+              const response = await axios.get(
+                `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${lowerName}`
+              );
 
-              const data = await response.data;
-              const currentPrice = data.rate;
+              const data = response.data;
 
-              return parseInt(curr.amount) * currentPrice;
+              return parseInt(curr.amount) * data[0].current_price;
             })
           )
         ).reduce((acc, curr) => acc + curr, 0);
@@ -74,23 +69,6 @@ export default function PortfolioPage() {
       }
     };
     fetchUserData();
-  }, []);
-
-  useEffect(() => {
-    async function fetchCryptocurrencies() {
-      const response = await axios.request({
-        method: "GET",
-        baseURL: "rest.coinapi.io",
-        url: `/v1/symbols`,
-        headers: {
-          "X-CoinAPI-Key": "0C937E64-E825-4D2D-8E19-2B245D6A87B7",
-        },
-      });
-
-      console.log(response);
-    }
-
-    fetchCryptocurrencies();
   }, []);
 
   const totalInvestment = userPortfolio?.reduce(
@@ -103,7 +81,7 @@ export default function PortfolioPage() {
       : 0;
   return (
     <Layout>
-      <div
+      {/* <div
         onClick={() => addTestCryptos()}
         style={{
           position: "absolute",
@@ -114,7 +92,7 @@ export default function PortfolioPage() {
           backgroundColor: "red",
           zIndex: 100,
         }}
-      />
+      /> */}
       <div className={styles.container}>
         {userPortfolio ? (
           <div className={styles.portfolioSummaryContainer}>
