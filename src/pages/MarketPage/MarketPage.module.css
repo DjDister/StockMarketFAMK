@@ -84,7 +84,9 @@ p {
   color: white;
   border-radius: 5px;
 }
-
+.setborder {
+  border-bottom: 1px solid gray;
+}
 .sortowanie,
 .sortowanie3 {
   display: flex;

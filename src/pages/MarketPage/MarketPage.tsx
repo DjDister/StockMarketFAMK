@@ -113,7 +113,7 @@ export default function MarketPage() {
   };
 
   const TitleElement = (
-    <div style={{ width: "100%" }}>
+    <div className={styles.setborder} style={{ width: "100%" }}>
       <div className={styles.linia1}>
         <div className={styles.tytul}>
           <span className={styles.title}>Market Coins{<Stock />}</span>

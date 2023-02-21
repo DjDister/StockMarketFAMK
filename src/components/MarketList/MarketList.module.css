@@ -1,39 +1,38 @@
-.container{
-    background-color: #121318;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
+.container {
+  background-color: #121318;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
 }
 
-.cryptoListContainer{
-
-    width: 100%;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    flex-direction: column;
+.cryptoListContainer {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.pagination{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.assetsCont{
-    color:grey;
+.assetsCont {
+  color: grey;
 }
 
-.containerColumns{
-    display: grid;
-    width: 100%;
-    height: 60px;
+.containerColumns {
+  display: grid;
+  width: 100%;
+  height: 60px;
 }
 
-.containerColumns > *{
-    display: flex;
-    align-items: center;
+.containerColumns > * {
+  display: flex;
+  align-items: center;
 }

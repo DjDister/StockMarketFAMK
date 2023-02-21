@@ -1,6 +1,7 @@
-import React, { ElementType, useState } from "react";
+import React, { ElementType, useState, useEffect } from "react";
 import styles from "./MarketList.module.css";
-
+import TriangleUp from "../../assets/icons/TriangleUp";
+import MarketItem from "../Marketitem/Marketitem";
 import Pagination from "../Pagination";
 
 interface MarketListProps {
@@ -32,24 +33,103 @@ export default function MarketList({
     (elem) => elem.name === "Coin Name"
   );
 
+  const [cryptoCoinsSorted, setcryptoCoinsSorted] = useState(cryptoCoins);
+
+  useEffect(() => {
+    setcryptoCoinsSorted(cryptoCoins);
+  }, [cryptoCoins]);
+
+  console.log(cryptoCoinsSorted);
+  const sortArray = (prop: string) => {
+    switch (prop) {
+      case "Coin Price":
+        {
+          setcryptoCoinsSorted(
+            cryptoCoins
+              ?.map((x) => x)
+              .sort((a, b) => b.current_price - a.current_price)
+          );
+        }
+        break;
+      case "24%":
+        {
+          setcryptoCoinsSorted(
+            cryptoCoins
+              ?.map((x) => x)
+              .sort(
+                (a, b) =>
+                  b.price_change_percentage_24h - a.price_change_percentage_24h
+              )
+          );
+        }
+        break;
+      case "24h High":
+        {
+          setcryptoCoinsSorted(
+            cryptoCoins?.map((x) => x).sort((a, b) => b.high_24h - a.high_24h)
+          );
+        }
+        break;
+      case "24h Low": {
+        setcryptoCoinsSorted(
+          cryptoCoins?.map((x) => x).sort((a, b) => b.low_24h - a.low_24h)
+        );
+      }
+    }
+  };
+
   return (
     <div className={`${className} ${styles.container}`} style={customStyles}>
       {titleElement}
       {coinNameElem && (
         <div style={{ width: "100%", display: "flex" }}>
           <div
-            onClick={coinNameElem.onClick}
-            style={{ width: "50%", display: "flex", alignItems: "center" }}
+            style={{
+              width: "50%",
+              display: "flex",
+              alignItems: "center",
+              color: "gray",
+              gap: "5px",
+              borderBottom: "1px solid gray",
+            }}
           >
             {coinNameElem.name === "Coin Name" &&
               cryptoCoins &&
               cryptoCoins[0] &&
               cryptoCoins[0].index && (
-                <div style={{ marginRight: 10 }} className={styles.indexTitle}>
+                <div
+                  onClick={() => {
+                    setcryptoCoinsSorted(cryptoCoins);
+                  }}
+                  style={{
+                    marginRight: 10,
+                    color: "gray",
+                  }}
+                  className={styles.indexTitle}
+                >
                   #
                 </div>
               )}
-            {coinNameElem.name}
+            <div
+              onClick={() => {
+                setcryptoCoinsSorted(
+                  cryptoCoins
+                    ?.map((x) => x)
+                    .sort((a, b) => {
+                      if (a.id < b.id) {
+                        return -1;
+                      }
+                      if (a.id > b.id) {
+                        return 1;
+                      }
+                      return 0;
+                    })
+                );
+              }}
+            >
+              {coinNameElem.name}
+            </div>
+            {<TriangleUp fill="gray" width="10px" />}
           </div>
           <div
             className={styles.containerColumns}
@@ -67,17 +147,26 @@ export default function MarketList({
                     <div
                       key={index}
                       className={styles.columnTitle}
-                      onClick={element.onClick}
+                      onClick={() => {
+                        sortArray(element.name);
+                      }}
+                      style={{
+                        color: "gray",
+                        gap: "5px",
+                        borderBottom: "1px solid gray",
+                      }}
                     >
                       {element.name}
+                      {<TriangleUp fill="gray" width="10px" />}
                     </div>
                   );
                 })}
           </div>
         </div>
       )}
+
       <div className={styles.cryptoListContainer}>
-        {cryptoCoins
+        {cryptoCoinsSorted
           ?.slice(
             currentPage * howManyToShowPerPage - howManyToShowPerPage,
             currentPage * howManyToShowPerPage
