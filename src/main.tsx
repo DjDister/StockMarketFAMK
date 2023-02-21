@@ -4,62 +4,49 @@ import App from "./App";
 import "./index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
+
+import MarketPage from "./pages/MarketPage/MarketPage";
+import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/market",
-    element: <App />,
-  },
-  {
-    path: "/watchlist",
-    element: <App />,
-  },
-  {
-    path: "/portfolio",
-    element: <App />,
-  },
-  {
-    path: "/tradehistory",
-    element: <App />,
-  },
-  {
-    path: "/wallet",
-    element: <App />,
-  },
-  {
-    path: "/learn",
-    element: <App />,
-  },
-  {
-    path: "/aboutus",
-    element: <App />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/profile",
-    element: <ProfilPage />,
-  },
-]);
+const RootRouter = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/market" element={<App />} />
+        <Route path="/watchlist" element={<App />} />
+        <Route
+          path="/portfolio"
+          element={<ProtectedRoute component={PortfolioPage} />}
+        />
+        <Route
+          path="/tradehistory"
+          element={<ProtectedRoute component={App} />}
+        />
+
+        <Route path="/wallet" element={<ProtectedRoute component={App} />} />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute component={ProfilPage} />}
+        />
+        <Route path="/learn" element={<App />} />
+        <Route path="/aboutus" element={<App />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <RootRouter />
     </Provider>
   </React.StrictMode>
 );
