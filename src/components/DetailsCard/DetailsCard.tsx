@@ -16,7 +16,7 @@ export default function DetailsCard({
   labelText?: string;
   labelIcon?: React.ReactNode;
   amount?: string;
-  returnIndicator?: React.ReactNode;
+  returnIndicator?: number | string;
 }) {
   return (
     <div
@@ -38,7 +38,7 @@ export default function DetailsCard({
               color:
                 returnIndicator > 0
                   ? "green"
-                  : returnIndicator === 0
+                  : returnIndicator == 0
                   ? "grey"
                   : "red",
             }}

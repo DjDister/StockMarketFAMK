@@ -51,21 +51,25 @@ export default function PortfolioPage() {
       if (docSnap.exists()) {
         setUserPortfolio(docSnap.data().portfolio);
         const data = docSnap.data().portfolio;
-        const totalReturn = await (
-          await Promise.all(
-            data.map(async (curr) => {
-              const lowerName = curr.name.toLowerCase();
-              const response = await axios.get(
-                `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${lowerName}`
-              );
+        if (data) {
+          const totalReturn = await (
+            await Promise.all(
+              data.map(async (curr) => {
+                const lowerName = curr.name.toLowerCase();
+                const response = await axios.get(
+                  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${lowerName}`
+                );
 
-              const data = response.data;
+                const data = response.data;
 
-              return parseInt(curr.amount) * data[0].current_price;
-            })
-          )
-        ).reduce((acc, curr) => acc + curr, 0);
-        setTotalReturn(totalReturn);
+                return parseInt(curr.amount) * data[0].current_price;
+              })
+            )
+          ).reduce((acc, curr) => acc + curr, 0);
+          setTotalReturn(totalReturn);
+        } else {
+          setTotalReturn(0);
+        }
       }
     };
     fetchUserData();
@@ -142,8 +146,10 @@ export default function PortfolioPage() {
                   amount={`$${profitAmount}`}
                   returnIndicator={
                     profitAmount && totalInvestment
-                      ? (parseInt(profitAmount) / totalInvestment).toFixed(2)
-                      : 0
+                      ? parseInt(
+                          (parseInt(profitAmount) / totalInvestment).toFixed(2)
+                        )
+                      : "0"
                   }
                 />
               </div>
