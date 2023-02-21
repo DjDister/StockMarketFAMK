@@ -78,6 +78,7 @@ export default function RegisterPage() {
               }),
             ],
           },
+          portfolio: [],
         });
 
         dispatch(loginSuccess(user.uid));
