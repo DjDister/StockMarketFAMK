@@ -1,53 +1,53 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-    width: 100%;
-    height: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.labelContainer{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    font-family: 'General Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 160%;
-    color: #4d566d;
+.labelContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  color: #4d566d;
 }
 
-.inputContainer{
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: #080808;
-    color:#707280;
-    border-radius: 5px;
+.inputContainer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #080808;
+  color: #707280;
+  border-radius: 5px;
 }
 
-input{
-    all: unset;
+input {
+  all: unset;
 }
 
-.input{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-    margin-left: 8px;
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  margin-left: 8px;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:active ,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:active,
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -55,33 +55,33 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 30px #080808 inset !important;
-    -webkit-text-fill-color: #4d566d !important;
+  -webkit-box-shadow: 0 0 0 30px #080808 inset !important;
+  -webkit-text-fill-color: #4d566d !important;
 }
 
-.iconContainer{
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: inherit;
+.iconContainer {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: inherit;
 }
-.errorContainer{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    width: 100%;
-    height: 25px;
-    top: calc(100% + 4px);
+.errorContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  height: 25px;
+  top: calc(100% + 4px);
 }
-.errorText{
-    font-family: 'General Sans';
-    font-style: normal;
-    font-weight: 600;
-    line-height: 160%;
-    color: #525C76;
+.errorText {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%;
+  color: #525c76;
 }

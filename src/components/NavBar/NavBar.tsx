@@ -7,7 +7,7 @@ import MenuClose from "../../assets/icons/MenuClose";
 import MarketIcon from "../../assets/icons/MarketIcon";
 import CustomLink from "../CustomLink/CustomLink";
 import RightArrow from "../../assets/icons/RightArrow";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Watchlist from "../../assets/icons/WatchList";
 import Portfolio from "../../assets/icons/Portfolio";
 import Learn from "../../assets/icons/Learn";
@@ -17,12 +17,18 @@ import Globe from "../../assets/icons/Globe";
 import UpArrow from "../../assets/icons/UpArrow";
 import AboutUs from "../../assets/icons/AboutUs";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import Wallet2 from "../../assets/icons/wallet2";
+import Logout from "../../assets/icons/Logout";
+import { logOut } from "../../redux/profileSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 
 export default function NavBar() {
   const user = useAppSelector((state) => state.profile);
   const [hamburger, setHamburger] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(user.userId ? true : false);
   const locationData = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const languageArray = [
     "Polish",
@@ -72,7 +78,7 @@ export default function NavBar() {
     {
       text: "Wallet",
       url: "wallet",
-      leftIcon: <Wallet />,
+      leftIcon: <Wallet2 width="30px" height="30px" />,
     },
     {
       text: "Learn",
@@ -318,8 +324,20 @@ export default function NavBar() {
           <div className={styles.hamburgerMenuBar}>
             {isLoggedIn === false ? (
               <div className={styles.logRegButtons}>
-                <div className={styles.loginButton}>Sign in</div>
-                <div className={styles.registerButton}>Register</div>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={"/login"}
+                  className={styles.loginButton}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  to={"/register"}
+                  style={{ textDecoration: "none" }}
+                  className={styles.registerButton}
+                >
+                  Register
+                </Link>
               </div>
             ) : (
               <Link
@@ -380,6 +398,24 @@ export default function NavBar() {
             />
 
             <div className={styles.hamLine1}></div>
+            {isLoggedIn === true ? (
+              <div className={styles.logoutButton}>
+                <CustomLink
+                  leftIcon={<Logout />}
+                  text="Logout"
+                  style={{
+                    color: "#f04444",
+                    width: "auto",
+                    marginRight: "7%",
+                  }}
+                  onClick={() => {
+                    dispatch(logOut());
+                    setIsLoggedIn(!isLoggedIn);
+                    navigate("/");
+                  }}
+                />
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
