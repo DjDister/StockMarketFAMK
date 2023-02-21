@@ -18,7 +18,6 @@ export default function DetailsCard({
   amount?: string;
   returnIndicator?: number | string;
 }) {
-  console.log(returnIndicator);
   return (
     <div
       className={`${styles.container} ${className}`}
