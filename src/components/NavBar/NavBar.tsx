@@ -17,7 +17,7 @@ import Globe from "../../assets/icons/Globe";
 import UpArrow from "../../assets/icons/UpArrow";
 import AboutUs from "../../assets/icons/AboutUs";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import CryptoPage from "../../pages/CryptoPage/cryptoPage";
+import CryptoPage from "../../pages/CryptoPage/CryptoPage";
 
 export default function NavBar() {
   const user = useAppSelector((state) => state.profile);
