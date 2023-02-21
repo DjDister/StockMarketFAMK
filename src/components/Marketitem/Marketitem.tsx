@@ -11,9 +11,11 @@ interface CryptoProps {
   low_24h?: number;
   image?: string;
   howManyDetails: number;
+  index?: number;
 }
 
-export default function Crypto({
+export default function MarketItem({
+  index,
   name,
   symbol,
   current_price,
@@ -24,45 +26,48 @@ export default function Crypto({
   howManyDetails,
 }: CryptoProps) {
   return (
-    <div
-      className={styles.container}
-      style={{
-        gridTemplateColumns: `repeat(${howManyDetails}, 1fr)`,
-      }}
-    >
-      <div style={{}} className={styles.nameContainer}>
+    <div style={{ width: "100%", display: "flex" }}>
+      <div className={styles.nameContainer} style={{ width: "50%" }}>
+        {index && <div style={{ marginRight: 10 }}>{index}</div>}
         <div className={styles.nameWithIcon}>
           <img className={styles.icon} src={image} />
           {name}
         </div>
         <div className={styles.symbolCont}>{symbol.toUpperCase()}</div>
       </div>
-      {current_price && <div>${current_price}</div>}
-      {price_change_percentage_24h && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color:
-              price_change_percentage_24h > 0
-                ? "#039763"
-                : price_change_percentage_24h === 0
-                ? "grey"
-                : "red",
-          }}
-        >
-          {price_change_percentage_24h}%
-          {price_change_percentage_24h >= 0 ? (
-            <TrendingUp
-              fill={price_change_percentage_24h > 0 ? "green" : "grey"}
-            />
-          ) : (
-            <TrendingDown fill="red" />
-          )}
-        </div>
-      )}
-      {high_24h && <div>{high_24h}</div>}
-      {low_24h && <div>{low_24h}</div>}
+      <div
+        className={styles.container}
+        style={{
+          gridTemplateColumns: `repeat(${howManyDetails - 1}, 1fr)`,
+        }}
+      >
+        {current_price && <div>${current_price}</div>}
+        {price_change_percentage_24h && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color:
+                price_change_percentage_24h > 0
+                  ? "#039763"
+                  : price_change_percentage_24h === 0
+                  ? "grey"
+                  : "red",
+            }}
+          >
+            {price_change_percentage_24h}%
+            {price_change_percentage_24h >= 0 ? (
+              <TrendingUp
+                fill={price_change_percentage_24h > 0 ? "green" : "grey"}
+              />
+            ) : (
+              <TrendingDown fill="red" />
+            )}
+          </div>
+        )}
+        {high_24h && <div>{high_24h}</div>}
+        {low_24h && <div>{low_24h}</div>}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, ChangeEvent } from "react";
 import styles from "./MarketPage.module.css";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
-import Crypto from "../../components/MarketItem/MarketItem";
+
 import Input from "../../components/Input/Input";
 import Loupe from "../../assets/icons/Loupe";
 import Filter from "../../assets/icons/Filter";
@@ -16,6 +16,7 @@ import Stock from "../../components/Stock/Stock";
 import RightArrow from "../../assets/icons/RightArrow";
 import axios from "axios";
 import MarketList from "../../components/MarketList/MarketList";
+import MarketItem from "../../components/Marketitem/Marketitem";
 
 interface CryptoItemType {
   id: string;
@@ -82,41 +83,8 @@ const cryptolist: cryptoType[] = [
 export default function MarketPage() {
   const [isSortedByName, setIsSortedByName] = useState(false);
   const [isSortedByPrice, setIsSortedByPrice] = useState(false);
-
   const [sortedArr, setSortedArr] = useState<cryptoType[]>(cryptolist);
 
-  // useEffect(() => {
-  //   const socket = new WebSocket("wss://ws.coinapi.io/v1/");
-  //   socket.addEventListener("open", (event) => {
-  //     console.log("WebSocket connection opened!");
-  //     // Send an authentication message to the server after the connection is opened
-  //     const authMessage = {
-  //       type: "hello",
-  //       apikey: API_KEY,
-  //       heartbeat: false,
-  //       subscribe_data_type: ["trade"],
-  //       subscribe_filter_symbol_id: ["BITSTAMP_SPOT_BTC_USD"],
-  //     };
-  //     socket.send(JSON.stringify(authMessage));
-  //   });
-
-  //   socket.addEventListener("message", (event) => {
-  //     console.log(event.data);
-  //     // Handle incoming messages here
-  //   });
-
-  //   socket.addEventListener("error", (event) => {
-  //     console.error("WebSocket error:", event);
-  //   });
-
-  //   socket.addEventListener("close", (event) => {
-  //     console.log("WebSocket connection closed!");
-  //   });
-
-  //   return () => {
-  //     socket.close();
-  //   };
-  // }, []);
   const [data, setData] = useState<CryptoItemType[]>([]);
   useEffect(() => {
     async function fetchData() {
@@ -136,13 +104,74 @@ export default function MarketPage() {
   const lastostIndex = currentPage * postPerPage;
   const firstPostIndex = lastostIndex - postPerPage;
   const currentPost = data.slice(firstPostIndex, lastostIndex);
-  const [value, setValue] = useState("");
+  const [filterValue, setFilterValue] = useState("");
 
   const [color, setColor] = useState(0);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setFilterValue(event.target.value);
   };
+
+  const TitleElement = (
+    <div style={{ width: "100%" }}>
+      <div className={styles.linia1}>
+        <div className={styles.tytul}>
+          <span className={styles.title}>Market Coins{<Stock />}</span>
+          <p>jakis bardzo madry tekst ut bedzie</p>
+        </div>
+        <div className={styles.inputdiv}>
+          {<Loupe width="24px" fill="gray" />}
+          <input
+            className={styles.inputtitle}
+            placeholder="Search Coin Name"
+            onChange={onChange}
+            type="text"
+            value={filterValue}
+          />
+        </div>
+        <div className={styles.filter}>
+          <Button>{<Filter fill="none" width="25px" />}Filter</Button>
+        </div>
+
+        <div className={styles.container}>
+          <div className={styles.square}></div>
+          <div className={styles.square}></div>
+          <div className={styles.square}></div>
+        </div>
+      </div>
+      <div className={styles.overallbuttons}>
+        <div className={styles.przyciski}>
+          {button.map((x, index) => (
+            <Button
+              key={index}
+              flex
+              className={styles.przycisk}
+              onClick={() => <div></div>}
+            >
+              {x.name}
+              {<DownArrow />}
+            </Button>
+          ))}
+        </div>
+        <div className={styles.przyciski2}>
+          <Button className={styles.show20}>
+            Show 20 <DownArrow />
+          </Button>
+          {<Market1 fill="white" height="38px" />}
+          {<Market2 fill="white" />}
+          {<Market3 fill="white" />}
+        </div>
+      </div>
+    </div>
+  );
+
+  const SortElement = [
+    { name: "Coin Name", onClick: () => {} },
+    { name: "Coin Price", onClick: () => {} },
+    { name: "24%", onClick: () => {} },
+    { name: "24h High", onClick: () => {} },
+    { name: "24h Low", onClick: () => {} },
+  ];
 
   return (
     <Layout>
@@ -150,10 +179,21 @@ export default function MarketPage() {
         <MarketList
           howManyToShowPerPage={10}
           customStyles={{ width: "70%" }}
-          cryptoCoins={data}
+          cryptoCoins={data
+            .filter((elem) =>
+              elem.name.toLowerCase().includes(filterValue.toLowerCase())
+            )
+            .map((item, index) => {
+              return {
+                index: index + 1,
+                ...item,
+              };
+            })}
           howManyDetails={5}
-          ElementToRenderInList={Crypto}
+          ElementToRenderInList={MarketItem}
           showPagination
+          columnsTitleElements={SortElement}
+          titleElement={TitleElement}
         ></MarketList>
         {/* <div className={styles.part1}>
           <div className={styles.linia1}>

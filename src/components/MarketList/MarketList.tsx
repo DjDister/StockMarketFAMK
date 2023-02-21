@@ -1,6 +1,6 @@
 import React, { ElementType, useState } from "react";
 import styles from "./MarketList.module.css";
-import Crypto from "../MarketItem/MarketItem";
+
 import Pagination from "../Pagination";
 
 interface MarketListProps {
@@ -12,6 +12,8 @@ interface MarketListProps {
   ElementToRenderInList: ElementType;
   howManyDetails?: number;
   showPagination?: boolean;
+  columnsTitleElements?: { name: string; onClick: () => void }[];
+  titleElement?: JSX.Element;
 }
 
 export default function MarketList({
@@ -22,11 +24,58 @@ export default function MarketList({
   howManyDetails,
   howManyToShowPerPage,
   showPagination,
+  columnsTitleElements,
+  titleElement,
 }: MarketListProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(currentPage);
+  const coinNameElem = columnsTitleElements?.find(
+    (elem) => elem.name === "Coin Name"
+  );
+
   return (
     <div className={`${className} ${styles.container}`} style={customStyles}>
+      {titleElement}
+      {coinNameElem && (
+        <div style={{ width: "100%", display: "flex" }}>
+          <div
+            onClick={coinNameElem.onClick}
+            style={{ width: "50%", display: "flex", alignItems: "center" }}
+          >
+            {coinNameElem.name === "Coin Name" &&
+              cryptoCoins &&
+              cryptoCoins[0] &&
+              cryptoCoins[0].index && (
+                <div style={{ marginRight: 10 }} className={styles.indexTitle}>
+                  #
+                </div>
+              )}
+            {coinNameElem.name}
+          </div>
+          <div
+            className={styles.containerColumns}
+            style={{
+              gridTemplateColumns: `repeat(${
+                howManyDetails ? howManyDetails - 1 : 10
+              }, 1fr)`,
+            }}
+          >
+            {columnsTitleElements &&
+              columnsTitleElements
+                .filter((elem) => !(elem.name === "Coin Name"))
+                .map((element, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={styles.columnTitle}
+                      onClick={element.onClick}
+                    >
+                      {element.name}
+                    </div>
+                  );
+                })}
+          </div>
+        </div>
+      )}
       <div className={styles.cryptoListContainer}>
         {cryptoCoins
           ?.slice(
@@ -39,6 +88,7 @@ export default function MarketList({
                 key={index}
                 howManyDetails={howManyDetails}
                 graph={cryptoCoin.graph ?? undefined}
+                index={cryptoCoin.index}
                 {...cryptoCoin}
               />
             );
