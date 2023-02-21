@@ -65,6 +65,7 @@ export default function RegisterPage() {
           photoUrl: user.photoURL,
           phoneNumber: user.phoneNumber,
           createdAt: user.metadata.creationTime,
+          portfolio: [],
         });
 
         dispatch(loginSuccess(user.uid));
