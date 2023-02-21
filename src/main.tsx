@@ -18,7 +18,7 @@ const RootRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/market" element={<MarketPage />} />
+        <Route path="/market" element={<App />} />
         <Route path="/watchlist" element={<App />} />
         <Route
           path="/portfolio"
