@@ -8,8 +8,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
-
-import MarketPage from "./pages/MarketPage/MarketPage";
 import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
 import WalletPage from "./pages/Wallet/WalletPage";
@@ -19,7 +17,7 @@ const RootRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/market" element={<MarketPage />} />
+        <Route path="/market" element={<App />} />
         <Route path="/watchlist" element={<App />} />
         <Route
           path="/portfolio"
