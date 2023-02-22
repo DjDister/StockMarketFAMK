@@ -19,6 +19,7 @@ import {
   startLogin,
 } from "../../redux/profileSlice";
 import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
+import { UserData } from "../../types";
 export default function RegisterPage() {
   const profile = useAppSelector((state) => state.profile);
 
@@ -58,19 +59,19 @@ export default function RegisterPage() {
       .then(async (userCredential) => {
         setError("");
         const user = userCredential.user;
-        await setDoc(doc(db, "users", user.uid), {
-          email: user.email,
+        const userData: UserData = {
+          email: user.email || "",
           uid: user.uid,
-          display: user.email,
-          photoUrl: user.photoURL,
+          displayName: user.email || "",
+          photoURL: user.photoURL,
           phoneNumber: user.phoneNumber,
-          createdAt: user.metadata.creationTime,
+          createdAt: user.metadata.creationTime || "",
           wallet: {
-            totalBalanceDollars: 500000,
+            totalBalanceDollars: "50000",
             transactionHistory: [
               ...Array.from({ length: 10 }, (_, i) => {
                 return {
-                  amount: 500000,
+                  amount: "50000",
                   date: new Date().toISOString(),
                   type: "deposit",
                   status: "success",
@@ -79,7 +80,8 @@ export default function RegisterPage() {
             ],
           },
           portfolio: [],
-        });
+        };
+        await setDoc(doc(db, "users", user.uid), userData);
 
         dispatch(loginSuccess(user.uid));
         navigate("/");

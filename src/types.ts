@@ -23,4 +23,5 @@ export type UserData = {
   phoneNumber: string | null;
   portfolio: PortfolioType;
   wallet: WalletType;
+  createdAt: string;
 };
