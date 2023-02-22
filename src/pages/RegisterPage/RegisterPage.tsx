@@ -67,7 +67,7 @@ export default function RegisterPage() {
           phoneNumber: user.phoneNumber,
           createdAt: user.metadata.creationTime || "",
           wallet: {
-            totalBalanceDollars: "50000",
+            totalBalanceDollars: "500000",
             transactionHistory: [
               ...Array.from({ length: 10 }, (_, i) => {
                 return {
