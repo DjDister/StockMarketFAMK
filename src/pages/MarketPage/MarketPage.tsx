@@ -17,6 +17,7 @@ import RightArrow from "../../assets/icons/RightArrow";
 import axios from "axios";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
+import MarketList2 from "../../components/MarketList2/MarketList2";
 
 interface CryptoItemType {
   id: string;
@@ -195,6 +196,7 @@ export default function MarketPage() {
           columnsTitleElements={SortElement}
           titleElement={TitleElement}
         ></MarketList>
+        <MarketList2 />
         {/* <div className={styles.part1}>
           <div className={styles.linia1}>
             <div className={styles.tytul}>
