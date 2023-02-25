@@ -53,7 +53,7 @@ export default function MarketPage() {
       <div className={styles.linia1}>
         <div className={styles.tytul}>
           <span className={styles.title}>Market Coins</span>
-          <p>jakis bardzo madry tekst ut bedzie</p>
+          <p>Check price of crypto coins</p>
         </div>
         <div className={styles.inputdiv}>
           {<Loupe width="24px" fill="gray" />}
