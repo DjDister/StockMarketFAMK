@@ -1,11 +1,30 @@
 .Market {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
   margin-bottom: 20px;
+  align-items: center;
 }
+
+
+.leftContainer{
+  width:96%;
+  display: flex;
+  background-color: #121318;
+  align-items: center;
+  justify-content: center;
+}
+.MarketList{
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rightContainer{
+  width:95%
+}
+
 .part1 {
   border-radius: 10px;
   margin-bottom: 20px;
@@ -17,10 +36,6 @@
   height: 850px;
 }
 
-.MarketList{
-  width: 90%;
-
-}
 .part2 {
   border-radius: 10px;
   margin-bottom: 20px;
@@ -228,6 +243,20 @@ p {
   .container {
     display: none;
   }
+  .Market{
+    flex-direction: row;
+    gap:10px;
+  }
+  
+  .leftContainer{
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .rightContainer{
+    width: 25%;
+  }
   .part1 {
     width: 75%;
     height: 1250px;
@@ -315,7 +344,5 @@ p {
   .last2 {
     display: none;
   }
-  .MarketList{
-    width: 70%;
-  }
+
 }
