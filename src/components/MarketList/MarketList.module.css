@@ -42,11 +42,25 @@
   display: none;
 }
 
-@media only screen and (min-width: 1102px) {
+.coinPriceColumn{
+  justify-content: center;
+  width: 100%;
+}
+*{
+  font-size: small;
+}
+
+@media only screen and (min-width: 1100px) {
   .columnTitle{
     display:flex;
   }
-  .containerColumns{
-    grid-template-columns: repeat(2,1fr);
+  /* .containerColumns{
+   justify-content: center;
+  } */
+  .coinPriceColumn{
+    justify-content: flex-start;
+  }
+  *{
+    font-size: medium;
   }
 }

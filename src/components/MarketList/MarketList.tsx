@@ -2,6 +2,7 @@ import React, { ElementType, useState, useEffect } from "react";
 import styles from "./MarketList.module.css";
 import TriangleUp from "../../assets/icons/TriangleUp";
 import Pagination from "../Pagination";
+import useWindowSize from "../../hooks/useWindowSize";
 
 interface MarketListProps {
   className?: string;
@@ -37,6 +38,16 @@ export default function MarketList({
   useEffect(() => {
     setcryptoCoinsSorted(cryptoCoins);
   }, [cryptoCoins]);
+
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
+  const size = useWindowSize();
+  useEffect(() => {
+    if (size.width && size.width >= 1100) {
+      setIsSmallScreen(false);
+    } else {
+      setIsSmallScreen(true);
+    }
+  }, [size.width]);
 
   const sortArray = (prop: string) => {
     switch (prop) {
@@ -114,7 +125,7 @@ export default function MarketList({
         <div style={{ width: "100%", display: "flex" }}>
           <div
             style={{
-              width: "50%",
+              width: isSmallScreen ? "65%" : "40%",
               display: "flex",
               alignItems: "center",
               color: "gray",
@@ -175,9 +186,10 @@ export default function MarketList({
           </div>
           <div
             style={{
-              gridTemplateColumns: `repeat(${
-                howManyDetails ? howManyDetails - 1 : 10
-              }, 1fr)`,
+              width: isSmallScreen ? "35%" : "60%",
+              gridTemplateColumns: isSmallScreen
+                ? "1fr"
+                : `repeat(${howManyDetails ? howManyDetails - 1 : 10},1fr`,
             }}
             className={styles.containerColumns}
           >
@@ -189,7 +201,9 @@ export default function MarketList({
                     <div
                       key={index}
                       className={` ${
-                        element.name !== "Coin Price" ? styles.columnTitle : ""
+                        element.name !== "Coin Price"
+                          ? styles.columnTitle
+                          : styles.coinPriceColumn
                       }`}
                       onClick={() => {
                         sortArray(element.name);

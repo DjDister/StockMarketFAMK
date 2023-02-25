@@ -11,6 +11,7 @@ import DownArrow from "../../assets/icons/DownArrow";
 import axios from "axios";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
+import MoreVertical from "../../assets/icons/MoreVertical";
 
 interface CryptoItemType {
   id: string;
@@ -69,15 +70,20 @@ export default function MarketPage() {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.square}></div>
-          <div className={styles.square}></div>
-          <div className={styles.square}></div>
+          <MoreVertical fill="grey" />
         </div>
       </div>
       <div className={styles.overallbuttons}>
         <div className={styles.przyciski}>
           {button.map((x, index) => (
-            <Button key={index} flex className={styles.przycisk}>
+            <Button
+              key={index}
+              flex
+              style={{
+                color: "grey",
+                background: "black",
+              }}
+            >
               {x.name}
               {<DownArrow />}
             </Button>
