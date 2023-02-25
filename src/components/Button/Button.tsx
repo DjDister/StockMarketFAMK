@@ -31,6 +31,7 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   const [isWipShown, setIsWipShown] = useState(false);
+
   return (
     <div
       onClick={disabled ? undefined : onClick}

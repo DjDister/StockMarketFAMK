@@ -11,13 +11,14 @@ import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
 import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
 import WalletPage from "./pages/Wallet/WalletPage";
+import MarketPage from "./pages/MarketPage/MarketPage";
 
 const RootRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/market" element={<App />} />
+        <Route path="/market" element={<MarketPage />} />
         <Route path="/watchlist" element={<App />} />
         <Route
           path="/portfolio"
