@@ -11,7 +11,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100px;
-
+    z-index: 200;
 }
 
 .bubble{

@@ -4,9 +4,9 @@
 }
 
 .Footer {
-
+  background-color: #121318;
   width: 100%;
-  height: 12%;
+  height:auto;
   bottom: 0;
   left: 0;
   right:0;
@@ -30,6 +30,7 @@
 
 .listy {
   display: flex;
+  background-color: inherit;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -78,9 +79,9 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+ 
   flex-wrap: wrap;
-
+  background-color: inherit;
   border-top: 1px solid gray;
 
   padding-top: 15px;

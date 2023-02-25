@@ -8,7 +8,7 @@ import Checkbox from "../../components/CheckBox/CheckBox";
 import Input from "../../components/Input/Input";
 import styles from "./RegisterPage.module.css";
 import womanPng from "../../assets/images/womanPng.png";
-import { auth } from "../../../firebaseConfig";
+import db, { auth } from "../../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import errorHandlers from "../../utils/errorHandlersAuth";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,8 @@ import {
   loginSuccess,
   startLogin,
 } from "../../redux/profileSlice";
+import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
+import { UserData } from "../../types";
 export default function RegisterPage() {
   const profile = useAppSelector((state) => state.profile);
 
@@ -54,9 +56,33 @@ export default function RegisterPage() {
 
     dispatch(startLogin());
     createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         setError("");
         const user = userCredential.user;
+        const userData: UserData = {
+          email: user.email || "",
+          uid: user.uid,
+          displayName: user.email || "",
+          photoURL: user.photoURL,
+          phoneNumber: user.phoneNumber,
+          createdAt: user.metadata.creationTime || "",
+          wallet: {
+            totalBalanceDollars: "500000",
+            transactionHistory: [
+              ...Array.from({ length: 10 }, (_, i) => {
+                return {
+                  amount: "50000",
+                  date: new Date().toISOString(),
+                  type: "deposit",
+                  status: "success",
+                };
+              }),
+            ],
+          },
+          portfolio: [],
+        };
+        await setDoc(doc(db, "users", user.uid), userData);
+
         dispatch(loginSuccess(user.uid));
         navigate("/");
       })
