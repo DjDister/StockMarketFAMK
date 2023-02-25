@@ -1,23 +1,17 @@
-import React, { useContext, useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import styles from "./MarketPage.module.css";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
-
-import Input from "../../components/Input/Input";
 import Loupe from "../../assets/icons/Loupe";
 import Filter from "../../assets/icons/Filter";
 import Market1 from "../../assets/icons/Market1";
 import Market2 from "../../assets/icons/Market2";
 import Market3 from "../../assets/icons/Market3";
 import DownArrow from "../../assets/icons/DownArrow";
-import TriangleUp from "../../assets/icons/TriangleUp";
-import Pagination from "../../components/Pagination";
 import Stock from "../../components/Stock/Stock";
-import RightArrow from "../../assets/icons/RightArrow";
 import axios from "axios";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
-import MarketList2 from "../../components/MarketList2/MarketList2";
 
 interface CryptoItemType {
   id: string;
@@ -35,79 +29,20 @@ const button = [
   { name: "Industry" },
 ];
 
-const sortcrypto = [
-  { name: "Coin Name " },
-  { name: "Chart" },
-  { name: "Coin Price" },
-];
-const sortcryptoweb = [
-  { name: "#" },
-  { name: "Coin Name " },
-  { name: "Coin Price" },
-  { name: "24%" },
-  { name: "24h High" },
-  { name: "24h Low" },
-  { name: "Chart" },
-];
-const navbarcrypto = [
-  { name: "Top Gainers" },
-  { name: "Top Loses" },
-  { name: "New in market" },
-];
-const i = 1;
-
-type cryptoType = {
-  name: string;
-  shortname: string;
-  price: number;
-  counter: string;
-  image?: JSX.Element;
-};
-const cryptolist: cryptoType[] = [
-  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
-  { name: "Etherium", shortname: "ETH", price: 1500, counter: "" },
-  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
-  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
-  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
-  { name: "Etherium2", shortname: "ETH", price: 1500, counter: "" },
-  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
-  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
-  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
-  { name: "Etherium3", shortname: "ETH", price: 1500, counter: "" },
-  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
-  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
-  { name: "Bitcoin", shortname: "BTC", price: 20000, counter: "" },
-  { name: "Etherium4", shortname: "ETH", price: 1500, counter: "" },
-  { name: "Skale", shortname: "SKL", price: 0.05, counter: "" },
-  { name: "Atom", shortname: "ATM", price: 14, counter: "" },
-];
 export default function MarketPage() {
-  const [isSortedByName, setIsSortedByName] = useState(false);
-  const [isSortedByPrice, setIsSortedByPrice] = useState(false);
-  const [sortedArr, setSortedArr] = useState<cryptoType[]>(cryptolist);
-
   const [data, setData] = useState<CryptoItemType[]>([]);
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       );
-      console.log(response.data);
 
       setData(response.data);
     }
     fetchData();
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(10);
-
-  const lastostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastostIndex - postPerPage;
-  const currentPost = data.slice(firstPostIndex, lastostIndex);
   const [filterValue, setFilterValue] = useState("");
-
-  const [color, setColor] = useState(0);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilterValue(event.target.value);
@@ -143,12 +78,7 @@ export default function MarketPage() {
       <div className={styles.overallbuttons}>
         <div className={styles.przyciski}>
           {button.map((x, index) => (
-            <Button
-              key={index}
-              flex
-              className={styles.przycisk}
-              onClick={() => <div></div>}
-            >
+            <Button key={index} flex className={styles.przycisk}>
               {x.name}
               {<DownArrow />}
             </Button>
@@ -167,11 +97,11 @@ export default function MarketPage() {
   );
 
   const SortElement = [
-    { name: "Coin Name", onClick: () => {} },
-    { name: "Coin Price", onClick: () => {} },
-    { name: "24%", onClick: () => {} },
-    { name: "24h High", onClick: () => {} },
-    { name: "24h Low", onClick: () => {} },
+    { name: "Coin Name" },
+    { name: "Coin Price" },
+    { name: "24%" },
+    { name: "24h High" },
+    { name: "24h Low" },
   ];
 
   return (
@@ -196,7 +126,6 @@ export default function MarketPage() {
           columnsTitleElements={SortElement}
           titleElement={TitleElement}
         ></MarketList>
-        <MarketList2 />
         {/* <div className={styles.part1}>
           <div className={styles.linia1}>
             <div className={styles.tytul}>

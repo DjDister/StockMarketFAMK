@@ -65,10 +65,7 @@ p {
   gap: 5px;
   color: white;
 }
-.przycisk:hover {
-  color: white;
-  background-color: rgb(54, 54, 153);
-}
+
 
 .przyciski::-webkit-scrollbar {
   width: 0;

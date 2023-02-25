@@ -1,7 +1,6 @@
 import React, { ElementType, useState, useEffect } from "react";
 import styles from "./MarketList.module.css";
 import TriangleUp from "../../assets/icons/TriangleUp";
-import MarketItem from "../Marketitem/Marketitem";
 import Pagination from "../Pagination";
 
 interface MarketListProps {
@@ -13,7 +12,7 @@ interface MarketListProps {
   ElementToRenderInList: ElementType;
   howManyDetails?: number;
   showPagination?: boolean;
-  columnsTitleElements?: { name: string; onClick: () => void }[];
+  columnsTitleElements?: { name: string }[];
   titleElement?: JSX.Element;
 }
 
@@ -34,12 +33,11 @@ export default function MarketList({
   );
 
   const [cryptoCoinsSorted, setcryptoCoinsSorted] = useState(cryptoCoins);
-
+  const [isSortedBy, setIsSortedBy] = useState("index");
   useEffect(() => {
     setcryptoCoinsSorted(cryptoCoins);
   }, [cryptoCoins]);
 
-  console.log(cryptoCoinsSorted);
   const sortArray = (prop: string) => {
     switch (prop) {
       case "Coin Price":
@@ -47,8 +45,15 @@ export default function MarketList({
           setcryptoCoinsSorted(
             cryptoCoins
               ?.map((x) => x)
-              .sort((a, b) => b.current_price - a.current_price)
+              .sort((a, b) =>
+                isSortedBy === "price"
+                  ? a.current_price - b.current_price
+                  : b.current_price - a.current_price
+              )
           );
+          isSortedBy === "price"
+            ? setIsSortedBy("priceReverse")
+            : setIsSortedBy("price");
         }
         break;
       case "24%":
@@ -56,24 +61,48 @@ export default function MarketList({
           setcryptoCoinsSorted(
             cryptoCoins
               ?.map((x) => x)
-              .sort(
-                (a, b) =>
-                  b.price_change_percentage_24h - a.price_change_percentage_24h
+              .sort((a, b) =>
+                isSortedBy === "24%"
+                  ? a.price_change_percentage_24h -
+                    b.price_change_percentage_24h
+                  : b.price_change_percentage_24h -
+                    a.price_change_percentage_24h
               )
           );
+          isSortedBy === "24%"
+            ? setIsSortedBy("24%Reverse")
+            : setIsSortedBy("24%");
         }
         break;
       case "24h High":
         {
           setcryptoCoinsSorted(
-            cryptoCoins?.map((x) => x).sort((a, b) => b.high_24h - a.high_24h)
+            cryptoCoins
+              ?.map((x) => x)
+              .sort((a, b) =>
+                isSortedBy === "24h High"
+                  ? a.high_24h - b.high_24h
+                  : b.high_24h - a.high_24h
+              )
           );
+          isSortedBy === "24h High"
+            ? setIsSortedBy("24h HighReverse")
+            : setIsSortedBy("24h High");
         }
         break;
       case "24h Low": {
         setcryptoCoinsSorted(
-          cryptoCoins?.map((x) => x).sort((a, b) => b.low_24h - a.low_24h)
+          cryptoCoins
+            ?.map((x) => x)
+            .sort((a, b) =>
+              isSortedBy === "24h Low"
+                ? a.low_24h - b.low_24h
+                : b.low_24h - a.low_24h
+            )
         );
+        isSortedBy === "24h Low"
+          ? setIsSortedBy("24h LowReverse")
+          : setIsSortedBy("24h Low");
       }
     }
   };
@@ -99,11 +128,20 @@ export default function MarketList({
               cryptoCoins[0].index && (
                 <div
                   onClick={() => {
-                    setcryptoCoinsSorted(cryptoCoins);
+                    setcryptoCoinsSorted(
+                      isSortedBy === "index"
+                        ? [...cryptoCoins].reverse()
+                        : cryptoCoins
+                    );
+                    isSortedBy === "index"
+                      ? setIsSortedBy("indexReverse")
+                      : setIsSortedBy("index");
                   }}
                   style={{
                     marginRight: 10,
                     color: "gray",
+                    cursor: "pointer",
+                    padding: 5,
                   }}
                   className={styles.indexTitle}
                 >
@@ -111,20 +149,24 @@ export default function MarketList({
                 </div>
               )}
             <div
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setcryptoCoinsSorted(
                   cryptoCoins
                     ?.map((x) => x)
                     .sort((a, b) => {
                       if (a.id < b.id) {
-                        return -1;
+                        return isSortedBy === "name" ? 1 : -1;
                       }
                       if (a.id > b.id) {
-                        return 1;
+                        return isSortedBy === "name" ? -1 : 1;
                       }
                       return 0;
                     })
                 );
+                isSortedBy === "name"
+                  ? setIsSortedBy("nameReverse")
+                  : setIsSortedBy("name");
               }}
             >
               {coinNameElem.name}
