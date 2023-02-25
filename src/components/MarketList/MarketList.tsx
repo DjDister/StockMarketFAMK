@@ -174,12 +174,12 @@ export default function MarketList({
             {<TriangleUp fill="gray" width="10px" />}
           </div>
           <div
-            className={styles.containerColumns}
             style={{
               gridTemplateColumns: `repeat(${
                 howManyDetails ? howManyDetails - 1 : 10
               }, 1fr)`,
             }}
+            className={styles.containerColumns}
           >
             {columnsTitleElements &&
               columnsTitleElements
@@ -188,7 +188,9 @@ export default function MarketList({
                   return (
                     <div
                       key={index}
-                      className={styles.columnTitle}
+                      className={` ${
+                        element.name !== "Coin Price" ? styles.columnTitle : ""
+                      }`}
                       onClick={() => {
                         sortArray(element.name);
                       }}

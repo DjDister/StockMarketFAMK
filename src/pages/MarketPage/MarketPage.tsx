@@ -108,7 +108,7 @@ export default function MarketPage() {
       <div className={styles.Market}>
         <MarketList
           howManyToShowPerPage={10}
-          customStyles={{ width: "70%" }}
+          className={styles.MarketList}
           cryptoCoins={data
             .filter((elem) =>
               elem.name.toLowerCase().includes(filterValue.toLowerCase())

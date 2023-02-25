@@ -25,6 +25,29 @@ export default function MarketItem({
   image,
   howManyDetails,
 }: CryptoProps) {
+  const changeElement = price_change_percentage_24h ? (
+    <div
+      style={{
+        alignItems: "center",
+        display: "flex",
+        color:
+          price_change_percentage_24h > 0
+            ? "#039763"
+            : price_change_percentage_24h === 0
+            ? "grey"
+            : "red",
+      }}
+    >
+      {price_change_percentage_24h}%
+      {price_change_percentage_24h >= 0 ? (
+        <TrendingUp fill={price_change_percentage_24h > 0 ? "green" : "grey"} />
+      ) : (
+        <TrendingDown fill="red" />
+      )}
+    </div>
+  ) : (
+    <></>
+  );
   return (
     <div style={{ width: "100%", display: "flex" }}>
       <div className={styles.nameContainer} style={{ width: "50%" }}>
@@ -41,32 +64,19 @@ export default function MarketItem({
           gridTemplateColumns: `repeat(${howManyDetails - 1}, 1fr)`,
         }}
       >
-        {current_price && <div>${current_price}</div>}
+        {current_price && (
+          <div className={styles.hideElement}>${current_price}</div>
+        )}
         {price_change_percentage_24h && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              color:
-                price_change_percentage_24h > 0
-                  ? "#039763"
-                  : price_change_percentage_24h === 0
-                  ? "grey"
-                  : "red",
-            }}
-          >
-            {price_change_percentage_24h}%
-            {price_change_percentage_24h >= 0 ? (
-              <TrendingUp
-                fill={price_change_percentage_24h > 0 ? "green" : "grey"}
-              />
-            ) : (
-              <TrendingDown fill="red" />
-            )}
+          <div className={styles.hideElement}>{changeElement}</div>
+        )}
+        {current_price && price_change_percentage_24h && (
+          <div className={styles.showElem}>
+            ${current_price} {changeElement}
           </div>
         )}
-        {high_24h && <div>{high_24h}</div>}
-        {low_24h && <div>{low_24h}</div>}
+        {high_24h && <div className={styles.high24}>{high_24h}</div>}
+        {low_24h && <div className={styles.low24}>{low_24h}</div>}
       </div>
     </div>
   );

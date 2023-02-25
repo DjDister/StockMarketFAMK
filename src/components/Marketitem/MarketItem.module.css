@@ -35,3 +35,40 @@
     color: #0369c3;
 }
 
+
+.high24{
+    display: none;
+}
+
+.low24{
+    display: none;
+}
+
+.hideElement{
+
+    display: none;
+}
+.showElem{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:2px;
+}
+
+
+
+@media only screen and (min-width: 1102px) {
+    .high24{
+       display: flex;
+    }
+    .low24
+    {
+        display: flex;
+    }
+    .hideElement{
+        display: flex;
+    }
+    .showElem{
+        display: none;
+    }
+}

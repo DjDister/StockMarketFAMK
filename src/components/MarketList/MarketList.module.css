@@ -39,4 +39,14 @@
 
 .columnTitle{
   cursor: pointer;
+  display: none;
+}
+
+@media only screen and (min-width: 1102px) {
+  .columnTitle{
+    display:flex;
+  }
+  .containerColumns{
+    grid-template-columns: repeat(2,1fr);
+  }
 }
