@@ -8,7 +8,6 @@ import Market1 from "../../assets/icons/Market1";
 import Market2 from "../../assets/icons/Market2";
 import Market3 from "../../assets/icons/Market3";
 import DownArrow from "../../assets/icons/DownArrow";
-import Stock from "../../components/Stock/Stock";
 import axios from "axios";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
@@ -52,7 +51,7 @@ export default function MarketPage() {
     <div className={styles.setborder} style={{ width: "100%" }}>
       <div className={styles.linia1}>
         <div className={styles.tytul}>
-          <span className={styles.title}>Market Coins{<Stock />}</span>
+          <span className={styles.title}>Market Coins</span>
           <p>jakis bardzo madry tekst ut bedzie</p>
         </div>
         <div className={styles.inputdiv}>
