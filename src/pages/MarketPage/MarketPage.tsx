@@ -127,6 +127,7 @@ export default function MarketPage() {
                 };
               })}
             howManyDetails={5}
+            allowNavigateToDetails={true}
             ElementToRenderInList={MarketItem}
             showPagination
             columnsTitleElements={SortElement}
