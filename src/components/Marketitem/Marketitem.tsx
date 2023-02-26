@@ -14,6 +14,7 @@ interface CryptoProps {
   image?: string;
   howManyDetails: number;
   index?: number;
+  id?: string;
   allowNavigateToDetails?: boolean;
 }
 
@@ -26,6 +27,7 @@ export default function MarketItem({
   high_24h,
   low_24h,
   image,
+  id = "",
   howManyDetails,
   allowNavigateToDetails = false,
 }: CryptoProps) {
@@ -65,7 +67,9 @@ export default function MarketItem({
   return (
     <div
       onClick={
-        allowNavigateToDetails ? () => navigate(`/crypto/${symbol}`) : undefined
+        allowNavigateToDetails
+          ? () => navigate(`/crypto/${id.toLocaleLowerCase()}`)
+          : undefined
       }
       style={{
         width: "100%",

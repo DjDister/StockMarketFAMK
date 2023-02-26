@@ -38,6 +38,7 @@ export default function MarketPage() {
       );
 
       setData(response.data);
+      console.log(response.data);
     }
     fetchData();
   }, []);
