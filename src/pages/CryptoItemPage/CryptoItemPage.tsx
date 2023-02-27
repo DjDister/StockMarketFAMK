@@ -27,7 +27,7 @@ export default function CryptoItemPage() {
       high_24h: { usd: number };
       low_24h: { usd: number };
       market_cap_rank: number;
-      price_change_24h: number;
+      price_change_percentage_24h: number;
     };
   }
 
@@ -122,21 +122,23 @@ export default function CryptoItemPage() {
                 <div className={styles.priceContainer}>
                   <div className={styles.price}>
                     {data2?.market_data?.current_price.usd}{" "}
-                    {price_change_percentage_24h && (
+                    {data2?.market_data?.price_change_percentage_24h && (
                       <div
                         style={{
                           display: "flex",
                           alignItems: "center",
                           color:
-                            price_change_percentage_24h > 0
+                            data2?.market_data?.price_change_percentage_24h > 0
                               ? "#039763"
-                              : price_change_percentage_24h === 0
+                              : data2?.market_data
+                                  ?.price_change_percentage_24h === 0
                               ? "grey"
                               : "red",
                         }}
                       >
-                        {price_change_percentage_24h}%
-                        {price_change_percentage_24h >= 0 ? (
+                        {data2?.market_data?.price_change_percentage_24h}%
+                        {data2?.market_data?.price_change_percentage_24h >=
+                        0 ? (
                           <TrendingUp
                             fill={
                               price_change_percentage_24h > 0 ? "green" : "grey"
