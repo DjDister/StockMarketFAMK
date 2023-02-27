@@ -1,8 +1,157 @@
-.pageContainer{
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #080808;
+}
+.overall {
+  width: 100%;
+  display: flex;
+}
+.container {
+  width: 80%;
+}
+
+.cryptoTitleContainer {
+  background-color: #131218;
+  margin-top: 30px;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.widthSet {
+  width: 90%;
+}
+.marketStats {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+.cryptoName {
+  display: flex;
+  justify-content: space-between;
+}
+.symbol {
+  display: flex;
+  justify-content: center;
+}
+.symbolName {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.cryptoDetailsContainer {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cryptoDetail {
+  /* background-color: black; */
+  color: gray;
+}
+.priceContainer {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.priceInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+}
+
+.price {
+  font-size: 1rem;
+  display: flex;
+  gap: 5px;
+}
+.highLowPrice24h {
+  display: flex;
+  justify-content: space-between;
+}
+.highlowprice {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.timeFrame {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  width: 70px;
+  justify-content: center;
+  gap: 7px;
+}
+
+.line {
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  border-radius: 2px;
+}
+.blueLine {
+  position: absolute;
+  height: 100%;
+  background-color: rgb(54, 54, 153);
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 2px;
+}
+.underLinePrices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.components {
+  width: 100%;
+  height: 250px;
+  background-color: chartreuse;
+}
+@media only screen and (min-width: 1000px) {
+  .partdivide {
     display: flex;
-    flex-direction: column;
+    gap: 30px;
+  }
+  .part1 {
+    width: 50%;
+  }
+  .part2 {
+    width: 50%;
+  }
+  .cryptoName {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    background-color: #080808;
+    justify-content: left;
+    gap: 50px;
+  }
+  .querySymbolName {
+    display: flex;
+    gap: 20px;
+  }
+  .cryptoDetailsContainer {
+    margin-top: 30px;
+  }
+
+  .price {
+    color: white;
+    font-size: 1.6rem;
+  }
+}
+.graph {
+  display: flex;
+  justify-content: center;
 }
