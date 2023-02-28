@@ -72,6 +72,8 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
 }
 
 .error{
@@ -169,10 +171,18 @@ color:#6C7080;
     }
     .label{
         font-size: 32px;
+        display: flex;
+        flex-direction: row;
     }
     .error{
         font-size: 25px;
         float: bottom;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: "100%";
+     margin-left: 5px;
+       margin-top: 12px;
     }
     .customInput{
         background-color: #121318;

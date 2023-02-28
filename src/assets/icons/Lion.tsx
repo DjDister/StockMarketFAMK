@@ -17,11 +17,11 @@ export default function Lion({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}
@@ -120,9 +120,9 @@ export default function Lion({
             gradientTransform="translate(19.2203 1.80111) rotate(180) scale(9.00568)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
@@ -134,7 +134,7 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop></stop> <stop offset="1" stop-color="#8EA5A8"></stop>{" "}
+            <stop></stop> <stop offset="1" stopColor="#8EA5A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint2_radial"
@@ -145,9 +145,9 @@ export default function Lion({
             gradientTransform="translate(4.78758 1.80111) scale(9.0057)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
@@ -159,7 +159,7 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop></stop> <stop offset="1" stop-color="#8EA5A8"></stop>{" "}
+            <stop></stop> <stop offset="1" stopColor="#8EA5A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint4_radial"
@@ -170,11 +170,11 @@ export default function Lion({
             gradientTransform="translate(12.39 9.94768) rotate(-0.0324374) scale(12.3449 6.6595)"
           >
             {" "}
-            <stop offset="0.00418281" stop-color="white"></stop>{" "}
-            <stop offset="0.3817" stop-color="#FCFDFD"></stop>{" "}
-            <stop offset="0.6851" stop-color="#F2F5F6"></stop>{" "}
-            <stop offset="0.9619" stop-color="#E1E9EA"></stop>{" "}
-            <stop offset="1" stop-color="#DEE7E8"></stop>{" "}
+            <stop offset="0.00418281" stopColor="white"></stop>{" "}
+            <stop offset="0.3817" stopColor="#FCFDFD"></stop>{" "}
+            <stop offset="0.6851" stopColor="#F2F5F6"></stop>{" "}
+            <stop offset="0.9619" stopColor="#E1E9EA"></stop>{" "}
+            <stop offset="1" stopColor="#DEE7E8"></stop>{" "}
           </radialGradient>{" "}
           <radialGradient
             id="paint5_radial"
@@ -185,9 +185,9 @@ export default function Lion({
             gradientTransform="translate(8.04717 11.0903) rotate(105.464) scale(3.30873 2.40658)"
           >
             {" "}
-            <stop stop-color="#525B63"></stop>{" "}
-            <stop offset="0.4545" stop-color="#394046"></stop>{" "}
-            <stop offset="1" stop-color="#1F2326"></stop>{" "}
+            <stop stopColor="#525B63"></stop>{" "}
+            <stop offset="0.4545" stopColor="#394046"></stop>{" "}
+            <stop offset="1" stopColor="#1F2326"></stop>{" "}
           </radialGradient>{" "}
           <radialGradient
             id="paint6_radial"
@@ -198,9 +198,9 @@ export default function Lion({
             gradientTransform="translate(15.9516 11.0919) rotate(74.5359) scale(3.30873 2.40658)"
           >
             {" "}
-            <stop stop-color="#525B63"></stop>{" "}
-            <stop offset="0.4545" stop-color="#394046"></stop>{" "}
-            <stop offset="1" stop-color="#1F2326"></stop>{" "}
+            <stop stopColor="#525B63"></stop>{" "}
+            <stop offset="0.4545" stopColor="#394046"></stop>{" "}
+            <stop offset="1" stopColor="#1F2326"></stop>{" "}
           </radialGradient>{" "}
           <radialGradient
             id="paint7_radial"
@@ -211,9 +211,9 @@ export default function Lion({
             gradientTransform="translate(16.0575 11.2258) scale(4.18081)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
@@ -225,12 +225,12 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#8EA5A8"></stop>{" "}
-            <stop offset="0.0464213" stop-color="#849A9D"></stop>{" "}
-            <stop offset="0.2885" stop-color="#566365"></stop>{" "}
-            <stop offset="0.5133" stop-color="#313839"></stop>{" "}
-            <stop offset="0.7139" stop-color="#161A1A"></stop>{" "}
-            <stop offset="0.8829" stop-color="#060707"></stop>{" "}
+            <stop stopColor="#8EA5A8"></stop>{" "}
+            <stop offset="0.0464213" stopColor="#849A9D"></stop>{" "}
+            <stop offset="0.2885" stopColor="#566365"></stop>{" "}
+            <stop offset="0.5133" stopColor="#313839"></stop>{" "}
+            <stop offset="0.7139" stopColor="#161A1A"></stop>{" "}
+            <stop offset="0.8829" stopColor="#060707"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
@@ -242,8 +242,8 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FF6688"></stop>{" "}
-            <stop offset="1" stop-color="#FB9C9C"></stop>{" "}
+            <stop stopColor="#FF6688"></stop>{" "}
+            <stop offset="1" stopColor="#FB9C9C"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint10_linear"
@@ -254,8 +254,8 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FF6688"></stop>{" "}
-            <stop offset="1" stop-color="#B30B0B"></stop>{" "}
+            <stop stopColor="#FF6688"></stop>{" "}
+            <stop offset="1" stopColor="#B30B0B"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint11_linear"
@@ -266,10 +266,10 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="white"></stop>{" "}
-            <stop offset="0.1494" stop-color="#F8FAFA"></stop>{" "}
-            <stop offset="0.6513" stop-color="#E5ECED"></stop>{" "}
-            <stop offset="1" stop-color="#DEE7E8"></stop>{" "}
+            <stop stopColor="white"></stop>{" "}
+            <stop offset="0.1494" stopColor="#F8FAFA"></stop>{" "}
+            <stop offset="0.6513" stopColor="#E5ECED"></stop>{" "}
+            <stop offset="1" stopColor="#DEE7E8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint12_linear"
@@ -280,12 +280,12 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#8EA5A8"></stop>{" "}
-            <stop offset="0.0464213" stop-color="#849A9D"></stop>{" "}
-            <stop offset="0.2885" stop-color="#566365"></stop>{" "}
-            <stop offset="0.5133" stop-color="#313839"></stop>{" "}
-            <stop offset="0.7139" stop-color="#161A1A"></stop>{" "}
-            <stop offset="0.8829" stop-color="#060707"></stop>{" "}
+            <stop stopColor="#8EA5A8"></stop>{" "}
+            <stop offset="0.0464213" stopColor="#849A9D"></stop>{" "}
+            <stop offset="0.2885" stopColor="#566365"></stop>{" "}
+            <stop offset="0.5133" stopColor="#313839"></stop>{" "}
+            <stop offset="0.7139" stopColor="#161A1A"></stop>{" "}
+            <stop offset="0.8829" stopColor="#060707"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
@@ -297,12 +297,12 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#8EA5A8"></stop>{" "}
-            <stop offset="0.0464213" stop-color="#849A9D"></stop>{" "}
-            <stop offset="0.2885" stop-color="#566365"></stop>{" "}
-            <stop offset="0.5133" stop-color="#313839"></stop>{" "}
-            <stop offset="0.7139" stop-color="#161A1A"></stop>{" "}
-            <stop offset="0.8829" stop-color="#060707"></stop>{" "}
+            <stop stopColor="#8EA5A8"></stop>{" "}
+            <stop offset="0.0464213" stopColor="#849A9D"></stop>{" "}
+            <stop offset="0.2885" stopColor="#566365"></stop>{" "}
+            <stop offset="0.5133" stopColor="#313839"></stop>{" "}
+            <stop offset="0.7139" stopColor="#161A1A"></stop>{" "}
+            <stop offset="0.8829" stopColor="#060707"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
@@ -314,12 +314,12 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#8EA5A8"></stop>{" "}
-            <stop offset="0.0464213" stop-color="#849A9D"></stop>{" "}
-            <stop offset="0.2885" stop-color="#566365"></stop>{" "}
-            <stop offset="0.5133" stop-color="#313839"></stop>{" "}
-            <stop offset="0.7139" stop-color="#161A1A"></stop>{" "}
-            <stop offset="0.8829" stop-color="#060707"></stop>{" "}
+            <stop stopColor="#8EA5A8"></stop>{" "}
+            <stop offset="0.0464213" stopColor="#849A9D"></stop>{" "}
+            <stop offset="0.2885" stopColor="#566365"></stop>{" "}
+            <stop offset="0.5133" stopColor="#313839"></stop>{" "}
+            <stop offset="0.7139" stopColor="#161A1A"></stop>{" "}
+            <stop offset="0.8829" stopColor="#060707"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
@@ -331,9 +331,9 @@ export default function Lion({
             gradientTransform="translate(7.99341 11.2258) scale(4.1808)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
@@ -345,7 +345,7 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop></stop> <stop offset="1" stop-color="#8EA5A8"></stop>{" "}
+            <stop></stop> <stop offset="1" stopColor="#8EA5A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint17_radial"
@@ -356,9 +356,9 @@ export default function Lion({
             gradientTransform="translate(7.04105 9.60496) scale(2.22024)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
@@ -370,7 +370,7 @@ export default function Lion({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop></stop> <stop offset="1" stop-color="#8EA5A8"></stop>{" "}
+            <stop></stop> <stop offset="1" stopColor="#8EA5A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint19_radial"
@@ -381,9 +381,9 @@ export default function Lion({
             gradientTransform="translate(15.105 9.60496) scale(2.22023)"
           >
             {" "}
-            <stop stop-color="#84909D"></stop>{" "}
-            <stop offset="0.2667" stop-color="#5E6770"></stop>{" "}
-            <stop offset="0.7694" stop-color="#1B1D20"></stop>{" "}
+            <stop stopColor="#84909D"></stop>{" "}
+            <stop offset="0.2667" stopColor="#5E6770"></stop>{" "}
+            <stop offset="0.7694" stopColor="#1B1D20"></stop>{" "}
             <stop offset="1"></stop>{" "}
           </radialGradient>{" "}
         </defs>{" "}

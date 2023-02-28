@@ -16,11 +16,11 @@ export default function Majster({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}
@@ -178,8 +178,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint1_linear"
@@ -190,8 +190,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint2_linear"
@@ -202,17 +202,17 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.0925465" stop-color="#FBBA7E"></stop>{" "}
-            <stop offset="0.1895" stop-color="#FCC18B"></stop>{" "}
-            <stop offset="0.2884" stop-color="#FCCCA0"></stop>{" "}
-            <stop offset="0.3888" stop-color="#FDDCBD"></stop>{" "}
-            <stop offset="0.4893" stop-color="#FEF0E2"></stop>{" "}
-            <stop offset="0.5546" stop-color="white"></stop>{" "}
-            <stop offset="0.6639" stop-color="#FEF0E1"></stop>{" "}
-            <stop offset="0.802" stop-color="#FDDFC2"></stop>{" "}
-            <stop offset="0.9189" stop-color="#FCD6AF"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.0925465" stopColor="#FBBA7E"></stop>{" "}
+            <stop offset="0.1895" stopColor="#FCC18B"></stop>{" "}
+            <stop offset="0.2884" stopColor="#FCCCA0"></stop>{" "}
+            <stop offset="0.3888" stopColor="#FDDCBD"></stop>{" "}
+            <stop offset="0.4893" stopColor="#FEF0E2"></stop>{" "}
+            <stop offset="0.5546" stopColor="white"></stop>{" "}
+            <stop offset="0.6639" stopColor="#FEF0E1"></stop>{" "}
+            <stop offset="0.802" stopColor="#FDDFC2"></stop>{" "}
+            <stop offset="0.9189" stopColor="#FCD6AF"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint3_linear"
@@ -223,18 +223,18 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.0948012" stop-color="#FCC695"></stop>{" "}
-            <stop offset="0.2764" stop-color="#FDDFC2"></stop>{" "}
-            <stop offset="0.4381" stop-color="#FEF0E3"></stop>{" "}
-            <stop offset="0.5722" stop-color="#FFFBF8"></stop>{" "}
-            <stop offset="0.6624" stop-color="white"></stop>{" "}
-            <stop offset="0.7499" stop-color="#FFFDFC"></stop>{" "}
-            <stop offset="0.8183" stop-color="#FFF8F2"></stop>{" "}
-            <stop offset="0.8803" stop-color="#FEF0E1"></stop>{" "}
-            <stop offset="0.9383" stop-color="#FDE4CA"></stop>{" "}
-            <stop offset="0.9933" stop-color="#FCD4AC"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.0948012" stopColor="#FCC695"></stop>{" "}
+            <stop offset="0.2764" stopColor="#FDDFC2"></stop>{" "}
+            <stop offset="0.4381" stopColor="#FEF0E3"></stop>{" "}
+            <stop offset="0.5722" stopColor="#FFFBF8"></stop>{" "}
+            <stop offset="0.6624" stopColor="white"></stop>{" "}
+            <stop offset="0.7499" stopColor="#FFFDFC"></stop>{" "}
+            <stop offset="0.8183" stopColor="#FFF8F2"></stop>{" "}
+            <stop offset="0.8803" stopColor="#FEF0E1"></stop>{" "}
+            <stop offset="0.9383" stopColor="#FDE4CA"></stop>{" "}
+            <stop offset="0.9933" stopColor="#FCD4AC"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint4_linear"
@@ -245,18 +245,18 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.0948012" stop-color="#FCC695"></stop>{" "}
-            <stop offset="0.2764" stop-color="#FDDFC2"></stop>{" "}
-            <stop offset="0.4381" stop-color="#FEF0E3"></stop>{" "}
-            <stop offset="0.5722" stop-color="#FFFBF8"></stop>{" "}
-            <stop offset="0.6624" stop-color="white"></stop>{" "}
-            <stop offset="0.7499" stop-color="#FFFDFC"></stop>{" "}
-            <stop offset="0.8183" stop-color="#FFF8F2"></stop>{" "}
-            <stop offset="0.8803" stop-color="#FEF0E1"></stop>{" "}
-            <stop offset="0.9383" stop-color="#FDE4CA"></stop>{" "}
-            <stop offset="0.9933" stop-color="#FCD4AC"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.0948012" stopColor="#FCC695"></stop>{" "}
+            <stop offset="0.2764" stopColor="#FDDFC2"></stop>{" "}
+            <stop offset="0.4381" stopColor="#FEF0E3"></stop>{" "}
+            <stop offset="0.5722" stopColor="#FFFBF8"></stop>{" "}
+            <stop offset="0.6624" stopColor="white"></stop>{" "}
+            <stop offset="0.7499" stopColor="#FFFDFC"></stop>{" "}
+            <stop offset="0.8183" stopColor="#FFF8F2"></stop>{" "}
+            <stop offset="0.8803" stopColor="#FEF0E1"></stop>{" "}
+            <stop offset="0.9383" stopColor="#FDE4CA"></stop>{" "}
+            <stop offset="0.9933" stopColor="#FCD4AC"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint5_radial"
@@ -267,12 +267,12 @@ export default function Majster({
             gradientTransform="translate(8.02543 10.6487) rotate(94.4983) scale(6.50227 4.64578)"
           >
             {" "}
-            <stop stop-color="#E89043"></stop>{" "}
-            <stop offset="0.0352166" stop-color="#E38C40"></stop>{" "}
-            <stop offset="0.2763" stop-color="#C77331"></stop>{" "}
-            <stop offset="0.5183" stop-color="#B36227"></stop>{" "}
-            <stop offset="0.7597" stop-color="#A75720"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#E89043"></stop>{" "}
+            <stop offset="0.0352166" stopColor="#E38C40"></stop>{" "}
+            <stop offset="0.2763" stopColor="#C77331"></stop>{" "}
+            <stop offset="0.5183" stopColor="#B36227"></stop>{" "}
+            <stop offset="0.7597" stopColor="#A75720"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
             id="paint6_linear"
@@ -283,8 +283,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBE07A"></stop>{" "}
-            <stop offset="1" stop-color="white"></stop>{" "}
+            <stop stopColor="#FBE07A"></stop>{" "}
+            <stop offset="1" stopColor="white"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint7_linear"
@@ -295,8 +295,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FCD2A8"></stop>{" "}
-            <stop offset="1" stop-color="white"></stop>{" "}
+            <stop stopColor="#FCD2A8"></stop>{" "}
+            <stop offset="1" stopColor="white"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint8_linear"
@@ -307,8 +307,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FF6688"></stop>{" "}
-            <stop offset="1" stop-color="#FB9C9C"></stop>{" "}
+            <stop stopColor="#FF6688"></stop>{" "}
+            <stop offset="1" stopColor="#FB9C9C"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint9_linear"
@@ -319,8 +319,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FF6688"></stop>{" "}
-            <stop offset="1" stop-color="#B30B0B"></stop>{" "}
+            <stop stopColor="#FF6688"></stop>{" "}
+            <stop offset="1" stopColor="#B30B0B"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint10_linear"
@@ -331,8 +331,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FF6688"></stop>{" "}
-            <stop offset="1" stop-color="#B30B0B"></stop>{" "}
+            <stop stopColor="#FF6688"></stop>{" "}
+            <stop offset="1" stopColor="#B30B0B"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint11_linear"
@@ -343,8 +343,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBE07A"></stop>{" "}
-            <stop offset="1" stop-color="white"></stop>{" "}
+            <stop stopColor="#FBE07A"></stop>{" "}
+            <stop offset="1" stopColor="white"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint12_linear"
@@ -355,8 +355,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FCD2A8"></stop>{" "}
-            <stop offset="1" stop-color="white"></stop>{" "}
+            <stop stopColor="#FCD2A8"></stop>{" "}
+            <stop offset="1" stopColor="white"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint13_radial"
@@ -367,8 +367,8 @@ export default function Majster({
             gradientTransform="translate(577.735 9.85879) rotate(90) scale(1.33148 1.08036)"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#3C2200"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#3C2200"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
             id="paint14_linear"
@@ -379,9 +379,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint15_linear"
@@ -392,9 +392,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint16_linear"
@@ -405,9 +405,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <radialGradient
             id="paint17_radial"
@@ -418,8 +418,8 @@ export default function Majster({
             gradientTransform="translate(8.73848 9.85879) rotate(90) scale(1.33148 1.08036)"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#3C2200"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#3C2200"></stop>{" "}
           </radialGradient>{" "}
           <linearGradient
             id="paint18_linear"
@@ -430,8 +430,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#A3541E"></stop>{" "}
-            <stop offset="1" stop-color="#512D00"></stop>{" "}
+            <stop stopColor="#A3541E"></stop>{" "}
+            <stop offset="1" stopColor="#512D00"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint19_linear"
@@ -442,8 +442,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#A3541E"></stop>{" "}
-            <stop offset="1" stop-color="#512D00"></stop>{" "}
+            <stop stopColor="#A3541E"></stop>{" "}
+            <stop offset="1" stopColor="#512D00"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint20_linear"
@@ -454,9 +454,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint21_linear"
@@ -467,9 +467,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint22_linear"
@@ -480,9 +480,9 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.5" stop-color="white"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.5" stopColor="white"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint23_linear"
@@ -493,8 +493,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#3C2200"></stop>{" "}
-            <stop offset="1" stop-color="#512D00"></stop>{" "}
+            <stop stopColor="#3C2200"></stop>{" "}
+            <stop offset="1" stopColor="#512D00"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint24_linear"
@@ -505,8 +505,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#643800"></stop>{" "}
-            <stop offset="1" stop-color="#512D00"></stop>{" "}
+            <stop stopColor="#643800"></stop>{" "}
+            <stop offset="1" stopColor="#512D00"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint25_linear"
@@ -517,8 +517,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#643800"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#643800"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint26_linear"
@@ -529,8 +529,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#3C2200"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#3C2200"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint27_linear"
@@ -541,8 +541,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#E89043"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#E89043"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint28_linear"
@@ -553,8 +553,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint29_linear"
@@ -565,14 +565,14 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="0.6624" stop-color="white"></stop>{" "}
-            <stop offset="0.7499" stop-color="#FFFDFC"></stop>{" "}
-            <stop offset="0.8183" stop-color="#FFF8F2"></stop>{" "}
-            <stop offset="0.8803" stop-color="#FEF0E1"></stop>{" "}
-            <stop offset="0.9383" stop-color="#FDE4CA"></stop>{" "}
-            <stop offset="0.9933" stop-color="#FCD4AC"></stop>{" "}
-            <stop offset="1" stop-color="#FCD2A8"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="0.6624" stopColor="white"></stop>{" "}
+            <stop offset="0.7499" stopColor="#FFFDFC"></stop>{" "}
+            <stop offset="0.8183" stopColor="#FFF8F2"></stop>{" "}
+            <stop offset="0.8803" stopColor="#FEF0E1"></stop>{" "}
+            <stop offset="0.9383" stopColor="#FDE4CA"></stop>{" "}
+            <stop offset="0.9933" stopColor="#FCD4AC"></stop>{" "}
+            <stop offset="1" stopColor="#FCD2A8"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint30_linear"
@@ -583,8 +583,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#512D00"></stop>{" "}
-            <stop offset="1" stop-color="#3C2200"></stop>{" "}
+            <stop stopColor="#512D00"></stop>{" "}
+            <stop offset="1" stopColor="#3C2200"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint31_linear"
@@ -595,8 +595,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#E89043"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#E89043"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint32_linear"
@@ -607,8 +607,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FBB87A"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#FBB87A"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint33_linear"
@@ -619,8 +619,8 @@ export default function Majster({
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#643800"></stop>{" "}
-            <stop offset="1" stop-color="#A3541E"></stop>{" "}
+            <stop stopColor="#643800"></stop>{" "}
+            <stop offset="1" stopColor="#A3541E"></stop>{" "}
           </linearGradient>{" "}
         </defs>{" "}
       </g>

@@ -1,13 +1,10 @@
 import React from "react";
-import Bitcoin from "../../assets/icons/Bitcoin";
-import Turtle from "../../assets/icons/Turtle";
 import EasyCard from "../EasyCard/EasyCard";
 import styles from "./TradeAnywhere.module.css";
 import phone1 from "../../assets/images/phone1.png";
 import Windows from "../../assets/icons/Windows";
 import AppStore from "../../assets/icons/AppStore";
 import MacOs from "../../assets/icons/MacOs";
-import Google from "../../assets/icons/Google";
 import GooglePlay from "../../assets/icons/GooglePlay";
 
 export default function TradeAnywhere({
@@ -53,7 +50,7 @@ export default function TradeAnywhere({
         <img src={phone1} className={styles.img11} />
         <div className={styles.cards}>
           {appsArray.map((elem, index) => (
-            <div className={styles.card}>
+            <div key={index} className={styles.card}>
               <EasyCard
                 icon={elem.icon}
                 text={elem.text}
