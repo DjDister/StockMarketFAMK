@@ -11,6 +11,7 @@ import TrendingDown from "../../assets/icons/TrendingDown";
 import TrendingUp from "../../assets/icons/TrendingUp";
 import Info from "../../assets/icons/Info";
 import UpDown from "../../assets/icons/UpDown";
+import { getFirestore } from "firebase/firestore";
 
 import Star from "../../assets/icons/Star";
 export default function CryptoItemPage() {
