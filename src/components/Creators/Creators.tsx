@@ -1,5 +1,4 @@
 import React from "react";
-import Guy from "../../assets/icons/Guy";
 import Lion from "../../assets/icons/Lion";
 import Majster from "../../assets/icons/Majster";
 import Turtle from "../../assets/icons/Turtle";
@@ -25,7 +24,7 @@ export default function Newsletter({ style }: { style?: React.CSSProperties }) {
       </div>
       <div className={styles.creatorsList}>
         {CreatorsList.map((elem, index) => (
-          <div style={{}}>
+          <div key={index} style={{}}>
             <CustomLink
               leftIcon={elem.icon}
               text={elem.creator}

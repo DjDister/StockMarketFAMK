@@ -152,6 +152,7 @@ function App() {
             </div>
             {startStepsArray.map((step, index) => (
               <EasyCard
+                key={index}
                 icon={step.icon}
                 boldText={step.boldText}
                 text={step.text}
@@ -165,7 +166,7 @@ function App() {
           <div
             style={{
               width: "40%",
-              // backgroundColor: "red",
+
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -207,12 +208,12 @@ function App() {
             <div
               style={{
                 display: "flex",
-                // flexDirection: "rowReversed",
+
                 flexDirection: "row-reverse",
                 justifyContent: "left",
                 width: "100%",
                 height: "50%",
-                // backgroundColor: "red",
+
                 gap: "50px",
               }}
             >
@@ -224,6 +225,7 @@ function App() {
                 )
                 .map((elem) => (
                   <EasyCard
+                    key={elem.text}
                     icon={elem.icon}
                     text={elem.text}
                     boldText={elem.boldText}
@@ -237,13 +239,10 @@ function App() {
                 justifyContent: "left",
                 width: "100%",
                 height: "50%",
-                // marginRight: "100px",
-                // backgroundColor: "green",
               }}
             >
               <div
                 style={{
-                  // backgroundColor: "purple",
                   width: "94%",
                   display: "flex",
                   justifyContent: "right",
@@ -258,6 +257,7 @@ function App() {
                   )
                   .map((elem) => (
                     <EasyCard
+                      key={elem.text}
                       icon={elem.icon}
                       text={elem.text}
                       boldText={elem.boldText}
@@ -279,9 +279,10 @@ function App() {
         <div className={styles.servicesMobile}>
           {services.map((step, index) => (
             <div
+              key={index}
               style={{
                 width: "100%",
-                // backgroundColor: "red",
+
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
