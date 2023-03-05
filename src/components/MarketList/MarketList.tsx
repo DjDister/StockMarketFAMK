@@ -15,6 +15,7 @@ interface MarketListProps {
   showPagination?: boolean;
   columnsTitleElements?: { name: string }[];
   titleElement?: JSX.Element;
+  allowNavigateToDetails?: boolean;
 }
 
 export default function MarketList({
@@ -27,6 +28,7 @@ export default function MarketList({
   showPagination,
   columnsTitleElements,
   titleElement,
+  allowNavigateToDetails,
 }: MarketListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const coinNameElem = columnsTitleElements?.find(
@@ -232,6 +234,7 @@ export default function MarketList({
           .map((cryptoCoin, index) => {
             return (
               <ElementToRenderInList
+                allowNavigateToDetails={allowNavigateToDetails}
                 key={index}
                 howManyDetails={howManyDetails}
                 graph={cryptoCoin.graph ?? undefined}

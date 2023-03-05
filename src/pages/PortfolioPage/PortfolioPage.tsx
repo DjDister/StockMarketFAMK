@@ -85,7 +85,7 @@ export default function PortfolioPage() {
       : 0;
   return (
     <Layout>
-      {/* <div
+      <div
         onClick={() => addTestCryptos()}
         style={{
           position: "absolute",
@@ -96,7 +96,7 @@ export default function PortfolioPage() {
           backgroundColor: "red",
           zIndex: 100,
         }}
-      /> */}
+      />
       <div className={styles.container}>
         {userPortfolio ? (
           <div className={styles.portfolioSummaryContainer}>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TrendingDown from "../../assets/icons/TrendingDown";
 import TrendingUp from "../../assets/icons/TrendingUp";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -13,6 +14,8 @@ interface CryptoProps {
   image?: string;
   howManyDetails: number;
   index?: number;
+  id?: string;
+  allowNavigateToDetails?: boolean;
 }
 
 export default function MarketItem({
@@ -24,7 +27,9 @@ export default function MarketItem({
   high_24h,
   low_24h,
   image,
+  id = "",
   howManyDetails,
+  allowNavigateToDetails = false,
 }: CryptoProps) {
   const changeElement = price_change_percentage_24h ? (
     <div
@@ -58,8 +63,20 @@ export default function MarketItem({
       setIsSmallScreen(true);
     }
   }, [size.width]);
+  const navigate = useNavigate();
   return (
-    <div style={{ width: "100%", display: "flex" }}>
+    <div
+      onClick={
+        allowNavigateToDetails
+          ? () => navigate(`/crypto/${id.toLocaleLowerCase()}`)
+          : undefined
+      }
+      style={{
+        width: "100%",
+        display: "flex",
+        cursor: allowNavigateToDetails ? "pointer" : "default",
+      }}
+    >
       <div
         className={styles.nameContainer}
         style={{ width: isSmallScreen ? "65%" : "40%" }}
