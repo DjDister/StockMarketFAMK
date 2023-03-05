@@ -12,10 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    width: 80%;
     padding: 20px;
- 
     background-color: #121318;
 }
 
@@ -23,7 +20,7 @@
     display: flex;
 
     align-items: center;
-justify-content: space-between;
+    justify-content: space-between;
     width: 100%;
  
 }
@@ -106,8 +103,49 @@ justify-content: space-between;
     width: 100%;
 }
 
-@media only screen and (min-width:1002px){
-  
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width:95%;
+}
+
+.leftContainer{
+    width: 100%;
+}
+
+.allocationContainer{
+    width: 100%;
+    background-color: #121318;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.MarketList{
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        margin-bottom: 10px;
+    
+}
+
+@media only screen and (min-width:1100px){
+  .allocationContainer{
+    margin-top: 0px;
+  }
+    .pageContainer{
+        flex-direction: row;
+        justify-content: space-between;
+        gap:20px;
+    }
+    .leftContainer{
+        width: 70%;
+        
+    }
+    .rightContainer{
+        width: 30%;
+    }
+
+
     .detailsContainer{
         display: flex;
         justify-content: space-between;

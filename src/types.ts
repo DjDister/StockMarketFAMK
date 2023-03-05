@@ -1,9 +1,11 @@
-export type PortfolioType = {
+export type PortfolioElementType = {
   name: string;
   symbol: string;
   boughtPrice: string;
   amount: string;
-}[];
+};
+
+export type PortfolioType = PortfolioElementType[];
 
 export type WalletType = {
   totalBalanceDollars: string;

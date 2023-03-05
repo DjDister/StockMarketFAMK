@@ -13,6 +13,9 @@ interface CryptoProps {
   image?: string;
   howManyDetails: number;
   index?: number;
+  boughtPrice?: number;
+  amount?: number;
+  assetValue?: number;
 }
 
 export default function MarketItem({
@@ -23,8 +26,11 @@ export default function MarketItem({
   price_change_percentage_24h,
   high_24h,
   low_24h,
+  amount,
   image,
   howManyDetails,
+  assetValue,
+  boughtPrice,
 }: CryptoProps) {
   const changeElement = price_change_percentage_24h ? (
     <div
@@ -95,6 +101,9 @@ export default function MarketItem({
         )}
         {high_24h && <div className={styles.high24}>{high_24h}</div>}
         {low_24h && <div className={styles.low24}>{low_24h}</div>}
+        {boughtPrice && <div className={styles.boughtPrice}>{boughtPrice}</div>}
+        {amount && <div className={styles.amount}>{amount}</div>}
+        {assetValue && <div className={styles.assetValue}>{assetValue}</div>}
       </div>
     </div>
   );
