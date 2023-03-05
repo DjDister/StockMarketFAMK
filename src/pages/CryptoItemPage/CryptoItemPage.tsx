@@ -53,7 +53,15 @@ export default function CryptoItemPage() {
   const [market_cup_rank, setMarket_cap_rank] = useState(10);
   const [data2, setData2] = useState<CryptoItemType | undefined>(undefined);
   const [inputValue, setInputValue] = useState<string>("");
-  const [wallet, setWallet] = useState<string>("");
+  const [wallet, setWallet] = useState<{
+    totalBalanceDollars: string;
+    transactionHistory: {
+      amount: string;
+      date: string;
+      status: string;
+      type: string;
+    }[];
+  } | null>(null);
   const user = useAppSelector((state) => state.profile);
 
   console.log(user);
@@ -78,10 +86,15 @@ export default function CryptoItemPage() {
       await updateDoc(doc(db, "users", user.userId), {
         portfolio: arrayUnion(toDataBase),
       });
-      const walletState = parseInt(wallet) - parseInt(inputValue);
+      const walletState =
+        parseInt(wallet ? wallet.totalBalanceDollars : "") -
+        parseInt(inputValue);
       console.log(walletState);
       await updateDoc(doc(db, "users", user.userId), {
-        wallet: { totalBalanceDollars: walletState.toString() },
+        wallet: {
+          totalBalanceDollars: walletState.toString(),
+          transactionHistory: [...(wallet ? wallet.transactionHistory : [])],
+        },
       });
     }
   };
@@ -99,7 +112,7 @@ export default function CryptoItemPage() {
       const dataFromDb = await getDoc(doc(db, "users", user.userId));
       console.log(dataFromDb.data());
       if (dataFromDb.exists()) {
-        setWallet(dataFromDb.data().wallet.totalBalanceDollars);
+        setWallet(dataFromDb.data().wallet);
       }
       console.log(wallet);
     };
@@ -127,6 +140,7 @@ export default function CryptoItemPage() {
     fetchData();
   }, []);
 
+  console.log(wallet);
   return (
     <Layout>
       <div className={styles.overall}>
