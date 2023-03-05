@@ -132,6 +132,11 @@
   .allocationContainer{
     margin-top: 0px;
   }
+  .MarketList{
+    width: calc(100% - 40px);
+
+
+}
     .pageContainer{
         flex-direction: row;
         justify-content: space-between;

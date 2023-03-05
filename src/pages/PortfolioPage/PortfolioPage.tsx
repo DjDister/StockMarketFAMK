@@ -74,7 +74,7 @@ export default function PortfolioPage() {
                 );
 
                 const data = response.data;
-                console.log(data);
+
                 setCoinsPrice((prev) => [
                   ...prev,
                   {
@@ -204,11 +204,14 @@ export default function PortfolioPage() {
                     return {
                       ...curr,
                       image: coin ? coin.image : "",
+                      profitLoss:
+                        parseInt(curr.amount) * (coin ? coin.price : 0) -
+                        parseInt(curr.boughtPrice) * parseInt(curr.amount),
                       assetValue:
                         parseInt(curr.amount) * (coin ? coin.price : 0),
                     };
                   })}
-                  howManyDetails={4}
+                  howManyDetails={5}
                   ElementToRenderInList={MarketItem}
                   showPagination
                   columnsTitleElements={[
@@ -216,6 +219,7 @@ export default function PortfolioPage() {
                     { name: "Avg Buy" },
                     { name: "Holdings Assets" },
                     { name: "Total Assets Value" },
+                    { name: "Profit/Loss" },
                   ]}
                   // titleElement={TitleElement}
                 ></MarketList>

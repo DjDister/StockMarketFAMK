@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import TrendingDown from "../../assets/icons/TrendingDown";
 import TrendingUp from "../../assets/icons/TrendingUp";
 import useWindowSize from "../../hooks/useWindowSize";
+import formatNumber from "../../utils/formatNumber";
+import ReturnIndicator from "../ReturnIndicator/ReturnIndicator";
 import styles from "./MarketItem.module.css";
 interface CryptoProps {
   name: string;
@@ -16,6 +18,7 @@ interface CryptoProps {
   boughtPrice?: number;
   amount?: number;
   assetValue?: number;
+  profitLoss?: number;
 }
 
 export default function MarketItem({
@@ -30,6 +33,7 @@ export default function MarketItem({
   image,
   howManyDetails,
   assetValue,
+  profitLoss,
   boughtPrice,
 }: CryptoProps) {
   const changeElement = price_change_percentage_24h ? (
@@ -101,9 +105,25 @@ export default function MarketItem({
         )}
         {high_24h && <div className={styles.high24}>{high_24h}</div>}
         {low_24h && <div className={styles.low24}>{low_24h}</div>}
-        {boughtPrice && <div className={styles.boughtPrice}>{boughtPrice}</div>}
+        {boughtPrice && (
+          <div className={styles.boughtPrice}>${boughtPrice}</div>
+        )}
         {amount && <div className={styles.amount}>{amount}</div>}
-        {assetValue && <div className={styles.assetValue}>{assetValue}</div>}
+        {assetValue && <div className={styles.assetValue}>${assetValue}</div>}
+        {profitLoss && (
+          <div
+            className={styles.profitLoss}
+            style={{ alignItems: isSmallScreen ? "center" : "flex-end" }}
+          >
+            <div style={{ color: profitLoss > 0 ? "white" : "red" }}>
+              {profitLoss > 0 ? "+ " : "- "}${formatNumber(profitLoss)}
+            </div>
+
+            <ReturnIndicator
+              returnIndicator={(profitLoss / (boughtPrice ?? 0)).toFixed(2)}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
