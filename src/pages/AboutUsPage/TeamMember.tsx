@@ -18,13 +18,17 @@ const MyComponent: React.FC<Props> = (props) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img src={props.image} alt="Image" />
+          <img
+            src={props.image}
+            alt="Image"
+            style={{ width: "100%", aspectRatio: 1 / 1.4, borderRadius: "8px" }}
+          />
           {isHovered && <div className={styles.email}>{props.email}</div>}
         </div>
       </a>
       <h1 className={styles.imie}>{props.imie}</h1>
       <br></br>
-      <p>{props.opis}</p>
+      <p style={{ textAlign: "center" }}>{props.opis}</p>
     </div>
   );
 };

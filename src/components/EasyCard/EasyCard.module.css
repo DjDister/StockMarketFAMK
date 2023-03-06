@@ -1,0 +1,60 @@
+.easyCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #080808;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 600px;
+  margin-left: 5px;
+  margin-right: 5px;
+  justify-content: space-between;
+}
+
+.iconBox {
+  /* background-color: red; */
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+.textBox {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  width: 70%;
+}
+.boldText {
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 1px 0 #ffffff;
+  text-align: center;
+}
+
+.text {
+  color: #808080;
+  text-align: center;
+}
+
+@media (orientation: landscape) and (min-width: 700px) {
+  .easyCard {
+    flex-direction: column;
+    min-width: 150px;
+    width: 34%;
+  }
+
+  .iconBox {
+    margin-bottom: 10px;
+  }
+
+  .boldText {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    margin-top: 10px;
+  }
+}

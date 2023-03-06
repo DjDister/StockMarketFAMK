@@ -1,0 +1,99 @@
+.DropMenu {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+}
+
+.absoluteExitMenu {
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  z-index: 2;
+}
+
+.upperMenu {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 12px; */
+  /* background-color: red; */
+}
+
+.iconAndText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  margin-left: 10px;
+  color: grey;
+  font-size: 1.5rem;
+}
+
+.lineCurr {
+  height: 25px;
+  width: 1.5px;
+  background-color: grey;
+  margin-left: 10px;
+}
+
+.blueLineCurr {
+  background-color: rgb(83, 103, 254);
+}
+.blueText {
+  margin-left: 10px;
+  color: rgb(83, 103, 254);
+  font-size: 1.5rem;
+  /* text-decoration: underline 2px solid rgb(83, 103, 254); */
+}
+
+.blueText2 {
+  /* margin-left: 10px; */
+  color: rgb(83, 103, 254);
+  border-bottom: 2px solid rgb(83, 103, 254);
+
+  /* text-decoration: underline 2px solid rgb(83, 103, 254); */
+}
+
+.blackBorder {
+  border-bottom: 2px solid #080808;
+}
+
+.langCurrBox {
+  width: 100%;
+  height: 200px;
+  background-color: #080808;
+  overflow-y: scroll;
+  /* border-top: 1px solid grey; */
+  padding-bottom: 15px;
+}
+
+.insideCont {
+  background-color: #080808;
+}
+
+.langSelected {
+  background-color: #5367fe;
+  color: #080808;
+  /* margin-left: 10px; */
+}
+
+@media (min-width: 1100px) {
+  .desktopFix {
+    /* margin-top: 320px; */
+    position: absolute;
+    top: 100%;
+    /* right: 70%; */
+    border: 1px solid grey;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}

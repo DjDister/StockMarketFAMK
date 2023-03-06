@@ -1,0 +1,157 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-height: 100%;
+}
+
+.label{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.lineSeparator{
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.passwordChangeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.labelPassword{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.passwordTip{
+    font-size: 0.9rem;
+    font-weight: 300;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #5b5d6c;
+}
+
+.inputLabel{
+    font-size: 0.9rem;
+    font-weight: 300;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #5b5d6c;
+margin-bottom: 4px;    
+}
+
+.inputStyles{
+    height: 50px;
+    margin-bottom: 10px;
+    background-color: #080808;
+}
+
+.passwordEnsure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    color: #5b5d6c;
+    margin-top: 10px;
+    
+}
+
+.activeButton{
+    background-color: #5367fe;
+}
+
+.inactiveButton{
+    background-color: #E9EAF0;
+    color:#5367fe
+}
+
+.newPasswordsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.labelAndInputContainer{
+    width: 100%;
+}
+
+.confirmAndTipContainer{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.savePasswordButton{
+border-radius: 5;
+background-color: #5367fe;
+color: white;
+}
+
+
+@media screen and (min-width: 992px) {
+.inactiveButton{
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: #080808;
+    color:#5367fe
+}
+.activeButton{
+    padding-left: 6px;
+    padding-right: 6px;
+
+}
+.lineSeparator{
+    background-color: #5b5d6c;
+}
+.newPasswordsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+.labelAndInputContainer{
+    width: 50%;
+}
+.confirmAndTipContainer{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: fit-content;
+    height: 55px;
+    gap: 40px;
+}
+
+.savePasswordButton{
+    width: 40%;
+    height: 100%;
+}
+.label{
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+}  

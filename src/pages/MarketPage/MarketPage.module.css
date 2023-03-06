@@ -1,0 +1,347 @@
+.Market {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+
+.leftContainer{
+  width:96%;
+  display: flex;
+  background-color: #121318;
+  align-items: center;
+  justify-content: center;
+}
+.MarketList{
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rightContainer{
+  width:95%
+}
+
+.part1 {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: #121318;
+  margin: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  height: 850px;
+}
+
+.part2 {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: #121318;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 15px;
+}
+
+.linia1 {
+  display: flex;
+  align-items: center;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container {
+  display: flow-root;
+
+  align-items: center;
+
+  float: right;
+}
+.tytul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.square {
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  margin: 0 3px;
+  border-radius: 4px;
+}
+.title {
+  font-size: 30px;
+  color: white;
+}
+p {
+  color: gray;
+}
+.przyciski {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  height: 50px;
+  width: 100%;
+  gap: 5px;
+  
+}
+
+
+.przyciski::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+.przycisk {
+  min-width: 130px;
+  max-width: 180px;
+  height: 150px;
+  margin-right: 10px;
+  background-color: aliceblue;
+  color: red;
+  border-radius: 5px;
+}
+.setborder {
+  border-bottom: 1px solid gray;
+}
+.sortowanie,
+.sortowanie3 {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 15px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  height: 50px;
+  align-items: center;
+  padding-right: 3px;
+  padding-left: 3px;
+  color: gray;
+  font-size: 12px;
+}
+::-webkit-scrollbar {
+  background-color: black;
+}
+
+.crypto {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.crypto:hover {
+  background-color: black;
+}
+.price {
+  padding-left: 20px;
+}
+.cryptocontainer {
+  gap: 15px;
+  align-items: center;
+  background-color: antiquewhite;
+}
+.buysellbutton {
+  width: 100%;
+  background-color: rgb(54, 54, 153);
+  text-align: center;
+  justify-content: center;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buyselltekst {
+  display: flex;
+  text-align: center;
+}
+
+.last {
+  display: flex;
+  width: 100%;
+
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  justify-content: space-between;
+  margin-left: -10px;
+  margin-bottom: 10px;
+}
+.przyciski::-webkit-scrollbar {
+  height: 0.1px;
+}
+.navbarcrypto {
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+
+  height: 40px;
+}
+.watchlist {
+  color: gray;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputdiv {
+  border: 1px gray solid;
+
+  display: none;
+}
+.filter {
+  display: none;
+}
+.przyciski2 {
+  display: none;
+}
+.przyciski1 {
+  display: flex;
+}
+.sortowanie2 {
+  display: none;
+}
+.pagination:hover {
+  color: rgb(54, 54, 153);
+}
+.pagination {
+  gap: 5px;
+}
+.paginationdiv {
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+}
+.arrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.last2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.numberof {
+  padding-top: 25px;
+  margin-right: 5px;
+}
+@media screen and (min-width: 1100px) {
+
+  .container {
+    display: none;
+  }
+  .Market{
+    flex-direction: row;
+    gap:10px;
+  }
+  
+  .leftContainer{
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .rightContainer{
+    width: 25%;
+  }
+  .part1 {
+    width: 75%;
+    height: 1250px;
+  }
+  .part2 {
+    width: 22%;
+  }
+  .buysellbutton {
+    display: none;
+  }
+  .inputdiv {
+    border: 1px gray solid;
+
+    display: block;
+    height: 40px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    width: 400px;
+    border-radius: 2px;
+  }
+  .container {
+    display: none;
+  }
+  .filter {
+    display: flex;
+    border: 1px gray solid;
+    height: 40px;
+    align-items: center;
+    color: gray;
+    margin-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 20px;
+    gap: 5px;
+    border-radius: 2px;
+  }
+  .linia1 {
+    padding-top: 20px;
+  }
+  .przyciski {
+    width: 60%;
+  }
+  .przyciski2 {
+    display: flex;
+    float: right;
+    gap: 10px;
+    align-items: center;
+  }
+  .overallbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .show20 {
+    color: white;
+  }
+  .sortowanie {
+    display: none;
+  }
+  .sortowanie2 {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    height: 50px;
+    align-items: center;
+    padding-right: 3px;
+    padding-left: 3px;
+    color: gray;
+    font-size: 12px;
+  }
+  .crypto {
+    gap: 20px;
+  }
+  .pagination2 {
+    display: none;
+  }
+  .last2 {
+    display: none;
+  }
+
+}

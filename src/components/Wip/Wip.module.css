@@ -1,0 +1,31 @@
+.container{
+    position: absolute;
+    bottom:calc(100% + 20px);
+    left:calc(100% - 20px);
+    background-color: #545766;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    z-index: 200;
+}
+
+.bubble{
+    display: flex;
+    gap: 5px;
+}
+
+
+.bubble:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #545766 transparent transparent #545766;
+  }
