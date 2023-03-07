@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./AboutUsPage.module.css";
 import MyComponent from "./TeamMember";
 import filip from "../../assets/images/filip.jpg";
-import aleksy from "../../assets/images/aleksy.jpg";
+import Aleksy from "../../assets/images/Aleksy.jpg";
 import krystian from "../../assets/images/krystian.jpg";
 import Layout from "../../components/Layout/Layout";
 export default function AboutUsPage() {
@@ -36,7 +36,7 @@ export default function AboutUsPage() {
               email="porebskifilip@wp.pl"
             />
             <MyComponent
-              image={aleksy}
+              image={Aleksy}
               imie="Aleksy Lisowski"
               opis="
               My first big project, I was responsible for making Footer, this AboutUsPage, cryptoItemPage and whole Market including all functionality nad styling     "
