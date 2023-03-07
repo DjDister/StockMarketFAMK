@@ -47,10 +47,8 @@ export default function CryptoItemPage() {
   const price_change_percentage_24h: number = -1;
   const fav = false;
 
-  const [high_24h, setHigh_24h] = useState(10);
-  const [low_24h, setLow_24h] = useState(10);
-  const [current_price, SetCurrent_price] = useState(10);
-  const [market_cup_rank, setMarket_cap_rank] = useState(10);
+  const [buySellButton, setBuySellButton] = useState(true);
+  const [blue, setBlue] = useState("blue");
   const [data2, setData2] = useState<CryptoItemType | undefined>(undefined);
   const [inputValue, setInputValue] = useState<string>("");
   const [wallet, setWallet] = useState<{
@@ -64,7 +62,7 @@ export default function CryptoItemPage() {
   } | null>(null);
   const user = useAppSelector((state) => state.profile);
 
-  console.log(user);
+  //console.log(user);
   const handleButtonClick = async () => {
     const inputValueToSave = inputValue;
 
@@ -114,7 +112,7 @@ export default function CryptoItemPage() {
       if (dataFromDb.exists()) {
         setWallet(dataFromDb.data().wallet);
       }
-      console.log(wallet);
+      //console.log(wallet);
     };
     fetchHistoricData();
 
@@ -133,14 +131,15 @@ export default function CryptoItemPage() {
           (data2?.market_data?.high_24h?.usd -
             data2?.market_data?.low_24h?.usd);
       }
-      console.log(response.data);
+      //console.log(response.data);
       setData2(response.data);
-      console.log(data2);
+      //console.log(data2);
     }
     fetchData();
   }, []);
 
-  console.log(wallet);
+  console.log(buySellButton);
+  // console.log(wallet);
   return (
     <Layout>
       <div className={styles.overall}>
@@ -317,21 +316,65 @@ export default function CryptoItemPage() {
               </>
             </div>
           </div>
-          <div className={styles.inputbuttondiv}>
-            <input
-              placeholder="$ to invest"
-              className={styles.inputdiv}
-              value={inputValue}
-              onChange={handleInputChange}
-            ></input>
-            <button
-              className={styles.buttondiv}
-              placeholder="buy"
-              style={{ width: "80px", height: "30px" }}
-              onClick={handleButtonClick}
+          <div className={styles.part2}>
+            <div
+              className={styles.buyselldiv}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: "gray",
+                borderBottom: "1px solid gray",
+              }}
             >
-              BUY
-            </button>
+              <div
+                style={{
+                  fontSize: "1.5rem",
+                  display: "flex",
+                  width: "50%",
+
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onClick={() => setBuySellButton(true)}
+              >
+                Buy
+              </div>
+              <div
+                style={{
+                  fontSize: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "50%",
+                  justifyContent: "center",
+                }}
+                onClick={() => setBuySellButton(false)}
+              >
+                Sell
+              </div>
+            </div>
+
+            <div className={styles.inputbuttondiv}>
+              <input
+                placeholder="$ to invest"
+                className={styles.inputdiv}
+                value={inputValue}
+                onChange={handleInputChange}
+              ></input>
+              <div style={{ fontSize: "1.5rem" }} className={styles.amounthof}>
+                Amounth of {data2?.name}
+                {" : "}
+                {data2?.market_data.current_price.usd
+                  ? parseInt(inputValue) / data2?.market_data.current_price.usd
+                  : "0"}{" "}
+              </div>
+              <button
+                className={styles.buttondiv}
+                placeholder="buy"
+                onClick={handleButtonClick}
+              >
+                {buySellButton ? "BUY" : "SELL"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
