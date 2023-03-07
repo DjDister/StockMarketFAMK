@@ -61,6 +61,9 @@ export default function RegisterPage() {
         const user = userCredential.user;
         const userData: UserData = {
           email: user.email || "",
+          firstName: null,
+          lastName: null,
+          userName: null,
           uid: user.uid,
           displayName: user.email || "",
           photoURL: user.photoURL,

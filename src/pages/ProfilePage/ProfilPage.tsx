@@ -18,22 +18,31 @@ import useWindowSize from "../../hooks/useWindowSize";
 import MyProfile from "../../components/MyProfile.tsx/MyProfile";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-
-const profileSettings = [
-  { label: "My Profile", icon: <Person />, element: <MyProfile /> },
-  { label: "Security", icon: <Lock />, element: <Security /> },
-  {
-    label: "Notifications Preferences",
-    icon: <Notification />,
-    element: <NotificationPreferences />,
-  },
-  { label: "Currency Preferences", icon: <Dollar />, element: <></> },
-  { label: "KYC Verification", icon: <File />, element: <></> },
-  { label: "Payment Option", icon: <Wallet />, element: <></> },
-  { label: "Api Managment", icon: <Clipboard />, element: <></> },
-];
+import db from "../../../firebaseConfig";
+import { UserData } from "../../types";
+import { doc, getDoc } from "firebase/firestore";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 export default function ProfilPage() {
+  const [userData, setUserData] = useState<UserData>();
+
+  const profileSettings = [
+    {
+      label: "My Profile",
+      icon: <Person />,
+      element: userData ? <MyProfile userData={userData} /> : <div></div>,
+    },
+    { label: "Security", icon: <Lock />, element: <Security /> },
+    {
+      label: "Notifications Preferences",
+      icon: <Notification />,
+      element: <NotificationPreferences />,
+    },
+    { label: "Currency Preferences", icon: <Dollar />, element: <></> },
+    { label: "KYC Verification", icon: <File />, element: <></> },
+    { label: "Payment Option", icon: <Wallet />, element: <></> },
+    { label: "Api Managment", icon: <Clipboard />, element: <></> },
+  ];
   const size = useWindowSize();
   const [activeSettings, setActiveSettings] = useState<{
     label: string;
@@ -41,11 +50,28 @@ export default function ProfilPage() {
     element: JSX.Element;
   } | null>(null);
 
+  const profile = useAppSelector((state) => state.profile);
+
   useEffect(() => {
     if (window.innerWidth > 992) {
       setActiveSettings(profileSettings[0]);
     }
+
+    async function dataBaseInfo() {
+      const docRef = doc(db, "users", profile.userId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserData(docSnap.data() as UserData);
+      } else {
+        console.log("NO SUCH DATA");
+      }
+    }
+
+    dataBaseInfo();
   }, []);
+
+  console.log("Document data : ", userData);
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.headerContainer}>
