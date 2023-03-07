@@ -15,10 +15,10 @@ interface CryptoProps {
   image?: string;
   howManyDetails: number;
   index?: number;
-  boughtPrice?: number;
-  amount?: number;
-  assetValue?: number;
-  profitLoss?: number;
+  boughtPrice?: string;
+  amount?: string;
+  assetValue?: string;
+  profitLoss?: string;
 }
 
 export default function MarketItem({
@@ -68,6 +68,7 @@ export default function MarketItem({
       setIsSmallScreen(true);
     }
   }, [size.width]);
+
   return (
     <div style={{ width: "100%", display: "flex" }}>
       <div
@@ -115,12 +116,21 @@ export default function MarketItem({
             className={styles.profitLoss}
             style={{ alignItems: isSmallScreen ? "center" : "flex-end" }}
           >
-            <div style={{ color: profitLoss > 0 ? "white" : "red" }}>
-              {profitLoss > 0 ? "+ " : "- "}${formatNumber(profitLoss)}
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                color: parseFloat(profitLoss) > 0 ? "white" : "red",
+              }}
+            >
+              {parseFloat(profitLoss) > 0 ? "+ " : "- "}$
+              {formatNumber(profitLoss)}
             </div>
 
             <ReturnIndicator
-              returnIndicator={(profitLoss / (boughtPrice ?? 0)).toFixed(2)}
+              returnIndicator={(
+                parseFloat(assetValue ?? "0") /
+                (parseFloat(boughtPrice ?? "0") * parseFloat(amount ?? "0"))
+              ).toFixed(2)}
             />
           </div>
         )}

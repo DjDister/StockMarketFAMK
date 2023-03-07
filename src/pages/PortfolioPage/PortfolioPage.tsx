@@ -16,13 +16,13 @@ import formattedDate from "../../utils/currentDateFormated";
 import formatNumber from "../../utils/formatNumber";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
-import DownArrow from "../../assets/icons/DownArrow";
-import Filter from "../../assets/icons/Filter";
-import Loupe from "../../assets/icons/Loupe";
-import Market1 from "../../assets/icons/Market1";
-import Market2 from "../../assets/icons/Market2";
-import Market3 from "../../assets/icons/Market3";
-import Button from "../../components/Button/Button";
+
+type MergedCoins = {
+  name: string;
+  symbol: string;
+  averagePrice: string;
+  amount: string;
+};
 
 export default function PortfolioPage() {
   const profile = useAppSelector((state) => state.profile);
@@ -41,6 +41,18 @@ export default function PortfolioPage() {
         boughtPrice: 1000,
         amount: 2.2,
       },
+      {
+        name: "Bitcoin",
+        symbol: "BTC",
+        boughtPrice: 15000,
+        amount: 1.4,
+      },
+      {
+        name: "Ethereum",
+        symbol: "ETH",
+        boughtPrice: 1200,
+        amount: 2.1,
+      },
     ];
     await updateDoc(doc(db, "users", profile.userId), {
       portfolio: testCryptos,
@@ -55,6 +67,36 @@ export default function PortfolioPage() {
   const [coinsPrice, setCoinsPrice] = useState<
     { symbol: string; price: number; image: string }[]
   >([]);
+  const [coinsToShow, setCoinsToShow] = useState<MergedCoins[]>([]);
+
+  function mergeCoins(portfolio: PortfolioType): MergedCoins[] {
+    const mergedCoins: { [symbol: string]: MergedCoins } = {};
+
+    for (const coin of portfolio) {
+      const { name, symbol, boughtPrice, amount } = coin;
+
+      if (symbol in mergedCoins) {
+        const mergedCoin = mergedCoins[symbol];
+        const oldTotalValue =
+          parseFloat(mergedCoin.averagePrice) * parseFloat(mergedCoin.amount);
+        const newTotalValue =
+          oldTotalValue + parseFloat(boughtPrice) * parseFloat(amount);
+        const newTotalAmount =
+          parseFloat(mergedCoin.amount) + parseFloat(amount);
+        mergedCoin.averagePrice = (newTotalValue / newTotalAmount).toFixed(2);
+        mergedCoin.amount = newTotalAmount.toFixed(2);
+      } else {
+        mergedCoins[symbol] = {
+          name,
+          symbol,
+          averagePrice: parseFloat(boughtPrice).toFixed(2),
+          amount: parseFloat(amount).toFixed(2),
+        };
+      }
+    }
+
+    return Object.values(mergedCoins);
+  }
   useEffect(() => {
     const fetchUserData = async () => {
       const docRef = doc(db, "users", profile.userId).withConverter(
@@ -62,9 +104,11 @@ export default function PortfolioPage() {
       );
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
+        const mergedCoinsToShow = mergeCoins(docSnap.data().portfolio);
+        setCoinsToShow(mergedCoinsToShow);
         setUserPortfolio(docSnap.data());
         const data = docSnap.data().portfolio;
-        if (data) {
+        if (mergedCoinsToShow) {
           const totalReturn = await (
             await Promise.all(
               data.map(async (curr) => {
@@ -106,9 +150,21 @@ export default function PortfolioPage() {
       ? (totalReturn - totalInvestment).toFixed(2)
       : 0;
 
+  const TitleElement = (
+    <div
+      className={styles.titleContainer}
+      style={{ marginTop: 10, marginBottom: 10 }}
+    >
+      <div className={styles.title}>Coin Allocation</div>
+      <div>
+        <MoreVertical />
+      </div>
+    </div>
+  );
+
   return (
     <Layout>
-      {/* <div
+      <div
         onClick={() => addTestCryptos()}
         style={{
           position: "absolute",
@@ -119,7 +175,7 @@ export default function PortfolioPage() {
           backgroundColor: "red",
           zIndex: 100,
         }}
-      /> */}
+      />
       <div className={styles.container}>
         {userPortfolio ? (
           <div className={styles.pageContainer}>
@@ -197,18 +253,22 @@ export default function PortfolioPage() {
                 <MarketList
                   howManyToShowPerPage={10}
                   className={styles.MarketList}
-                  cryptoCoins={userPortfolio.portfolio.map((curr) => {
+                  cryptoCoins={coinsToShow.map((curr) => {
                     const coin = coinsPrice.find(
                       (coin) => coin.symbol === curr.symbol
                     );
+
                     return {
                       ...curr,
                       image: coin ? coin.image : "",
+                      boughtPrice: curr.averagePrice,
+                      holdingAssets: curr.amount,
                       profitLoss:
-                        parseInt(curr.amount) * (coin ? coin.price : 0) -
-                        parseInt(curr.boughtPrice) * parseInt(curr.amount),
-                      assetValue:
-                        parseInt(curr.amount) * (coin ? coin.price : 0),
+                        parseFloat(curr.amount) * (coin ? coin.price : 0) -
+                        parseFloat(curr.averagePrice) * parseFloat(curr.amount),
+                      assetValue: (
+                        parseFloat(curr.amount) * (coin ? coin.price : 0)
+                      ).toFixed(2),
                     };
                   })}
                   howManyDetails={5}
@@ -221,8 +281,8 @@ export default function PortfolioPage() {
                     { name: "Total Assets Value" },
                     { name: "Profit/Loss" },
                   ]}
-                  // titleElement={TitleElement}
-                ></MarketList>
+                  titleElement={TitleElement}
+                />
               </div>
             </div>
             <div className={styles.rightContainer}>

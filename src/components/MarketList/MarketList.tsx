@@ -174,8 +174,7 @@ export default function MarketList({
       }
     }
   };
-  console.log(isSortedBy);
-  console.log(cryptoCoinsSorted);
+
   return (
     <div className={`${className} ${styles.container}`} style={customStyles}>
       {titleElement}
