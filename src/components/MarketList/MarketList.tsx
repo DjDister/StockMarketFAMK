@@ -174,7 +174,8 @@ export default function MarketList({
       }
     }
   };
-
+  console.log(isSortedBy);
+  console.log(cryptoCoinsSorted);
   return (
     <div className={`${className} ${styles.container}`} style={customStyles}>
       {titleElement}
@@ -223,10 +224,10 @@ export default function MarketList({
                   cryptoCoins
                     ?.map((x) => x)
                     .sort((a, b) => {
-                      if (a.id < b.id) {
+                      if (a.name.toLowerCase() < b.name.toLowerCase()) {
                         return isSortedBy === "name" ? 1 : -1;
                       }
-                      if (a.id > b.id) {
+                      if (a.name.toLowerCase() > b.name.toLowerCase()) {
                         return isSortedBy === "name" ? -1 : 1;
                       }
                       return 0;
