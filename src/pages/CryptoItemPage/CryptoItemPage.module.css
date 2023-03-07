@@ -1,12 +1,14 @@
 .overall {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
   background-color: #080808;
 }
 .container {
-  width: 100%;
+  width: 90%;
   justify-content: center;
+
   margin-top: 40px;
   height: 100%;
 }
@@ -131,7 +133,10 @@
 .components {
   width: 100%;
   height: 250px;
-  background-color: black;
+  background-color: yellow;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 .buyselldiv {
   display: flex;
@@ -139,7 +144,7 @@
   justify-content: center;
   background-color: #131218;
   border-top-left-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -151,11 +156,10 @@
 }
 .inputdiv {
   width: 90%;
+  height: 40px;
   border-radius: 5px;
-  border: 1px gray solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 1px white solid;
+
   margin-top: 30px;
 }
 .amounthof {

@@ -20,6 +20,8 @@ import { update } from "plotly.js";
 import Portfolio from "../../assets/icons/Portfolio";
 import { updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
+import DetailsCard from "../../components/DetailsCard/DetailsCard";
+
 export default function CryptoItemPage() {
   interface CryptoItemType {
     id: string;
@@ -285,7 +287,60 @@ export default function CryptoItemPage() {
                     </div>
                   </div>
                 </div>
-                <div className={styles.components}>Components will be here</div>
+                <div className={styles.components}>
+                  <DetailsCard
+                    customStyle={{
+                      backgroundColor: "black",
+                      borderRadius: "5px",
+                      width: "20%",
+                    }}
+                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelText={"Market Cap"}
+                    amount={"213742069"}
+                    returnIndicator={
+                      data2?.market_data.price_change_percentage_24h
+                    }
+                  />{" "}
+                  <DetailsCard
+                    customStyle={{
+                      backgroundColor: "black",
+                      borderRadius: "5px",
+                      width: "20%",
+                    }}
+                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelText={"Full Diluted"}
+                    amount={"213742069"}
+                    returnIndicator={
+                      data2?.market_data.price_change_percentage_24h
+                    }
+                  />{" "}
+                  <DetailsCard
+                    customStyle={{
+                      backgroundColor: "black",
+                      borderRadius: "5px",
+                      width: "20%",
+                    }}
+                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelText={"24 Volume"}
+                    amount={"213742069"}
+                    returnIndicator={
+                      data2?.market_data.price_change_percentage_24h
+                    }
+                  />{" "}
+                  <DetailsCard
+                    customStyle={{
+                      backgroundColor: "black",
+                      borderRadius: "5px",
+                      width: "20%",
+                    }}
+                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelText={"Circulating Supply"}
+                    amount={"213742069"}
+                    returnIndicator={
+                      data2?.market_data.price_change_percentage_24h
+                    }
+                  />{" "}
+                </div>
               </div>
             </div>
             <div className={styles.graph} style={{ width: "100%" }}>
