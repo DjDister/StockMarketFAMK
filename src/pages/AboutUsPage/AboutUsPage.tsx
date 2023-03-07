@@ -45,17 +45,9 @@ export default function AboutUsPage() {
             <MyComponent
               image={krystian}
               imie="Krystian Kiejno"
-              opis="Niestety nie wszystkim studentom udało się uzyskać wymagane zaliczenia w letniej sesji. 
-          Niektórzy sami sobie zawinili, a innym zabrakło trochę szczęścia . Teraz muszą to nadrobić. 
-          Podpowiadamy jak poradzić sobie z drugim podejściem do egzaminu.
-          
-          We wrześniu wciąż jeszcze nie ma zajęć na uczelniach.
-          Jednak często musimy przypomnieć sobie gdzie leżą ich książki i notatki.
-          Powodem jest sesja poprawkowa. Różne są powody oblania egzaminu lub co gorsze egzaminów. 
-          Jedni musieli się przygotować tylko do dwóch, a inni nawet do pięciu.
-          Czasami wystarczy mniej więcej orientować się w zagadnieniach, 
-          gdy innym razem obkucie się ze wszystkich zagadnień może nie dać pozytywnej oceny."
-              email="studentdebil3@gmail.com"
+              opis="It was my first group project with such complexity. I was responsible for making a whole navBar, landing page and functionalities of few pages, both for desktop and mobile
+              sized devices. It gave me a lot of experience and many sleepless nights."
+              email="kkiejno@gmail.com"
             />
           </div>
         </div>
