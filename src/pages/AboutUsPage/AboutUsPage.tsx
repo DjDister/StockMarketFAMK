@@ -39,7 +39,14 @@ export default function AboutUsPage() {
               image={Aleksy}
               imie="Aleksy Lisowski"
               opis="
-              My first big project, I was responsible for making Footer, this AboutUsPage, cryptoItemPage and whole Market including all functionality nad styling     "
+              My first big project, I was responsible for making Footer, this AboutUsPage,
+               cryptoItemPage and Market including setting and integrating API, created pagination,
+               linked a user's long and short positions to a database,
+               sorting functions, general styling and all necessary steps to make this website work. 
+               As the team we were in touch 24/7, develop and discussed new solutions together.
+                Personally I learnt a lot about TypeScript,
+                 improved the quality of my code and discovered many possibilities offered by the frontend,
+                  which will certainly be useful to me in the future. "
               email="aleksylisowski@gmail.com"
             />
             <MyComponent
