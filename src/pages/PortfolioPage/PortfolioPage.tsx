@@ -16,6 +16,9 @@ import formattedDate from "../../utils/currentDateFormated";
 import formatNumber from "../../utils/formatNumber";
 import MarketList from "../../components/MarketList/MarketList";
 import MarketItem from "../../components/Marketitem/Marketitem";
+import Wallet2 from "../../assets/icons/wallet2";
+import DownArrow from "../../assets/icons/DownArrow";
+import Repeat from "../../assets/icons/Repeat";
 
 type MergedCoins = {
   name: string;
@@ -109,6 +112,7 @@ export default function PortfolioPage() {
         setUserPortfolio(docSnap.data());
         const data = docSnap.data().portfolio;
         if (mergedCoinsToShow) {
+          setSelectedCoin(mergedCoinsToShow[0]);
           const totalReturn = await (
             await Promise.all(
               data.map(async (curr) => {
@@ -162,6 +166,23 @@ export default function PortfolioPage() {
     </div>
   );
 
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+  const [selectedCoin, setSelectedCoin] = useState<MergedCoins | null>(null);
+  const [isOpenDropDown2, setIsOpenDropDown2] = useState(false);
+  const [selectedCoin2, setSelectedCoin2] = useState<{
+    symbol: "USD";
+    sign: "$";
+  } | null>(null);
+  const [amountToExchange, setAmountToExchange] = useState<number>(0);
+  const calculatedAmount = isNaN(
+    amountToExchange *
+      (coinsPrice.find((coin) => coin.symbol === selectedCoin?.symbol)?.price ||
+        0)
+  )
+    ? 0
+    : amountToExchange *
+      (coinsPrice.find((coin) => coin.symbol === selectedCoin?.symbol)?.price ||
+        0);
   return (
     <Layout>
       <div
@@ -286,7 +307,113 @@ export default function PortfolioPage() {
               </div>
             </div>
             <div className={styles.rightContainer}>
-              <div>exchange coins</div>
+              <div className={styles.exchangeContainer}>
+                <div className={styles.exchangeTitle}>Exchange Coin</div>
+                <div className={styles.balancesContainer}>
+                  <div className={styles.flexCenter}>
+                    <Wallet2 fill="grey" height="28" width="28" />$
+                    {formatNumber(userPortfolio.wallet.totalBalanceDollars)}
+                  </div>
+                  <div className={styles.flexCenter}>
+                    <img
+                      className={styles.coinImage}
+                      src={`${
+                        coinsPrice.find(
+                          (coin) => coin.symbol === selectedCoin?.symbol
+                        )?.image
+                      }`}
+                    />
+                    {selectedCoin?.amount || 0} {selectedCoin?.symbol}
+                  </div>
+                </div>
+                <div className={styles.selectorContainer}>
+                  <div className={styles.selectorInfo}>
+                    Coin
+                    <input
+                      type="number"
+                      className={styles.input}
+                      value={amountToExchange}
+                      placeholder="Type Amount"
+                      onChange={(e) =>
+                        setAmountToExchange(
+                          parseFloat(e.target.value) >
+                            parseFloat(selectedCoin?.amount ?? "0")
+                            ? parseFloat(selectedCoin?.amount ?? "0")
+                            : parseFloat(e.target.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div
+                    className={styles.dropDownContainer}
+                    onClick={() => setIsOpenDropDown(!isOpenDropDown)}
+                  >
+                    <img
+                      className={styles.coinImage}
+                      src={`${
+                        coinsPrice.find(
+                          (coin) => coin.symbol === selectedCoin?.symbol
+                        )?.image
+                      }`}
+                    />
+                    {selectedCoin?.symbol} <DownArrow />
+                    {isOpenDropDown ? (
+                      <div className={styles.itemsHolder}>
+                        {coinsToShow.map((coin, index) => (
+                          <div
+                            key={index}
+                            className={styles.dropDownElem}
+                            onClick={() => setSelectedCoin(coin)}
+                          >
+                            <img
+                              className={styles.coinImage}
+                              src={`${
+                                coinsPrice.find(
+                                  (coinDetails) =>
+                                    coinDetails.symbol === coin.symbol
+                                )?.image
+                              }`}
+                            />
+                            {coin.symbol}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                <Repeat style={{ marginTop: 10, marginBottom: 10 }} />
+                <div className={styles.selectorContainer}>
+                  <div className={styles.selectorInfo}>
+                    Change
+                    <div>{calculatedAmount.toFixed(2)}</div>
+                  </div>
+                  <div
+                    className={styles.dropDownContainer}
+                    onClick={() => setIsOpenDropDown2(!isOpenDropDown2)}
+                  >
+                    <div>{selectedCoin2?.sign}</div>
+                    {selectedCoin2?.symbol} <DownArrow />
+                    {isOpenDropDown2 ? (
+                      <div className={styles.itemsHolder}>
+                        {[{ symbol: "USD", sign: "$" }].map((coin, index) => (
+                          <div
+                            key={index}
+                            className={styles.dropDownElem}
+                            onClick={() =>
+                              setSelectedCoin2({ symbol: "USD", sign: "$" })
+                            }
+                          >
+                            <div>{coin.sign}</div>
+                            USD
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                <div>fees</div>
+                <div>Exchange</div>
+              </div>
             </div>
           </div>
         ) : (
