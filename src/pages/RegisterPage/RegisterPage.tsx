@@ -117,6 +117,11 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setLoginData((prev) => ({ ...prev, email: e.target.value }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
               <Input
                 className={styles.customInput}
@@ -132,6 +137,11 @@ export default function RegisterPage() {
                     password: e.target.value,
                   }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
               <Input
                 className={styles.customInput}
@@ -146,6 +156,11 @@ export default function RegisterPage() {
                     confirmPassword: e.target.value,
                   }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
             </div>
             <div className={styles.acceptPrivacyContainer}>

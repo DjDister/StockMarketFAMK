@@ -79,6 +79,11 @@ export default function LoginPage() {
                 onChange={(e) =>
                   setLoginData((prev) => ({ ...prev, email: e.target.value }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
               />
               <Input
                 className={styles.customInput}
@@ -94,6 +99,11 @@ export default function LoginPage() {
                     password: e.target.value,
                   }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
               />
             </div>
             <div className={styles.forgotPassowrdContainer}>
