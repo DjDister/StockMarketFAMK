@@ -32,11 +32,19 @@ export default function ProfilPage() {
       icon: <Person />,
       element: userData ? <MyProfile userData={userData} /> : <div></div>,
     },
-    { label: "Security", icon: <Lock />, element: <Security /> },
+    {
+      label: "Security",
+      icon: <Lock />,
+      element: userData ? <Security userData={userData} /> : <div></div>,
+    },
     {
       label: "Notifications Preferences",
       icon: <Notification />,
-      element: <NotificationPreferences />,
+      element: userData ? (
+        <NotificationPreferences userData={userData} />
+      ) : (
+        <div></div>
+      ),
     },
     { label: "Currency Preferences", icon: <Dollar />, element: <></> },
     { label: "KYC Verification", icon: <File />, element: <></> },

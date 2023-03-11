@@ -60,6 +60,15 @@ export default function RegisterPage() {
         setError("");
         const user = userCredential.user;
         const userData: UserData = {
+          priceAlert: false,
+          referralCommissionAlerts: false,
+          deviceLoginAlerts: false,
+          emailNotifications: false,
+          smsNotifications: false,
+
+          emailAuthentication: false,
+          smsAuthentication: false,
+          googleAuthentication: false,
           email: user.email || "",
           firstName: null,
           lastName: null,

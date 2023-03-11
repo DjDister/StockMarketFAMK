@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import db from "../../../firebaseConfig";
 import Activity from "../../assets/icons/Activity";
 import Email from "../../assets/icons/Email";
 import Monitor from "../../assets/icons/Monitor";
 import PersonAdd from "../../assets/icons/PersonAdd";
 import Phone from "../../assets/icons/Phone";
+import { UserData } from "../../types";
 import SwitchButton from "../SwitchButton.tsx/SwitchButton";
 import styles from "./NotificationPreferences.module.css";
 
@@ -22,7 +25,11 @@ interface NotificationOption {
   color: string;
 }
 
-export default function NotificationPreferences() {
+export default function NotificationPreferences({
+  userData,
+}: {
+  userData?: UserData;
+}) {
   const notificationOptions: NotificationOption[] = [
     {
       label: "Price Alert",
@@ -57,12 +64,26 @@ export default function NotificationPreferences() {
   ];
   const [notificationPreferences, setNotificationPreferences] =
     useState<NotificationPreferences>({
-      priceAlert: false,
-      referralCommissionAlerts: false,
-      deviceLoginAlerts: false,
-      emailNotifications: false,
-      smsNotifications: false,
+      priceAlert: userData ? userData.priceAlert : false,
+      referralCommissionAlerts: userData
+        ? userData.referralCommissionAlerts
+        : false,
+      deviceLoginAlerts: userData ? userData.deviceLoginAlerts : false,
+      emailNotifications: userData ? userData.emailNotifications : false,
+      smsNotifications: userData ? userData.smsNotifications : false,
     });
+
+  const handleSubmit = async () => {
+    if (userData) {
+      const docRef = doc(db, "users", userData.uid);
+      await updateDoc(docRef, { ...notificationPreferences });
+    }
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [notificationPreferences]);
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>Notification Preferences</div>

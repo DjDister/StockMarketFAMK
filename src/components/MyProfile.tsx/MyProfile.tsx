@@ -12,94 +12,6 @@ import db from "../../../firebaseConfig";
 export default function MyProfile({ userData }: { userData?: UserData }) {
   useEffect(() => {}, [userData]);
 
-  // const [inputUserData, setInputUserData] = useState({
-  //   email: userData?.email,
-  //   displayName: userData?.displayName,
-  //   phoneNumber: userData?.phoneNumber,
-  //   firstName: userData?.firstName,
-  //   lastName: userData?.lastName,
-  //   userName: userData?.userName,
-  // });
-
-  // const [userDataError, setUserDataError] = useState({
-  //   email: "",
-  //   displayName: "",
-  //   phoneNumber: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   userName: "",
-  // });
-
-  // console.log("dasdasdasdasads", userData);
-  // console.log("URWAA = ", inputUserData.email);
-  // let firstNameError = "";
-  // let lastNameError = "";
-  // let userNameError = "";
-  // let displayNameError = "";
-  // let emailError = "";
-  // let phoneNumberError = "";
-
-  // function handleClick() {
-  //   if (
-  //     inputUserData.firstName &&
-  //     (inputUserData.firstName?.length <= 3 ||
-  //       inputUserData.firstName?.length >= 15)
-  //   ) {
-  //     console.log("KLIKNYM");
-
-  //     // setUserDataError((prevUserDataError) => ({
-  //     //   ...prevUserDataError,
-  //     //   firstName: "chujowy",
-  //     // }));
-  //     firstNameError = "chujowy";
-  //   }
-  //   console.log("errrrrrrrr : ", firstNameError);
-
-  //   if (
-  //     userDataError.email.length === 0 &&
-  //     userDataError.firstName.length === 0 &&
-  //     userDataError.lastName.length === 0 &&
-  //     userDataError.displayName.length === 0 &&
-  //     userDataError.userName.length === 0 &&
-  //     userDataError.phoneNumber.length === 0
-  //   ) {
-  //     console.log("NIE MA BŁĘDU !");
-  //   } else {
-  //     console.log("JEST BŁĘDUUUUUUUU !");
-  //   }
-  // }
-
-  // console.log("errrrrrrrrrrorrrryyyyyyyyyy : ", userDataError);
-
-  // const [firstNameError, setFirstNameError] = useState(userDataError.firstName);
-
-  // function handleClick() {
-  //   if (
-  //     inputUserData.firstName &&
-  //     (inputUserData.firstName?.length <= 3 ||
-  //       inputUserData.firstName?.length >= 15)
-  //   ) {
-  //     console.log("KLIKNYM");
-  //     setFirstNameError("chujowy");
-  //   } else {
-  //     setFirstNameError("");
-  //   }
-  //   console.log("errrrrrrrr : ", firstNameError);
-
-  //   if (
-  //     userDataError.email.length === 0 &&
-  //     firstNameError.length === 0 &&
-  //     userDataError.lastName.length === 0 &&
-  //     userDataError.displayName.length === 0 &&
-  //     userDataError.userName.length === 0 &&
-  //     userDataError.phoneNumber.length === 0
-  //   ) {
-  //     console.log("NIE MA BŁĘDU !");
-  //   } else {
-  //     console.log("JEST BŁĘDUUUUUUUU !");
-  //   }
-  // }
-
   const phoneNumberRegex = /^\+\d{2}\s\d{3}\s\d{3}\s\d{3}$/;
   const userNameRegex = /^\w+#\d{3}$/;
 
@@ -197,7 +109,6 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
           displayName: "",
         }));
       }
-      // Sprawdź i ustaw błędy dla pozostałych pól analogicznie...
     } else if (name === "userName") {
       if (!value) {
         setUserDataErrors((prevUserDataErrors) => ({
@@ -231,14 +142,12 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
 
     console.log("Wszystko w porządku, dane użytkownika: ", inputUserData);
 
-    // Set the "capital" field of the city 'DC'
     if (userData) {
       const docRef = doc(db, "users", userData.uid);
       await updateDoc(docRef, { ...inputUserData });
       setUserDataErrors((prevUserDataErrors) => {
         return {
           ...prevUserDataErrors,
-          // displayName: undefined
         };
       });
     }

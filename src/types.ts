@@ -27,4 +27,12 @@ export type UserData = {
   lastName: string | null;
   userName: string | null;
   createdAt: string;
+  emailAuthentication: boolean;
+  smsAuthentication: boolean;
+  googleAuthentication: boolean;
+  priceAlert: boolean;
+  referralCommissionAlerts: boolean;
+  deviceLoginAlerts: boolean;
+  emailNotifications: boolean;
+  smsNotifications: boolean;
 };
