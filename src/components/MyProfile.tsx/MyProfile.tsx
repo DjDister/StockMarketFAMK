@@ -6,6 +6,8 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import styles from "./MyProfile.module.css";
 import { UserData } from "../../types";
+import { doc, updateDoc } from "firebase/firestore";
+import db from "../../../firebaseConfig";
 
 export default function MyProfile({ userData }: { userData?: UserData }) {
   useEffect(() => {}, [userData]);
@@ -98,8 +100,10 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
   //   }
   // }
 
+  const phoneNumberRegex = /^\+\d{2}\s\d{3}\s\d{3}\s\d{3}$/;
+  const userNameRegex = /^\w+#\d{3}$/;
+
   const [inputUserData, setInputUserData] = useState({
-    email: userData?.email,
     displayName: userData?.displayName,
     phoneNumber: userData?.phoneNumber,
     firstName: userData?.firstName,
@@ -108,7 +112,6 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
   });
 
   const [userDataErrors, setUserDataErrors] = useState({
-    email: "",
     displayName: "",
     phoneNumber: "",
     firstName: "",
@@ -126,16 +129,21 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
       [name]: value,
     }));
 
-    if (name === "email") {
+    if (name === "lastName") {
       if (!value) {
         setUserDataErrors((prevUserDataErrors) => ({
           ...prevUserDataErrors,
-          email: "Email jest wymagany",
+          lastName: "Nazwisko jest wymagane",
+        }));
+      } else if (value.length <= 2 || value.length >= 15) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          lastName: "Niepoprawna długość",
         }));
       } else {
         setUserDataErrors((prevUserDataErrors) => ({
           ...prevUserDataErrors,
-          email: "",
+          lastName: "",
         }));
       }
     } else if (name === "firstName") {
@@ -155,11 +163,62 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
           firstName: "",
         }));
       }
+    } else if (name === "phoneNumber") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "Numer telefonu jest wymagany",
+        }));
+      } else if (phoneNumberRegex.test(value)) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "Niepoprawny format",
+        }));
+      }
+    } else if (name === "displayName") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "Puste pole",
+        }));
+      } else if (value.length <= 2 || value.length >= 15) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "Niepoprawna długość",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "",
+        }));
+      }
+      // Sprawdź i ustaw błędy dla pozostałych pól analogicznie...
+    } else if (name === "userName") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "Puste pole",
+        }));
+      } else if (userNameRegex.test(value)) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "Niepoprawny format",
+        }));
+      }
     }
-    // Sprawdź i ustaw błędy dla pozostałych pól analogicznie...
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Sprawdź, czy są jakieś błędy w danych użytkownika
     const hasErrors =
       Object.values(userDataErrors).filter((error) => error !== "").length > 0;
@@ -171,6 +230,18 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
     }
 
     console.log("Wszystko w porządku, dane użytkownika: ", inputUserData);
+
+    // Set the "capital" field of the city 'DC'
+    if (userData) {
+      const docRef = doc(db, "users", userData.uid);
+      await updateDoc(docRef, { ...inputUserData });
+      setUserDataErrors((prevUserDataErrors) => {
+        return {
+          ...prevUserDataErrors,
+          // displayName: undefined
+        };
+      });
+    }
   };
   return (
     <div className={styles.container}>
@@ -200,7 +271,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
               <div>Last Name</div>
               <Input
                 className={styles.inputDisabled}
-                disabled
+                // disabled
                 placeholder={userData?.lastName || "Porębski"}
                 // onChange={(e) => {
                 //   setInputUserData((prevInputUserData) => ({
@@ -220,27 +291,20 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
               <Input
                 className={styles.input}
                 placeholder={userData?.displayName || "Filip Porębski"}
-                onChange={(e) => {
-                  setInputUserData((prevInputUserData) => ({
-                    ...prevInputUserData,
-                    displayName: e.target.value,
-                  }));
-                }}
                 icon={<Edit2 />}
+                name={"displayName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.displayName : undefined}
               />
             </div>
             <div className={styles.inputContainer}>
               <div>User Name</div>
               <Input
                 className={styles.inputDisabled}
-                disabled
                 placeholder={userData?.userName || "Filip#007"}
-                onChange={(e) => {
-                  setInputUserData((prevInputUserData) => ({
-                    ...prevInputUserData,
-                    userName: e.target.value,
-                  }));
-                }}
+                name={"userName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.userName : undefined}
               />
             </div>
           </div>
@@ -254,7 +318,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
             <div className={styles.inputContainer}>
               <div>Email</div>
               <Input
-                // disabled
+                disabled
                 className={styles.inputDisabled}
                 icon={<Email />}
                 placeholder={userData?.email || "user@gmail.com"}
@@ -265,8 +329,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
                 //   }));
                 // }}
                 name={"email"}
-                onChange={(e) => handleInputChange(e)}
-                error={shouldShowError ? userDataErrors.email : undefined}
+                onChange={(e) => {}}
               />
             </div>
             <div className={styles.inputContainer}>
@@ -275,12 +338,11 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
                 className={styles.inputDisabled}
                 placeholder={userData?.phoneNumber || "+48 123 456 789"}
                 icon={<Phone />}
+                name={"phoneNumber"}
                 onChange={(e) => {
-                  setInputUserData((prevInputUserData) => ({
-                    ...prevInputUserData,
-                    phoneNumber: e.target.value,
-                  }));
+                  handleInputChange(e);
                 }}
+                error={shouldShowError ? userDataErrors.phoneNumber : undefined}
               />
             </div>
           </div>
