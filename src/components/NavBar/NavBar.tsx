@@ -21,6 +21,7 @@ import Wallet2 from "../../assets/icons/wallet2";
 import Logout from "../../assets/icons/Logout";
 import { logOut } from "../../redux/profileSlice";
 import { useAppDispatch } from "../../hooks/reduxHooks";
+import Button from "../Button/Button";
 
 export default function NavBar() {
   const user = useAppSelector((state) => state.profile);
@@ -80,11 +81,7 @@ export default function NavBar() {
       url: "wallet",
       leftIcon: <Wallet2 width="30px" height="30px" />,
     },
-    {
-      text: "Learn",
-      url: "learn",
-      leftIcon: <Learn />,
-    },
+
     {
       text: "About us",
       url: "aboutus",
@@ -200,9 +197,9 @@ export default function NavBar() {
               <>
                 <div style={{ display: "flex", gap: "10px" }}>
                   <div>
-                    <Link
-                      to={"/tradehistory"}
-                      style={{ textDecoration: "none" }}
+                    <Button
+                      disabled
+                      style={{ textDecoration: "none", height: "auto" }}
                     >
                       <CustomLink
                         leftIcon={<MarketIcon width="20px" height="20px" />}
@@ -212,33 +209,20 @@ export default function NavBar() {
                             ? "#5367fe"
                             : "#808080"
                         }
-                        style={
-                          locationData.pathname === "/tradehistory"
-                            ? {
-                                fontSize: "1rem",
-                                width: "auto",
-                                alignItems: "center",
-                                margin: "0px",
-                                backgroundColor: "#080808",
-                                padding: "6px",
-                                borderRadius: "7px",
-                                whiteSpace: "nowrap",
-                                color: "#5367fe",
-                              }
-                            : {
-                                fontSize: "1rem",
-                                width: "auto",
-                                alignItems: "center",
-                                margin: "0px",
-                                backgroundColor: "#080808",
-                                padding: "6px",
-                                borderRadius: "7px",
-                                whiteSpace: "nowrap",
-                                color: "#808080",
-                              }
-                        }
+                        style={{
+                          fontSize: "1rem",
+
+                          width: "auto",
+                          alignItems: "center",
+                          margin: "0px",
+                          backgroundColor: "#080808",
+                          padding: "6px",
+                          borderRadius: "7px",
+                          whiteSpace: "nowrap",
+                          color: "#808080",
+                        }}
                       />
-                    </Link>
+                    </Button>
                   </div>
                   <Link to={"/wallet"} style={{ textDecoration: "none" }}>
                     <CustomLink
