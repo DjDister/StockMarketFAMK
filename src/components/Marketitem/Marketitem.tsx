@@ -109,7 +109,9 @@ export default function MarketItem({
         {boughtPrice && (
           <div className={styles.boughtPrice}>${boughtPrice}</div>
         )}
-        {amount && <div className={styles.amount}>{amount}</div>}
+        {amount && (
+          <div className={styles.amount}>{parseFloat(amount).toFixed(2)}</div>
+        )}
         {assetValue && <div className={styles.assetValue}>${assetValue}</div>}
         {profitLoss && (
           <div

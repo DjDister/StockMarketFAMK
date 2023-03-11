@@ -117,14 +117,20 @@
     background-color: #121318;
     margin-top: 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 .MarketList{
-        width: calc(100% - 20px);
-        margin-top: 10px;
-        margin-bottom: 10px;
-    
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+.emptyCont{
+    height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .exchangeContainer{
@@ -193,8 +199,6 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid grey;
-    
-    
 }
 
 .selectorInfo{
@@ -234,11 +238,34 @@
     display: flex;
     align-items: center;
     gap:4px;
+    background-color: #121318;
+    padding-bottom: 2px;
+    padding-top: 4px;
+}
+
+.feesContainer{
+    display: flex;
+    color:grey;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.exchangeBtnContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #5266fe;
+    height: 50px;
+    border-radius: 10px;
+    font-size: large;
+    cursor: pointer;
 }
 
 
 .input{
-
+width: 70%;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

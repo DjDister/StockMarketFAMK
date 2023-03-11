@@ -10,7 +10,7 @@ import Layout from "../../components/Layout/Layout";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import converter from "../../utils/converter";
 import styles from "./PortfolioPage.module.css";
-import { PortfolioType, UserData } from "../../types";
+import { PortfolioElementType, PortfolioType, UserData } from "../../types";
 import axios from "axios";
 import formattedDate from "../../utils/currentDateFormated";
 import formatNumber from "../../utils/formatNumber";
@@ -29,38 +29,6 @@ type MergedCoins = {
 
 export default function PortfolioPage() {
   const profile = useAppSelector((state) => state.profile);
-
-  const addTestCryptos = async () => {
-    const testCryptos = [
-      {
-        name: "Bitcoin",
-        symbol: "BTC",
-        boughtPrice: 10000,
-        amount: 1.2,
-      },
-      {
-        name: "Ethereum",
-        symbol: "ETH",
-        boughtPrice: 1000,
-        amount: 2.2,
-      },
-      {
-        name: "Bitcoin",
-        symbol: "BTC",
-        boughtPrice: 15000,
-        amount: 1.4,
-      },
-      {
-        name: "Ethereum",
-        symbol: "ETH",
-        boughtPrice: 1200,
-        amount: 2.1,
-      },
-    ];
-    await updateDoc(doc(db, "users", profile.userId), {
-      portfolio: testCryptos,
-    });
-  };
 
   const [userPortfolio, setUserPortfolio] = useState<UserData | undefined>(
     undefined
@@ -100,6 +68,7 @@ export default function PortfolioPage() {
 
     return Object.values(mergedCoins);
   }
+  const [coins, setCoins] = useState<PortfolioType>([]);
   useEffect(() => {
     const fetchUserData = async () => {
       const docRef = doc(db, "users", profile.userId).withConverter(
@@ -109,6 +78,7 @@ export default function PortfolioPage() {
       if (docSnap.exists()) {
         const mergedCoinsToShow = mergeCoins(docSnap.data().portfolio);
         setCoinsToShow(mergedCoinsToShow);
+        setCoins(docSnap.data().portfolio);
         setUserPortfolio(docSnap.data());
         const data = docSnap.data().portfolio;
         if (mergedCoinsToShow) {
@@ -132,7 +102,7 @@ export default function PortfolioPage() {
                   },
                 ]);
 
-                return parseInt(curr.amount) * data[0].current_price;
+                return parseFloat(curr.amount) * data[0].current_price;
               })
             )
           ).reduce((acc, curr) => acc + curr, 0);
@@ -145,10 +115,9 @@ export default function PortfolioPage() {
     fetchUserData();
   }, []);
 
-  const totalInvestment = userPortfolio?.portfolio.reduce(
-    (acc, curr) => acc + parseInt(curr.boughtPrice) * parseInt(curr.amount),
-    0
-  );
+  const totalInvestment = userPortfolio?.portfolio.reduce((acc, curr) => {
+    return acc + parseFloat(curr.boughtPrice) * parseFloat(curr.amount);
+  }, 0);
   const profitAmount =
     totalReturn && totalInvestment
       ? (totalReturn - totalInvestment).toFixed(2)
@@ -183,22 +152,108 @@ export default function PortfolioPage() {
     : amountToExchange *
       (coinsPrice.find((coin) => coin.symbol === selectedCoin?.symbol)?.price ||
         0);
+
+  const handleExchange = async () => {
+    const sortedCoins = userPortfolio?.portfolio.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      } else {
+        if (parseFloat(a.boughtPrice) < parseFloat(b.boughtPrice)) {
+          return -1;
+        } else if (parseFloat(a.boughtPrice) > parseFloat(b.boughtPrice)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+    });
+
+    const btcAmountToSubtract = amountToExchange;
+
+    const newPortfolio: PortfolioElementType[] = [];
+
+    let btcElementsSubtracted = 0;
+    if (sortedCoins) {
+      for (let i = 0; i < sortedCoins.length; i++) {
+        if (sortedCoins[i].symbol === selectedCoin?.symbol) {
+          if (
+            btcElementsSubtracted + parseFloat(sortedCoins[i].amount) <=
+            btcAmountToSubtract
+          ) {
+            btcElementsSubtracted += parseFloat(sortedCoins[i].amount);
+          } else {
+            newPortfolio.push({
+              ...sortedCoins[i],
+              amount: (
+                parseFloat(sortedCoins[i].amount) -
+                (btcAmountToSubtract - btcElementsSubtracted)
+              ).toString(),
+            });
+            btcElementsSubtracted = btcAmountToSubtract;
+          }
+        } else {
+          newPortfolio.push(sortedCoins[i]);
+        }
+      }
+      const newWallet = {
+        ...userPortfolio?.wallet,
+        totalBalanceDollars: (
+          parseFloat(userPortfolio?.wallet.totalBalanceDollars || "0") +
+          calculatedAmount
+        ).toString(),
+      };
+
+      if (
+        newWallet &&
+        newPortfolio &&
+        newWallet.totalBalanceDollars &&
+        newWallet.transactionHistory &&
+        userPortfolio
+      ) {
+        const newTransactionHistory = newWallet.transactionHistory || [];
+        await updateDoc(doc(db, "users", profile.userId), {
+          portfolio: newPortfolio,
+          wallet: newWallet,
+        }).then(() => {
+          setAmountToExchange(0);
+          setCoins(newPortfolio);
+
+          setUserPortfolio({
+            ...userPortfolio,
+            portfolio: newPortfolio,
+            wallet: {
+              totalBalanceDollars: newWallet.totalBalanceDollars,
+              transactionHistory: newTransactionHistory,
+            },
+          });
+          const mergedCoinsToShow = mergeCoins(newPortfolio);
+          setCoinsToShow(mergedCoinsToShow);
+          setSelectedCoin(
+            (prev) =>
+              mergedCoinsToShow.find((coin) => coin.symbol === prev?.symbol) ||
+              mergedCoinsToShow[0]
+          );
+          if (coinsPrice) {
+            setTotalReturn(
+              newPortfolio.reduce((acc, curr) => {
+                const price = coinsPrice.find(
+                  (coin) => coin.symbol === curr.symbol
+                )?.price;
+
+                return acc + parseFloat(curr.amount) * (price || 0);
+              }, 0)
+            );
+          }
+        });
+      }
+    }
+  };
   return (
     <Layout>
-      <div
-        onClick={() => addTestCryptos()}
-        style={{
-          position: "absolute",
-          top: 5,
-          right: 5,
-          width: 40,
-          height: 40,
-          backgroundColor: "red",
-          zIndex: 100,
-        }}
-      />
       <div className={styles.container}>
-        {userPortfolio ? (
+        {userPortfolio && coinsPrice ? (
           <div className={styles.pageContainer}>
             <div className={styles.leftContainer}>
               <div
@@ -258,9 +313,9 @@ export default function PortfolioPage() {
                         amount={`$${formatNumber(profitAmount)}`}
                         returnIndicator={
                           profitAmount && totalInvestment
-                            ? parseInt(
+                            ? parseFloat(
                                 (
-                                  parseInt(profitAmount) / totalInvestment
+                                  parseFloat(profitAmount) / totalInvestment
                                 ).toFixed(2)
                               )
                             : "0"
@@ -274,7 +329,12 @@ export default function PortfolioPage() {
                 <MarketList
                   howManyToShowPerPage={10}
                   className={styles.MarketList}
-                  cryptoCoins={coinsToShow.map((curr) => {
+                  emptyElement={
+                    <div className={styles.emptyCont}>
+                      No coins found - go buy some
+                    </div>
+                  }
+                  cryptoCoins={coins.map((curr) => {
                     const coin = coinsPrice.find(
                       (coin) => coin.symbol === curr.symbol
                     );
@@ -282,11 +342,11 @@ export default function PortfolioPage() {
                     return {
                       ...curr,
                       image: coin ? coin.image : "",
-                      boughtPrice: curr.averagePrice,
+                      boughtPrice: curr.boughtPrice,
                       holdingAssets: curr.amount,
                       profitLoss:
                         parseFloat(curr.amount) * (coin ? coin.price : 0) -
-                        parseFloat(curr.averagePrice) * parseFloat(curr.amount),
+                        parseFloat(curr.boughtPrice) * parseFloat(curr.amount),
                       assetValue: (
                         parseFloat(curr.amount) * (coin ? coin.price : 0)
                       ).toFixed(2),
@@ -320,10 +380,11 @@ export default function PortfolioPage() {
                       src={`${
                         coinsPrice.find(
                           (coin) => coin.symbol === selectedCoin?.symbol
-                        )?.image
+                        )?.image ||
+                        "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
                       }`}
                     />
-                    {selectedCoin?.amount || 0} {selectedCoin?.symbol}
+                    {selectedCoin?.amount || 0} {selectedCoin?.symbol || "BTC"}
                   </div>
                 </div>
                 <div className={styles.selectorContainer}>
@@ -353,10 +414,11 @@ export default function PortfolioPage() {
                       src={`${
                         coinsPrice.find(
                           (coin) => coin.symbol === selectedCoin?.symbol
-                        )?.image
+                        )?.image ||
+                        "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
                       }`}
                     />
-                    {selectedCoin?.symbol} <DownArrow />
+                    {selectedCoin?.symbol || "BTC"} <DownArrow />
                     {isOpenDropDown ? (
                       <div className={styles.itemsHolder}>
                         {coinsToShow.map((coin, index) => (
@@ -391,7 +453,7 @@ export default function PortfolioPage() {
                     className={styles.dropDownContainer}
                     onClick={() => setIsOpenDropDown2(!isOpenDropDown2)}
                   >
-                    <div>{selectedCoin2?.sign}</div>
+                    <div>{selectedCoin2?.sign || "$ USD"}</div>
                     {selectedCoin2?.symbol} <DownArrow />
                     {isOpenDropDown2 ? (
                       <div className={styles.itemsHolder}>
@@ -411,8 +473,13 @@ export default function PortfolioPage() {
                     ) : null}
                   </div>
                 </div>
-                <div>fees</div>
-                <div>Exchange</div>
+                <div className={styles.feesContainer}>No extra fees</div>
+                <div
+                  onClick={handleExchange}
+                  className={styles.exchangeBtnContainer}
+                >
+                  Exchange
+                </div>
               </div>
             </div>
           </div>
