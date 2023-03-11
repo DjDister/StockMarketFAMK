@@ -55,9 +55,36 @@
     gap:2px;
 }
 
+.boughtPrice{
+    display: none;
 
+}
+
+.amount{
+    display:none;
+}
+
+.profitLoss{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.assetValue{
+    display:none;
+}
 
 @media only screen and (min-width: 1100px) {
+    .boughtPrice{
+        display: flex;
+    
+    }
+    .assetValue{
+        display:flex;
+    }
+    .amount{
+        display:flex;
+    }
     .high24{
        display: flex;
     }

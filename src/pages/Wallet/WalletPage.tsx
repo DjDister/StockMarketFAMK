@@ -12,6 +12,8 @@ import Layout from "../../components/Layout/Layout";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { UserData, WalletType } from "../../types";
 import converter from "../../utils/converter";
+import formattedDate from "../../utils/currentDateFormated";
+import formatNumber from "../../utils/formatNumber";
 import styles from "./WalletPage.module.css";
 export default function WalletPage() {
   const profile = useAppSelector((state) => state.profile);
@@ -48,14 +50,6 @@ export default function WalletPage() {
     0
   );
 
-  const now = new Date();
-  const formattedDate = `Update ${now.toLocaleDateString(
-    "en-GB"
-  )} at ${now.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  })}`;
-
   return (
     <Layout>
       <div className={styles.container}>
@@ -77,12 +71,7 @@ export default function WalletPage() {
                   </div>
                   <div className={styles.flexCenter}>
                     <div className={styles.avalibeAmount}>
-                      $
-                      {parseInt(
-                        userWallet ? userWallet.totalBalanceDollars : "0"
-                      ).toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                      })}
+                      ${formatNumber(userWallet?.totalBalanceDollars)}
                     </div>
                     <EyeOff
                       fill={"grey"}
@@ -101,9 +90,7 @@ export default function WalletPage() {
                     </div>
                     <div className={styles.totalAmount}>
                       <Download fill={"#039763"} />$
-                      {totalDeposited?.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                      })}
+                      {formatNumber(totalDeposited)}
                     </div>
                   </div>
                   <div className={styles.totalCont}>
@@ -115,10 +102,7 @@ export default function WalletPage() {
                       Total Withdrawals
                     </div>
                     <div className={styles.totalAmount}>
-                      <Upload fill="red" />$
-                      {totalWithdrawals?.toLocaleString("en-US", {
-                        minimumFractionDigits: 2,
-                      })}
+                      <Upload fill="red" />${formatNumber(totalWithdrawals)}
                     </div>
                   </div>
                 </div>

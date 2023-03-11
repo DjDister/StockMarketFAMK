@@ -15,6 +15,7 @@ interface MarketListProps {
   showPagination?: boolean;
   columnsTitleElements?: { name: string }[];
   titleElement?: JSX.Element;
+  emptyElement?: JSX.Element;
 }
 
 export default function MarketList({
@@ -27,6 +28,7 @@ export default function MarketList({
   showPagination,
   columnsTitleElements,
   titleElement,
+  emptyElement,
 }: MarketListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const coinNameElem = columnsTitleElements?.find(
@@ -115,6 +117,63 @@ export default function MarketList({
           ? setIsSortedBy("24h LowReverse")
           : setIsSortedBy("24h Low");
       }
+      case "Avg Buy": {
+        setcryptoCoinsSorted(
+          cryptoCoins
+            ?.map((x) => x)
+            .sort((a, b) =>
+              isSortedBy === "Avg Buy"
+                ? a.boughtPrice - b.boughtPrice
+                : b.boughtPrice - a.boughtPrice
+            )
+        );
+        isSortedBy === "Avg Buy"
+          ? setIsSortedBy("Avg BuyReverse")
+          : setIsSortedBy("Avg Buy");
+      }
+      case "Holdings Assets": {
+        setcryptoCoinsSorted(
+          cryptoCoins
+            ?.map((x) => x)
+            .sort((a, b) =>
+              isSortedBy === "Holdings Assets"
+                ? a.amount - b.amount
+                : b.amount - a.amount
+            )
+        );
+        isSortedBy === "Holdings Assets"
+          ? setIsSortedBy("Holdings AssetsReverse")
+          : setIsSortedBy("Holdings Assets");
+      }
+      case "Total Assets Value": {
+        setcryptoCoinsSorted(
+          cryptoCoins
+            ?.map((x) => x)
+            .sort((a, b) =>
+              isSortedBy === "Total Assets Value"
+                ? a.assetValue - b.assetValue
+                : b.assetValue - a.assetValue
+            )
+        );
+        isSortedBy === "Total Assets Value"
+          ? setIsSortedBy("Total Assets ValueReverse")
+          : setIsSortedBy("Total Assets Value");
+      }
+      case "Profit/Loss": {
+        setcryptoCoinsSorted(
+          cryptoCoins
+
+            ?.map((x) => x)
+            .sort((a, b) =>
+              isSortedBy === "Profit/Loss"
+                ? a.profitLoss - b.profitLoss
+                : b.profitLoss - a.profitLoss
+            )
+        );
+        isSortedBy === "Profit/Loss"
+          ? setIsSortedBy("Profit/LossReverse")
+          : setIsSortedBy("Profit/Loss");
+      }
     }
   };
 
@@ -166,10 +225,10 @@ export default function MarketList({
                   cryptoCoins
                     ?.map((x) => x)
                     .sort((a, b) => {
-                      if (a.id < b.id) {
+                      if (a.name.toLowerCase() < b.name.toLowerCase()) {
                         return isSortedBy === "name" ? 1 : -1;
                       }
-                      if (a.id > b.id) {
+                      if (a.name.toLowerCase() > b.name.toLowerCase()) {
                         return isSortedBy === "name" ? -1 : 1;
                       }
                       return 0;
@@ -201,7 +260,8 @@ export default function MarketList({
                     <div
                       key={index}
                       className={` ${
-                        element.name !== "Coin Price"
+                        element.name !== "Coin Price" &&
+                        element.name !== "Profit/Loss"
                           ? styles.columnTitle
                           : styles.coinPriceColumn
                       }`}
@@ -212,9 +272,24 @@ export default function MarketList({
                         color: "gray",
                         gap: "5px",
                         borderBottom: "1px solid gray",
+                        overflow: "hidden",
+                        justifyContent:
+                          element.name === "Profit/Loss"
+                            ? isSmallScreen
+                              ? "center"
+                              : "flex-end"
+                            : "flex-start",
                       }}
                     >
-                      {element.name}
+                      <div
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {element.name}
+                      </div>
                       {<TriangleUp fill="gray" width="10px" />}
                     </div>
                   );
@@ -224,22 +299,24 @@ export default function MarketList({
       )}
 
       <div className={styles.cryptoListContainer}>
-        {cryptoCoinsSorted
-          ?.slice(
-            currentPage * howManyToShowPerPage - howManyToShowPerPage,
-            currentPage * howManyToShowPerPage
-          )
-          .map((cryptoCoin, index) => {
-            return (
-              <ElementToRenderInList
-                key={index}
-                howManyDetails={howManyDetails}
-                graph={cryptoCoin.graph ?? undefined}
-                index={cryptoCoin.index}
-                {...cryptoCoin}
-              />
-            );
-          })}
+        {cryptoCoinsSorted?.length !== 0
+          ? cryptoCoinsSorted
+              ?.slice(
+                currentPage * howManyToShowPerPage - howManyToShowPerPage,
+                currentPage * howManyToShowPerPage
+              )
+              .map((cryptoCoin, index) => {
+                return (
+                  <ElementToRenderInList
+                    key={index}
+                    howManyDetails={howManyDetails}
+                    graph={cryptoCoin.graph ?? undefined}
+                    index={cryptoCoin.index}
+                    {...cryptoCoin}
+                  />
+                );
+              })
+          : emptyElement}
       </div>
       {showPagination && (
         <div className={styles.pagination}>

@@ -1,6 +1,7 @@
 import React from "react";
 import TrendingDown from "../../assets/icons/TrendingDown";
 import TrendingUp from "../../assets/icons/TrendingUp";
+import ReturnIndicator from "../ReturnIndicator/ReturnIndicator";
 import styles from "./DetailsCard.module.css";
 
 export default function DetailsCard({
@@ -31,25 +32,7 @@ export default function DetailsCard({
       <div className={styles.amount}>
         {amount}
         {returnIndicator && (
-          <div
-            style={{
-              display: "flex",
-
-              color:
-                returnIndicator > 0
-                  ? "green"
-                  : returnIndicator == 0
-                  ? "grey"
-                  : "red",
-            }}
-          >
-            {returnIndicator}%
-            {returnIndicator >= 0 ? (
-              <TrendingUp fill={returnIndicator > 0 ? "green" : "grey"} />
-            ) : (
-              <TrendingDown fill="red" />
-            )}
-          </div>
+          <ReturnIndicator returnIndicator={returnIndicator} />
         )}
       </div>
     </div>
