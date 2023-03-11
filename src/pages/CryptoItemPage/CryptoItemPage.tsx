@@ -21,7 +21,7 @@ import Portfolio from "../../assets/icons/Portfolio";
 import { updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
-
+import Dollar from "../../assets/icons/Dollar";
 export default function CryptoItemPage() {
   interface CryptoItemType {
     id: string;
@@ -52,7 +52,7 @@ export default function CryptoItemPage() {
   const [buySellButton, setBuySellButton] = useState(true);
   const [blue, setBlue] = useState("blue");
   const [data2, setData2] = useState<CryptoItemType | undefined>(undefined);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>("0");
   const [wallet, setWallet] = useState<{
     totalBalanceDollars: string;
     transactionHistory: {
@@ -139,6 +139,10 @@ export default function CryptoItemPage() {
     }
     fetchData();
   }, []);
+
+  if (Number.isNaN(inputValue)) {
+    setInputValue("");
+  }
 
   console.log(buySellButton);
   // console.log(wallet);
@@ -291,12 +295,12 @@ export default function CryptoItemPage() {
                   <DetailsCard
                     customStyle={{
                       backgroundColor: "black",
-                      borderRadius: "5px",
+                      borderRadius: "8px",
                       width: "20%",
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"Market Cap"}
-                    amount={"213742069"}
+                    amount={"12983221"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -304,12 +308,12 @@ export default function CryptoItemPage() {
                   <DetailsCard
                     customStyle={{
                       backgroundColor: "black",
-                      borderRadius: "5px",
+                      borderRadius: "8px",
                       width: "20%",
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"Full Diluted"}
-                    amount={"213742069"}
+                    amount={"33742049"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -317,12 +321,12 @@ export default function CryptoItemPage() {
                   <DetailsCard
                     customStyle={{
                       backgroundColor: "black",
-                      borderRadius: "5px",
+                      borderRadius: "8px",
                       width: "20%",
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"24 Volume"}
-                    amount={"213742069"}
+                    amount={"14739129"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -330,12 +334,12 @@ export default function CryptoItemPage() {
                   <DetailsCard
                     customStyle={{
                       backgroundColor: "black",
-                      borderRadius: "5px",
+                      borderRadius: "8px",
                       width: "20%",
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"Circulating Supply"}
-                    amount={"213742069"}
+                    amount={"8463821"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -371,7 +375,7 @@ export default function CryptoItemPage() {
               </>
             </div>
           </div>
-          <div className={styles.part2}>
+          <div className={styles.part3}>
             <div
               className={styles.buyselldiv}
               style={{
@@ -383,42 +387,48 @@ export default function CryptoItemPage() {
             >
               <div
                 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.4rem",
                   display: "flex",
                   width: "50%",
-
                   alignItems: "center",
                   justifyContent: "center",
+                  color: buySellButton ? "rgb(54, 54, 153)" : "gray",
+                  borderBottom: "3px solid",
                 }}
                 onClick={() => setBuySellButton(true)}
               >
-                Buy
+                Buy {data2?.symbol.toUpperCase()}
               </div>
               <div
                 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.4rem",
                   display: "flex",
                   alignItems: "center",
                   width: "50%",
                   justifyContent: "center",
+                  color: buySellButton ? "gray" : "rgb(54, 54, 153)",
+                  borderBottom: "3px solid",
                 }}
                 onClick={() => setBuySellButton(false)}
               >
-                Sell
+                Sell {data2?.symbol.toUpperCase()}
               </div>
             </div>
 
             <div className={styles.inputbuttondiv}>
               <input
-                placeholder="$ to invest"
+                placeholder=" $ to invest "
                 className={styles.inputdiv}
+                type="text"
                 value={inputValue}
                 onChange={handleInputChange}
-              ></input>
+              />
+
               <div style={{ fontSize: "1.5rem" }} className={styles.amounthof}>
                 Amounth of {data2?.name}
                 {" : "}
-                {data2?.market_data.current_price.usd
+                {data2?.market_data.current_price.usd &&
+                !isNaN(parseInt(inputValue))
                   ? parseInt(inputValue) / data2?.market_data.current_price.usd
                   : "0"}{" "}
               </div>
@@ -427,7 +437,9 @@ export default function CryptoItemPage() {
                 placeholder="buy"
                 onClick={handleButtonClick}
               >
-                {buySellButton ? "BUY" : "SELL"}
+                {buySellButton
+                  ? `Buy ${data2?.symbol.toUpperCase()}`
+                  : `Sell ${data2?.symbol.toUpperCase()}`}
               </button>
             </div>
           </div>
