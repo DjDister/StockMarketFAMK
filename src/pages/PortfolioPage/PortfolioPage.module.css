@@ -326,6 +326,7 @@ input[type=number] {
     }
     .thirdCard{
         width: 25%;
+        min-width: fit-content;
     }
     .availableCont{
         flex-direction: column;
