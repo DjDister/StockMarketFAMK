@@ -60,7 +60,19 @@ export default function RegisterPage() {
         setError("");
         const user = userCredential.user;
         const userData: UserData = {
+          priceAlert: false,
+          referralCommissionAlerts: false,
+          deviceLoginAlerts: false,
+          emailNotifications: false,
+          smsNotifications: false,
+
+          emailAuthentication: false,
+          smsAuthentication: false,
+          googleAuthentication: false,
           email: user.email || "",
+          firstName: null,
+          lastName: null,
+          userName: null,
           uid: user.uid,
           displayName: user.email || "",
           photoURL: user.photoURL,
@@ -83,7 +95,13 @@ export default function RegisterPage() {
         };
         await setDoc(doc(db, "users", user.uid), userData);
 
-        dispatch(loginSuccess(user.uid));
+        dispatch(
+          loginSuccess({
+            userId: user.uid,
+            displayName: user.email || "",
+            email: user.email || "",
+          })
+        );
         navigate("/");
       })
       .catch((error) => {

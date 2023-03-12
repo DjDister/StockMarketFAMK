@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import db from "../../../firebaseConfig";
 import Email from "../../assets/icons/Email";
 import Google2 from "../../assets/icons/Google2";
 import Phone from "../../assets/icons/Phone";
+import { UserData } from "../../types";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import SwitchButton from "../SwitchButton.tsx/SwitchButton";
@@ -21,7 +24,7 @@ interface SecurityOption {
   color: string;
 }
 
-export default function Security() {
+export default function Security({ userData }: { userData?: UserData }) {
   const securityOptionsList: SecurityOption[] = [
     {
       label: "Email Authentication",
@@ -47,10 +50,22 @@ export default function Security() {
   ];
 
   const [securityOptions, setSecurityOptions] = useState<SecurityOptions>({
-    emailAuthentication: false,
-    smsAuthentication: false,
-    googleAuthentication: false,
+    emailAuthentication: userData ? userData.emailAuthentication : false,
+    smsAuthentication: userData ? userData.smsAuthentication : false,
+    googleAuthentication: userData ? userData.googleAuthentication : false,
   });
+
+  const handleSubmit = async () => {
+    if (userData) {
+      const docRef = doc(db, "users", userData.uid);
+      await updateDoc(docRef, { ...securityOptions });
+    }
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [securityOptions]);
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>Security</div>
@@ -70,12 +85,12 @@ export default function Security() {
               : styles.inactiveButton
           }
           isOn={securityOptions[option.value]}
-          onClick={() =>
+          onClick={() => {
             setSecurityOptions({
               ...securityOptions,
               [option.value]: !securityOptions[option.value],
-            })
-          }
+            });
+          }}
         />
       ))}
       <div className={styles.lineSeparator} />

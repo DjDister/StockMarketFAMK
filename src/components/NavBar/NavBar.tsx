@@ -272,7 +272,7 @@ export default function NavBar() {
                       className={styles.name}
                       style={{ fontWeight: "initial" }}
                     >
-                      Krystian Kiejno
+                      {user.displayName || ""}
                     </div>
                   </div>
                 </Link>
@@ -331,8 +331,10 @@ export default function NavBar() {
               >
                 <div className={styles.circleIcon}></div>
                 <div>
-                  <div className={styles.name}>Krystian Kiejno</div>
-                  <div className={styles.Email}>kkiejno@gmail.com</div>
+                  <div className={styles.name}>{user.displayName}</div>
+                  <div className={styles.Email}>
+                    {user.displayName === user.email ? null : user.email}
+                  </div>
                 </div>
               </Link>
             )}
