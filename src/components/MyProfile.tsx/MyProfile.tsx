@@ -135,13 +135,9 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
       Object.values(userDataErrors).filter((error) => error !== "").length > 0;
 
     if (hasErrors) {
-      console.log("Nieprawidłowe dane użytkownika");
       setShouldShowError(true);
       return;
     }
-
-    console.log("Wszystko w porządku, dane użytkownika: ", inputUserData);
-
     if (userData) {
       const docRef = doc(db, "users", userData.uid);
       await updateDoc(docRef, { ...inputUserData });
@@ -168,9 +164,8 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
             <div className={styles.inputContainer}>
               <div className={styles.inputLabel}>First Name</div>
               <Input
-                // disabled
                 className={styles.inputDisabled}
-                placeholder={userData?.firstName || "Filip"}
+                placeholder={userData?.firstName || "Jan"}
                 name={"firstName"}
                 onChange={(e) => handleInputChange(e)}
                 error={shouldShowError ? userDataErrors.firstName : undefined}
@@ -180,14 +175,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
               <div>Last Name</div>
               <Input
                 className={styles.inputDisabled}
-                // disabled
-                placeholder={userData?.lastName || "Porębski"}
-                // onChange={(e) => {
-                //   setInputUserData((prevInputUserData) => ({
-                //     ...prevInputUserData,
-                //     lastName: e.target.value,
-                //   }));
-                // }}
+                placeholder={userData?.lastName || "Kowalski"}
                 name={"lastName"}
                 onChange={(e) => handleInputChange(e)}
                 error={shouldShowError ? userDataErrors.lastName : undefined}
@@ -199,7 +187,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
               <div>Display Name</div>
               <Input
                 className={styles.input}
-                placeholder={userData?.displayName || "Filip Porębski"}
+                placeholder={userData?.displayName || "Jan Kowalski"}
                 icon={<Edit2 />}
                 name={"displayName"}
                 onChange={(e) => handleInputChange(e)}
@@ -210,7 +198,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
               <div>User Name</div>
               <Input
                 className={styles.inputDisabled}
-                placeholder={userData?.userName || "Filip#007"}
+                placeholder={userData?.userName || "user#999"}
                 name={"userName"}
                 onChange={(e) => handleInputChange(e)}
                 error={shouldShowError ? userDataErrors.userName : undefined}
@@ -231,12 +219,6 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
                 className={styles.inputDisabled}
                 icon={<Email />}
                 placeholder={userData?.email || "user@gmail.com"}
-                // onChange={(e) => {
-                //   setInputUserData((prevInputUserData) => ({
-                //     ...prevInputUserData,
-                //     email: e.target.value,
-                //   }));
-                // }}
                 name={"email"}
                 onChange={(e) => {}}
               />

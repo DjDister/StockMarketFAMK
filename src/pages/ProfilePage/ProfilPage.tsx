@@ -109,8 +109,10 @@ export default function ProfilPage() {
         >
           <div className={styles.userImgAndNameContainer}>
             <img src={womanPng} className={styles.profileImage} />
-            <div className={styles.userName}>Filip Porebski</div>
-            <div className={styles.userTag}>FilipPorebski#0000</div>
+            <div className={styles.userName}>{userData?.displayName}</div>
+            <div className={styles.userTag}>
+              {userData?.userName || "user#999"}
+            </div>
           </div>
 
           <div className={styles.buttonsContainer}>
