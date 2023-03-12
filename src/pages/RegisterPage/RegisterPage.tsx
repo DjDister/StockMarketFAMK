@@ -95,7 +95,13 @@ export default function RegisterPage() {
         };
         await setDoc(doc(db, "users", user.uid), userData);
 
-        dispatch(loginSuccess(user.uid));
+        dispatch(
+          loginSuccess({
+            userId: user.uid,
+            displayName: user.email || "",
+            email: user.email || "",
+          })
+        );
         navigate("/");
       })
       .catch((error) => {
