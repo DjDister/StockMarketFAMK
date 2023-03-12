@@ -73,15 +73,11 @@ export default function ProfilPage() {
             element: <MyProfile userData={docSnap.data() as UserData} />,
           });
         }
-      } else {
-        console.log("NO SUCH DATA");
       }
     }
 
     dataBaseInfo();
   }, []);
-
-  console.log("Document data : ", userData);
 
   return (
     <div className={styles.pageContainer}>
