@@ -7,7 +7,10 @@ import Input from "../Input/Input";
 import styles from "./MyProfile.module.css";
 import { UserData } from "../../types";
 import { doc, updateDoc } from "firebase/firestore";
-import db from "../../../firebaseConfig";
+import db, { auth } from "../../../firebaseConfig";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { updateDisplayName } from "../../redux/profileSlice";
+import { updateProfile } from "firebase/auth";
 
 export default function MyProfile({ userData }: { userData?: UserData }) {
   useEffect(() => {}, [userData]);
@@ -128,7 +131,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
       }
     }
   };
-
+  const dispatch = useAppDispatch();
   const handleSubmit = async () => {
     // Sprawdź, czy są jakieś błędy w danych użytkownika
     const hasErrors =
@@ -144,7 +147,13 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
 
     if (userData) {
       const docRef = doc(db, "users", userData.uid);
-      await updateDoc(docRef, { ...inputUserData });
+      await updateDoc(docRef, { ...inputUserData }).then(() => {
+        dispatch(updateDisplayName(inputUserData.displayName || ""));
+      });
+      auth.currentUser &&
+        updateProfile(auth.currentUser, {
+          displayName: inputUserData.displayName,
+        });
       setUserDataErrors((prevUserDataErrors) => {
         return {
           ...prevUserDataErrors,
@@ -152,6 +161,7 @@ export default function MyProfile({ userData }: { userData?: UserData }) {
       });
     }
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>

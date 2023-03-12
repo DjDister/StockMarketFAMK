@@ -42,7 +42,14 @@ export default function LoginPage() {
       .then((userCredential) => {
         setError("");
         const user = userCredential.user;
-        dispatch(loginSuccess(user.uid));
+        dispatch(
+          loginSuccess({
+            userId: user.uid,
+            displayName: user.displayName || "",
+            email: user.email || "",
+          })
+        );
+
         navigate("/");
       })
       .catch((error) => {
