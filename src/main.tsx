@@ -12,6 +12,7 @@ import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
 import WalletPage from "./pages/Wallet/WalletPage";
 import MarketPage from "./pages/MarketPage/MarketPage";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 
 const RootRouter = () => {
   return (
@@ -38,7 +39,7 @@ const RootRouter = () => {
           element={<ProtectedRoute component={ProfilPage} />}
         />
         <Route path="/learn" element={<App />} />
-        <Route path="/aboutus" element={<App />} />
+        <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
