@@ -421,6 +421,7 @@ export default function CryptoItemPage() {
                 className={styles.inputdiv}
                 type="text"
                 value={inputValue}
+                style={{ paddingBottom: "10px", paddingTop: "10px" }}
                 onChange={handleInputChange}
               />
 
@@ -431,6 +432,11 @@ export default function CryptoItemPage() {
                 !isNaN(parseInt(inputValue))
                   ? parseInt(inputValue) / data2?.market_data.current_price.usd
                   : "0"}{" "}
+              </div>
+              <div
+                style={{ color: "gray", display: "flex", alignItems: "center" }}
+              >
+                Without fee{<Dollar />}
               </div>
               <button
                 className={styles.buttondiv}
