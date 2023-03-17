@@ -21,6 +21,10 @@
 .part2 {
   width: 100%;
 }
+.part3 {
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
 .inputbuttondiv {
   height: 100%;
   background-color: #131218;
@@ -32,7 +36,7 @@
 .cryptoTitleContainer {
   background-color: #131218;
 
-  width: 90%;
+  width: 100%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -169,6 +173,9 @@
   width: 90%;
   margin-top: 30px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 .buttondiv {
   width: 90%;
@@ -184,6 +191,9 @@
     display: flex;
     justify-content: center;
   }
+  .cryptoTitleContainer {
+    width: 90%;
+  }
   .partdivide {
     display: flex;
     gap: 30px;
@@ -194,6 +204,7 @@
   .part3 {
     width: 30%;
     height: 40vb;
+    border-radius: 8px;
   }
   .cryptoName {
     display: flex;

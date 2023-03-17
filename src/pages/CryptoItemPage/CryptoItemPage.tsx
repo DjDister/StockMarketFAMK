@@ -425,7 +425,7 @@ export default function CryptoItemPage() {
               />
 
               <div style={{ fontSize: "1.5rem" }} className={styles.amounthof}>
-                Amounth of {data2?.name}
+                <img src={data2?.image?.small}></img>Amounth of {data2?.name}
                 {" : "}
                 {data2?.market_data.current_price.usd &&
                 !isNaN(parseInt(inputValue))
@@ -435,6 +435,7 @@ export default function CryptoItemPage() {
               <button
                 className={styles.buttondiv}
                 placeholder="buy"
+                style={{ marginBottom: "30px" }}
                 onClick={handleButtonClick}
               >
                 {buySellButton
