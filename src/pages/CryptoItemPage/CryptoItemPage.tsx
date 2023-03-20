@@ -564,7 +564,7 @@ export default function CryptoItemPage() {
               <button
                 className={styles.buttondiv}
                 placeholder="buy"
-                style={{ marginBottom: "30px" }}
+                style={{ marginBottom: "20px" }}
                 onClick={handleButtonClick}
               >
                 {buySellButton

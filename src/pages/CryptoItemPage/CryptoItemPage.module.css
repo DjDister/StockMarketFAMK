@@ -124,7 +124,7 @@
 .blueLine {
   position: absolute;
   height: 100%;
-  background-color: rgb(54, 54, 153);
+  background-color: #5266fe;
   top: 0;
   left: 0;
   z-index: 2;
@@ -167,6 +167,8 @@
   border: 1px gray solid;
   display: flex;
   justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .amounthof {
   width: 90%;
