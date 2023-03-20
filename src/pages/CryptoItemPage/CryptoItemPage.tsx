@@ -22,6 +22,10 @@ import { updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import Dollar from "../../assets/icons/Dollar";
+import Flag from "../../assets/icons/Flag";
+import Lightning from "../../assets/icons/Lightning";
+import Circle from "../../assets/icons/Circle";
+import EmptyCircle from "../../assets/icons/EmptyCircle";
 export default function CryptoItemPage() {
   interface CryptoItemType {
     id: string;
@@ -414,7 +418,27 @@ export default function CryptoItemPage() {
                 Sell {data2?.symbol.toUpperCase()}
               </div>
             </div>
-
+            <div
+              style={{ display: "flex", justifyContent: "center", gap: "30px" }}
+            >
+              <div
+                className={styles.marketlimitdiv}
+                style={{ border: "1px solid gray" }}
+              >
+                {" "}
+                <EmptyCircle height="25px" fill="gray" />
+                <Flag height="25px" fill="gray" />
+                Limit
+              </div>
+              <div
+                className={styles.marketlimitdiv}
+                style={{ color: "blue", backgroundColor: "black" }}
+              >
+                <Circle height="25px" fill="blue" />
+                <Lightning height="20px" fill="blue" />
+                Market
+              </div>
+            </div>
             <div className={styles.inputbuttondiv}>
               <input
                 placeholder=" $ to invest "

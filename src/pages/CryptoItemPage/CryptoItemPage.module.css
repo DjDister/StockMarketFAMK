@@ -23,7 +23,7 @@
 }
 .part3 {
   border-radius: 8px;
-  margin-bottom: 30px;
+  background-color: #131218;
 }
 .inputbuttondiv {
   height: 100%;
@@ -186,6 +186,19 @@
   height: 70px;
   font-size: 1.7rem;
 }
+
+.marketlimitdiv {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 5px;
+
+  margin-top: 40px;
+}
+
 @media only screen and (min-width: 1400px) {
   .container {
     display: flex;
