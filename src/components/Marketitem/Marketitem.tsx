@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TrendingDown from "../../assets/icons/TrendingDown";
 import TrendingUp from "../../assets/icons/TrendingUp";
 import useWindowSize from "../../hooks/useWindowSize";
+import formatNumber from "../../utils/formatNumber";
+import ReturnIndicator from "../ReturnIndicator/ReturnIndicator";
 import styles from "./MarketItem.module.css";
 interface CryptoProps {
   name: string;
@@ -16,6 +18,10 @@ interface CryptoProps {
   index?: number;
   id?: string;
   allowNavigateToDetails?: boolean;
+  boughtPrice?: string;
+  amount?: string;
+  assetValue?: string;
+  profitLoss?: string;
 }
 
 export default function MarketItem({
@@ -26,10 +32,14 @@ export default function MarketItem({
   price_change_percentage_24h,
   high_24h,
   low_24h,
+  amount,
   image,
   id = "",
   howManyDetails,
   allowNavigateToDetails = false,
+  assetValue,
+  profitLoss,
+  boughtPrice,
 }: CryptoProps) {
   const changeElement = price_change_percentage_24h ? (
     <div
@@ -64,6 +74,7 @@ export default function MarketItem({
     }
   }, [size.width]);
   const navigate = useNavigate();
+
   return (
     <div
       onClick={
@@ -112,6 +123,36 @@ export default function MarketItem({
         )}
         {high_24h && <div className={styles.high24}>{high_24h}</div>}
         {low_24h && <div className={styles.low24}>{low_24h}</div>}
+        {boughtPrice && (
+          <div className={styles.boughtPrice}>${boughtPrice}</div>
+        )}
+        {amount && (
+          <div className={styles.amount}>{parseFloat(amount).toFixed(2)}</div>
+        )}
+        {assetValue && <div className={styles.assetValue}>${assetValue}</div>}
+        {profitLoss && (
+          <div
+            className={styles.profitLoss}
+            style={{ alignItems: isSmallScreen ? "center" : "flex-end" }}
+          >
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                color: parseFloat(profitLoss) > 0 ? "white" : "red",
+              }}
+            >
+              {parseFloat(profitLoss) > 0 ? "+ " : "- "}$
+              {formatNumber(profitLoss)}
+            </div>
+
+            <ReturnIndicator
+              returnIndicator={(
+                parseFloat(assetValue ?? "0") /
+                (parseFloat(boughtPrice ?? "0") * parseFloat(amount ?? "0"))
+              ).toFixed(2)}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

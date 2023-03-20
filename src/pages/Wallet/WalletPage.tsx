@@ -12,6 +12,8 @@ import Layout from "../../components/Layout/Layout";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { UserData, WalletType } from "../../types";
 import converter from "../../utils/converter";
+import formattedDate from "../../utils/currentDateFormated";
+import formatNumber from "../../utils/formatNumber";
 import styles from "./WalletPage.module.css";
 export default function WalletPage() {
   const profile = useAppSelector((state) => state.profile);
@@ -31,6 +33,23 @@ export default function WalletPage() {
     fetchUserData();
   }, []);
 
+  const totalDeposited = userWallet?.transactionHistory.reduce((acc, curr) => {
+    if (curr.type === "deposit") {
+      return acc + parseInt(curr.amount);
+    }
+    return acc;
+  }, 0);
+
+  const totalWithdrawals = userWallet?.transactionHistory.reduce(
+    (acc, curr) => {
+      if (curr.type === "withdrawal") {
+        return acc + parseInt(curr.amount);
+      }
+      return acc;
+    },
+    0
+  );
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -40,9 +59,7 @@ export default function WalletPage() {
               <div className={styles.walletTitleCont}>
                 <div className={styles.title}>
                   Wallet
-                  <div className={styles.updateDate}>
-                    Update 16/02/2022 at 3:20 PM
-                  </div>
+                  <div className={styles.updateDate}>{formattedDate}</div>
                 </div>
                 <MoreVertical fill="grey" />
               </div>
@@ -54,7 +71,7 @@ export default function WalletPage() {
                   </div>
                   <div className={styles.flexCenter}>
                     <div className={styles.avalibeAmount}>
-                      ${userWallet?.totalBalanceDollars}
+                      ${formatNumber(userWallet?.totalBalanceDollars)}
                     </div>
                     <EyeOff
                       fill={"grey"}
@@ -72,8 +89,8 @@ export default function WalletPage() {
                       Total Deposited
                     </div>
                     <div className={styles.totalAmount}>
-                      <Download fill={"#039763"} />
-                      $32,455.12
+                      <Download fill={"#039763"} />$
+                      {formatNumber(totalDeposited)}
                     </div>
                   </div>
                   <div className={styles.totalCont}>
@@ -85,8 +102,7 @@ export default function WalletPage() {
                       Total Withdrawals
                     </div>
                     <div className={styles.totalAmount}>
-                      <Upload fill="red" />
-                      $2,455.12
+                      <Upload fill="red" />${formatNumber(totalWithdrawals)}
                     </div>
                   </div>
                 </div>
@@ -98,12 +114,8 @@ export default function WalletPage() {
                 <MoreVertical fill="grey" />
               </div>
               <div className={styles.walletButtonCont}>
-                <Button showWip disabled>
-                  Wallet History
-                </Button>
-                <Button showWip disabled>
-                  Coin Wallet
-                </Button>
+                <Button>Wallet History</Button>
+                <Button>Coin Wallet</Button>
               </div>
               <div className={styles.depositContainer}>
                 {userWallet?.transactionHistory.map((transaction, i) => (

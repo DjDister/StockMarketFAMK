@@ -60,7 +60,19 @@ export default function RegisterPage() {
         setError("");
         const user = userCredential.user;
         const userData: UserData = {
+          priceAlert: false,
+          referralCommissionAlerts: false,
+          deviceLoginAlerts: false,
+          emailNotifications: false,
+          smsNotifications: false,
+
+          emailAuthentication: false,
+          smsAuthentication: false,
+          googleAuthentication: false,
           email: user.email || "",
+          firstName: null,
+          lastName: null,
+          userName: null,
           uid: user.uid,
           displayName: user.email || "",
           photoURL: user.photoURL,
@@ -83,7 +95,13 @@ export default function RegisterPage() {
         };
         await setDoc(doc(db, "users", user.uid), userData);
 
-        dispatch(loginSuccess(user.uid));
+        dispatch(
+          loginSuccess({
+            userId: user.uid,
+            displayName: user.email || "",
+            email: user.email || "",
+          })
+        );
         navigate("/");
       })
       .catch((error) => {
@@ -117,6 +135,11 @@ export default function RegisterPage() {
                 onChange={(e) =>
                   setLoginData((prev) => ({ ...prev, email: e.target.value }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
               <Input
                 className={styles.customInput}
@@ -132,6 +155,11 @@ export default function RegisterPage() {
                     password: e.target.value,
                   }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
               <Input
                 className={styles.customInput}
@@ -146,6 +174,11 @@ export default function RegisterPage() {
                     confirmPassword: e.target.value,
                   }))
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleRegister();
+                  }
+                }}
               />
             </div>
             <div className={styles.acceptPrivacyContainer}>

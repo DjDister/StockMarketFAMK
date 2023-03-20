@@ -4,12 +4,16 @@ interface ProfileState {
   isLoading: boolean;
   userId: string;
   error: null | string;
+  displayName: string;
+  email: string;
 }
 
 const initialState: ProfileState = {
   isLoading: false,
   userId: "",
   error: null,
+  displayName: "",
+  email: "",
 };
 
 export const profileSlice = createSlice({
@@ -20,10 +24,19 @@ export const profileSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    loginSuccess: (state, action: PayloadAction<string>) => {
+    loginSuccess: (
+      state,
+      action: PayloadAction<{
+        userId: string;
+        displayName: string;
+        email: string;
+      }>
+    ) => {
       state.isLoading = false;
-      state.userId = action.payload;
+      state.userId = action.payload.userId;
       state.error = null;
+      state.displayName = action.payload.displayName;
+      state.email = action.payload.email;
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -35,10 +48,18 @@ export const profileSlice = createSlice({
       state.userId = "";
       state.error = null;
     },
+    updateDisplayName: (state, action: PayloadAction<string>) => {
+      state.displayName = action.payload;
+    },
   },
 });
 
-export const { startLogin, loginFailure, loginSuccess, logOut } =
-  profileSlice.actions;
+export const {
+  startLogin,
+  loginFailure,
+  loginSuccess,
+  logOut,
+  updateDisplayName,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

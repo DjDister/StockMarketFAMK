@@ -1,11 +1,163 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Edit2 from "../../assets/icons/Edit2";
 import Email from "../../assets/icons/Email";
 import Phone from "../../assets/icons/Phone";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import styles from "./MyProfile.module.css";
-export default function MyProfile() {
+import { UserData } from "../../types";
+import { doc, updateDoc } from "firebase/firestore";
+import db, { auth } from "../../../firebaseConfig";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { updateDisplayName } from "../../redux/profileSlice";
+import { updateProfile } from "firebase/auth";
+
+export default function MyProfile({ userData }: { userData?: UserData }) {
+  useEffect(() => {}, [userData]);
+
+  const phoneNumberRegex = /^\+\d{2}\s\d{3}\s\d{3}\s\d{3}$/;
+  const userNameRegex = /^\w+#\d{3}$/;
+
+  const [inputUserData, setInputUserData] = useState({
+    displayName: userData?.displayName,
+    phoneNumber: userData?.phoneNumber,
+    firstName: userData?.firstName,
+    lastName: userData?.lastName,
+    userName: userData?.userName,
+  });
+
+  const [userDataErrors, setUserDataErrors] = useState({
+    displayName: "",
+    phoneNumber: "",
+    firstName: "",
+    lastName: "",
+    userName: "",
+  });
+
+  const [shouldShowError, setShouldShowError] = useState(false);
+  const handleInputChange = (e: any) => {
+    setShouldShowError(false);
+    const { name, value } = e.target;
+
+    setInputUserData((prevInputUserData) => ({
+      ...prevInputUserData,
+      [name]: value,
+    }));
+
+    if (name === "lastName") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          lastName: "Nazwisko jest wymagane",
+        }));
+      } else if (value.length <= 2 || value.length >= 15) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          lastName: "Niepoprawna długość",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          lastName: "",
+        }));
+      }
+    } else if (name === "firstName") {
+      if (value.length < 3 && value.length != null) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          firstName: "Imię jest zbyt krótkie",
+        }));
+      } else if (value.length > 15) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          firstName: "Imię jest zbyt długie",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          firstName: "",
+        }));
+      }
+    } else if (name === "phoneNumber") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "Numer telefonu jest wymagany",
+        }));
+      } else if (phoneNumberRegex.test(value)) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          phoneNumber: "Niepoprawny format",
+        }));
+      }
+    } else if (name === "displayName") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "Puste pole",
+        }));
+      } else if (value.length <= 2 || value.length >= 15) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "Niepoprawna długość",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          displayName: "",
+        }));
+      }
+    } else if (name === "userName") {
+      if (!value) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "Puste pole",
+        }));
+      } else if (userNameRegex.test(value)) {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "",
+        }));
+      } else {
+        setUserDataErrors((prevUserDataErrors) => ({
+          ...prevUserDataErrors,
+          userName: "Niepoprawny format",
+        }));
+      }
+    }
+  };
+  const dispatch = useAppDispatch();
+  const handleSubmit = async () => {
+    // Sprawdź, czy są jakieś błędy w danych użytkownika
+    const hasErrors =
+      Object.values(userDataErrors).filter((error) => error !== "").length > 0;
+
+    if (hasErrors) {
+      setShouldShowError(true);
+      return;
+    }
+    if (userData) {
+      const docRef = doc(db, "users", userData.uid);
+      await updateDoc(docRef, { ...inputUserData }).then(() => {
+        dispatch(updateDisplayName(inputUserData.displayName || ""));
+      });
+      auth.currentUser &&
+        updateProfile(auth.currentUser, {
+          displayName: inputUserData.displayName,
+        });
+      setUserDataErrors((prevUserDataErrors) => {
+        return {
+          ...prevUserDataErrors,
+        };
+      });
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>
@@ -22,19 +174,21 @@ export default function MyProfile() {
             <div className={styles.inputContainer}>
               <div className={styles.inputLabel}>First Name</div>
               <Input
-                disabled
                 className={styles.inputDisabled}
-                placeholder="Filip"
-                onChange={() => null}
+                placeholder={userData?.firstName || "Jan"}
+                name={"firstName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.firstName : undefined}
               />
             </div>
             <div className={styles.inputContainer}>
               <div>Last Name</div>
               <Input
                 className={styles.inputDisabled}
-                disabled
-                placeholder="Porębski"
-                onChange={() => null}
+                placeholder={userData?.lastName || "Kowalski"}
+                name={"lastName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.lastName : undefined}
               />
             </div>
           </div>
@@ -43,18 +197,21 @@ export default function MyProfile() {
               <div>Display Name</div>
               <Input
                 className={styles.input}
-                placeholder="Filip Porębski"
-                onChange={() => null}
+                placeholder={userData?.displayName || "Jan Kowalski"}
                 icon={<Edit2 />}
+                name={"displayName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.displayName : undefined}
               />
             </div>
             <div className={styles.inputContainer}>
               <div>User Name</div>
               <Input
                 className={styles.inputDisabled}
-                disabled
-                placeholder="Filip#007"
-                onChange={() => null}
+                placeholder={userData?.userName || "user#999"}
+                name={"userName"}
+                onChange={(e) => handleInputChange(e)}
+                error={shouldShowError ? userDataErrors.userName : undefined}
               />
             </div>
           </div>
@@ -71,17 +228,22 @@ export default function MyProfile() {
                 disabled
                 className={styles.inputDisabled}
                 icon={<Email />}
-                placeholder="porebskifilip@wp.pl"
-                onChange={() => null}
+                placeholder={userData?.email || "user@gmail.com"}
+                name={"email"}
+                onChange={(e) => {}}
               />
             </div>
             <div className={styles.inputContainer}>
               <div>Phone Number</div>
               <Input
                 className={styles.inputDisabled}
-                placeholder="+48 123 456 789"
+                placeholder={userData?.phoneNumber || "+48 123 456 789"}
                 icon={<Phone />}
-                onChange={() => null}
+                name={"phoneNumber"}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                error={shouldShowError ? userDataErrors.phoneNumber : undefined}
               />
             </div>
           </div>
@@ -115,7 +277,13 @@ export default function MyProfile() {
           <Button flex className={styles.buttonCancel}>
             Cancel
           </Button>
-          <Button flex className={styles.buttonSave}>
+          <Button
+            flex
+            className={styles.buttonSave}
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
             Save Changes
           </Button>
         </div>

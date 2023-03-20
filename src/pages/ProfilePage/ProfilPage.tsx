@@ -18,22 +18,39 @@ import useWindowSize from "../../hooks/useWindowSize";
 import MyProfile from "../../components/MyProfile.tsx/MyProfile";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-
-const profileSettings = [
-  { label: "My Profile", icon: <Person />, element: <MyProfile /> },
-  { label: "Security", icon: <Lock />, element: <Security /> },
-  {
-    label: "Notifications Preferences",
-    icon: <Notification />,
-    element: <NotificationPreferences />,
-  },
-  { label: "Currency Preferences", icon: <Dollar />, element: <></> },
-  { label: "KYC Verification", icon: <File />, element: <></> },
-  { label: "Payment Option", icon: <Wallet />, element: <></> },
-  { label: "Api Managment", icon: <Clipboard />, element: <></> },
-];
+import db from "../../../firebaseConfig";
+import { UserData } from "../../types";
+import { doc, getDoc } from "firebase/firestore";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 export default function ProfilPage() {
+  const [userData, setUserData] = useState<UserData>();
+
+  const profileSettings = [
+    {
+      label: "My Profile",
+      icon: <Person />,
+      element: <MyProfile userData={userData} />,
+    },
+    {
+      label: "Security",
+      icon: <Lock />,
+      element: userData ? <Security userData={userData} /> : <div></div>,
+    },
+    {
+      label: "Notifications Preferences",
+      icon: <Notification />,
+      element: userData ? (
+        <NotificationPreferences userData={userData} />
+      ) : (
+        <div></div>
+      ),
+    },
+    { label: "Currency Preferences", icon: <Dollar />, element: <></> },
+    { label: "KYC Verification", icon: <File />, element: <></> },
+    { label: "Payment Option", icon: <Wallet />, element: <></> },
+    { label: "Api Managment", icon: <Clipboard />, element: <></> },
+  ];
   const size = useWindowSize();
   const [activeSettings, setActiveSettings] = useState<{
     label: string;
@@ -41,82 +58,121 @@ export default function ProfilPage() {
     element: JSX.Element;
   } | null>(null);
 
+  const profile = useAppSelector((state) => state.profile);
+
   useEffect(() => {
-    if (window.innerWidth > 992) {
-      setActiveSettings(profileSettings[0]);
+    async function dataBaseInfo() {
+      const docRef = doc(db, "users", profile.userId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUserData(docSnap.data() as UserData);
+        if (window.innerWidth > 992) {
+          setActiveSettings({
+            label: "My Profile",
+            icon: <Person />,
+            element: <MyProfile userData={docSnap.data() as UserData} />,
+          });
+        }
+      }
     }
+
+    dataBaseInfo();
   }, []);
+
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.headerContainer}>
-        {activeSettings && size.width && size.width < 992 ? (
-          <>
-            <div
-              className={styles.navigateBack}
-              onClick={() => setActiveSettings(null)}
-            >
-              <ArrowLeft fill="white" style={{ marginLeft: 8 }} />
-            </div>
-            <div className={styles.header}>{activeSettings?.label}</div>
-            <Edit2 fill="white" style={{ marginRight: 8 }} />
-          </>
-        ) : (
-          <NavBar />
-        )}
-      </div>
-      <div className={styles.menuAndSettingContainer}>
-        <div
-          className={styles.profileContainer}
-          style={
-            size.width && size.width < 992 && activeSettings
-              ? { display: "none" }
-              : {}
-          }
-        >
-          <div className={styles.userImgAndNameContainer}>
-            <img src={womanPng} className={styles.profileImage} />
-            <div className={styles.userName}>Filip Porebski</div>
-            <div className={styles.userTag}>FilipPorebski#0000</div>
-          </div>
-
-          <div className={styles.buttonsContainer}>
-            {profileSettings.map((item, index) => {
-              return (
-                <Button
-                  style={{
-                    marginTop: 2,
-                    height: `65px`,
-                    color: item === activeSettings ? "#4556d3" : "",
-                  }}
-                  disabled={item.element.type === React.Fragment}
-                  showWip={item.element.type === React.Fragment}
-                  key={index}
-                  iconLeftToChild={React.cloneElement(
-                    item.icon,
-                    item === activeSettings
-                      ? {
-                          fill: "#4556d3",
-                        }
-                      : {}
-                  )}
-                  rightIcon={<RightArrow />}
-                  rightIconColor={item === activeSettings ? "#4556d3" : ""}
-                  className={styles.button}
-                  onClick={() => setActiveSettings(item)}
+      {userData ? (
+        <>
+          <div className={styles.headerContainer}>
+            {activeSettings && size.width && size.width < 992 ? (
+              <>
+                <div
+                  className={styles.navigateBack}
+                  onClick={() => setActiveSettings(null)}
                 >
-                  {item.label}
-                </Button>
-              );
-            })}
+                  <ArrowLeft fill="white" style={{ marginLeft: 8 }} />
+                </div>
+                <div className={styles.header}>{activeSettings?.label}</div>
+                <Edit2 fill="white" style={{ marginRight: 8 }} />
+              </>
+            ) : (
+              <NavBar />
+            )}
           </div>
-        </div>
-        <div className={styles.activeSettingsContainer}>
-          <div className={styles.activeSettingsPadding}>
-            {activeSettings ? activeSettings.element : null}
+          <div className={styles.menuAndSettingContainer}>
+            <div
+              className={styles.profileContainer}
+              style={
+                size.width && size.width < 992 && activeSettings
+                  ? { display: "none" }
+                  : {}
+              }
+            >
+              <div className={styles.userImgAndNameContainer}>
+                <img src={womanPng} className={styles.profileImage} />
+                <div className={styles.userName}>
+                  {userData.firstName || userData.lastName
+                    ? `${userData?.firstName || ""} ${userData?.lastName ?? ""}`
+                    : profile.displayName}
+                </div>
+                <div className={styles.userTag}>
+                  {userData?.userName || userData?.email}
+                </div>
+              </div>
+
+              <div className={styles.buttonsContainer}>
+                {profileSettings.map((item, index) => {
+                  return (
+                    <Button
+                      style={{
+                        marginTop: 2,
+                        height: `65px`,
+                        color: item === activeSettings ? "#4556d3" : "",
+                      }}
+                      disabled={item.element.type === React.Fragment}
+                      showWip={item.element.type === React.Fragment}
+                      key={index}
+                      iconLeftToChild={React.cloneElement(
+                        item.icon,
+                        item === activeSettings
+                          ? {
+                              fill: "#4556d3",
+                            }
+                          : {}
+                      )}
+                      rightIcon={<RightArrow />}
+                      rightIconColor={item === activeSettings ? "#4556d3" : ""}
+                      className={styles.button}
+                      onClick={() => setActiveSettings(item)}
+                    >
+                      {item.label}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className={styles.activeSettingsContainer}>
+              <div className={styles.activeSettingsPadding}>
+                {activeSettings ? activeSettings.element : null}
+              </div>
+            </div>
           </div>
+          <Footer />
+        </>
+      ) : (
+        <div
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "larger",
+          }}
+        >
+          Loading
         </div>
-      </div>
-      <Footer />
+      )}
     </div>
   );
 }

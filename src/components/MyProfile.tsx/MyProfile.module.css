@@ -1,157 +1,156 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    min-height: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  min-height: 100%;
 }
 
-.label{
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 10px;
-    float: left;
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.labelIcon{
-    font-size: 1rem;
-    color: #7c7e8d;
-    padding-left: 1px;
-    padding-right: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:5px;
-}
-
-.informationContainer{
-    width: 100%;
-    margin-top: 20px;
+.labelIcon {
+  font-size: 1rem;
+  color: #7c7e8d;
+  padding-left: 1px;
+  padding-right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
-.informationLabel{
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    width: 100%;
+.informationContainer {
+  width: 100%;
+  margin-top: 20px;
 }
 
-.inputsContainer{
-    width: 100%;
+.informationLabel {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
-.inputContainer{
-    width: 100%;
-    height: 50px;
-    margin-bottom: 40px;
-    
-}
-.inputLabel{
-    width: 100%;
+.inputsContainer {
+  width: 100%;
 }
 
-.input{
-    width: 100%;
-    background-color: #080808;
-    color:white;
-    margin-top: 10px;
+.inputContainer {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 60px;
+}
+.inputLabel {
+  width: 100%;
 }
 
-.inputDisabled{
-    margin-top: 10px;
-    width: 100%;
-    background-color: #080808;
-    
+.input {
+  width: 100%;
+  background-color: #080808;
+  color: white;
+  margin-top: 10px;
 }
 
-.confirmContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: column-reverse;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.inputDisabled {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #080808;
 }
 
-.buttonsContainer{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+.confirmContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.buttonCancel,.buttonSave{
-    width:50%;
-    height: 50px;
-    border-radius: 5px;
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.buttonCancel{
-    background-color: #cccdd4;
-    color: #5367fe;
+.buttonCancel,
+.buttonSave {
+  width: 50%;
+  height: 50px;
+  border-radius: 5px;
 }
 
-.buttonSave{
-    background-color: #5367fe;
-    color: white;
+.buttonCancel {
+  background-color: #cccdd4;
+  color: #5367fe;
 }
 
-.createdAtLabel{
-    font-size: 0.8rem;
-    color: #7c7e8d;
-    margin-top: 10px;
-    text-align: center;
+.buttonSave {
+  background-color: #5367fe;
+  color: white;
+}
+
+.createdAtLabel {
+  font-size: 0.8rem;
+  color: #7c7e8d;
+  margin-top: 10px;
+  text-align: center;
 }
 
 @media screen and (min-width: 992px) {
-    .label{
-        font-size: 1.5rem;
-        margin-top: 20px;
-    }
-    .container{
-        height: 100%;
-       justify-content: space-between;
-    }
-    .inputsContainer{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .doubleContainer{
-        width: 100%;
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
-    }
-    .inputContainer{
-        width: 50%;
-    }
-    .lineSeparator{
-        width: 100%;
-        height: 1px;
- 
-        background-color: #e0e0e0;
-        opacity: 50%;
-    }
-  
-    .informationLabel{
-        margin-bottom: 20px;
-    }
-    .confirmContainer{
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .buttonsContainer{
-        width: 50%;
-        justify-content: flex-end;
-    }
-    .buttonCancel{
-        width: 40%;
-        background-color: #080808;
-    }
-    .buttonSave{
-        width: 55%;
-    }
+  .label {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+  .container {
+    height: 100%;
+    justify-content: space-between;
+  }
+  .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .doubleContainer {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .inputContainer {
+    width: 50%;
+  }
+  .lineSeparator {
+    width: 100%;
+    height: 1px;
+
+    background-color: #e0e0e0;
+    opacity: 50%;
+  }
+
+  .informationLabel {
+    margin-bottom: 20px;
+  }
+  .confirmContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .buttonsContainer {
+    width: 50%;
+    justify-content: flex-end;
+  }
+  .buttonCancel {
+    width: 40%;
+    background-color: #080808;
+  }
+  .buttonSave {
+    width: 55%;
+  }
 }

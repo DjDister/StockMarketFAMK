@@ -1,9 +1,11 @@
-export type PortfolioType = {
+export type PortfolioElementType = {
   name: string;
   symbol: string;
   boughtPrice: string;
   amount: string;
-}[];
+};
+
+export type PortfolioType = PortfolioElementType[];
 
 export type WalletType = {
   totalBalanceDollars: string;
@@ -23,5 +25,16 @@ export type UserData = {
   phoneNumber: string | null;
   portfolio: PortfolioType;
   wallet: WalletType;
+  firstName: string | null;
+  lastName: string | null;
+  userName: string | null;
   createdAt: string;
+  emailAuthentication: boolean;
+  smsAuthentication: boolean;
+  googleAuthentication: boolean;
+  priceAlert: boolean;
+  referralCommissionAlerts: boolean;
+  deviceLoginAlerts: boolean;
+  emailNotifications: boolean;
+  smsNotifications: boolean;
 };

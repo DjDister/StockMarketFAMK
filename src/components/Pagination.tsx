@@ -44,26 +44,34 @@ function Pagination({
         {<LeftArrow height="17px" fill="white" />}{" "}
       </button>
       {smallPagination
-        ? [currentPage - 1, currentPage, currentPage + 1].map((elem, index) => (
-            <button
-              style={{
-                backgroundColor: "#121318",
-                color: "gray",
-                border: "#121318",
-                display: "flex",
-                alignItems: "center",
-              }}
-              onClick={() => {
-                setCurrentPage(
-                  elem === 0 ? numberOfPages : elem > numberOfPages ? 1 : elem
-                );
-              }}
-              key={index}
-              className={styles.pagination}
-            >
-              {elem === 0 ? numberOfPages : elem > numberOfPages ? 1 : elem}
-            </button>
-          ))
+        ? numberOfPages === 1
+          ? [currentPage]
+          : [currentPage - 1, currentPage, currentPage + 1].map(
+              (elem, index) => (
+                <button
+                  style={{
+                    backgroundColor: "#121318",
+                    color: "gray",
+                    border: "#121318",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                  onClick={() => {
+                    setCurrentPage(
+                      elem === 0
+                        ? numberOfPages
+                        : elem > numberOfPages
+                        ? 1
+                        : elem
+                    );
+                  }}
+                  key={index}
+                  className={styles.pagination}
+                >
+                  {elem === 0 ? numberOfPages : elem > numberOfPages ? 1 : elem}
+                </button>
+              )
+            )
         : Array.from({ length: numberOfPages }, (_, index) => {
             return (
               <button
