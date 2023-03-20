@@ -29,8 +29,9 @@
   height: 100%;
   background-color: #131218;
   font-size: 1.4rem;
+  margin-top: 30px;
 }
-.inputdiv::placeholder {
+.inputstyle::placeholder {
   color: gray;
 }
 .cryptoTitleContainer {
@@ -160,14 +161,12 @@
   align-items: center;
 }
 .inputdiv {
-  width: 90%;
-  height: 40px;
+  width: 82%;
+  margin-bottom: 30px;
   border-radius: 5px;
-  border: 1px white solid;
-  padding-top: 5px;
-  padding-bottom: 5px;
-
-  margin-top: 30px;
+  border: 1px gray solid;
+  display: flex;
+  justify-content: space-between;
 }
 .amounthof {
   width: 90%;
@@ -180,7 +179,7 @@
 .buttondiv {
   width: 90%;
   margin-top: 30px;
-  background-color: rgb(54, 54, 153);
+  background-color: #5266fe;
   color: white;
   border-radius: 8px;
   height: 70px;

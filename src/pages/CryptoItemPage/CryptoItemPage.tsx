@@ -26,6 +26,10 @@ import Flag from "../../assets/icons/Flag";
 import Lightning from "../../assets/icons/Lightning";
 import Circle from "../../assets/icons/Circle";
 import EmptyCircle from "../../assets/icons/EmptyCircle";
+import Card from "../../assets/icons/Wallet";
+import Clock from "../../assets/icons/Clock";
+import HeartBeat from "../../assets/icons/HeartBeat";
+
 export default function CryptoItemPage() {
   interface CryptoItemType {
     id: string;
@@ -169,18 +173,17 @@ export default function CryptoItemPage() {
                           <div>{data2 && data2.name}</div>
                           <div
                             className={styles.symbol}
-                            style={{ color: "color: rgb(54, 54, 153)" }}
+                            style={{
+                              color: "#5266fe",
+                              backgroundColor: "black",
+                            }}
                           >
-                            {data2?.symbol}
+                            {data2?.symbol.toLocaleUpperCase()}
                           </div>
                         </div>
                       </div>
                       <div style={{ height: "30px", backgroundColor: "black" }}>
-                        {
-                          <Star
-                            fill={fav ? "color: rgb(54, 54, 153)" : "gray"}
-                          />
-                        }
+                        {<Star fill={fav ? "#5266fe" : "gray"} />}
                       </div>
                     </div>
                     <div className={styles.cryptoDetailsContainer}>
@@ -302,9 +305,9 @@ export default function CryptoItemPage() {
                       borderRadius: "8px",
                       width: "20%",
                     }}
-                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelIcon={<HeartBeat fill="blue" height="16px" />}
                     labelText={"Market Cap"}
-                    amount={"12983221"}
+                    amount={"$12983221"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -317,7 +320,7 @@ export default function CryptoItemPage() {
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"Full Diluted"}
-                    amount={"33742049"}
+                    amount={"$33742049"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -328,9 +331,9 @@ export default function CryptoItemPage() {
                       borderRadius: "8px",
                       width: "20%",
                     }}
-                    labelIcon={<Info fill="blue" height="16px" />}
+                    labelIcon={<Clock fill="blue" height="16px" />}
                     labelText={"24 Volume"}
-                    amount={"14739129"}
+                    amount={"$14739129"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -343,7 +346,7 @@ export default function CryptoItemPage() {
                     }}
                     labelIcon={<Info fill="blue" height="16px" />}
                     labelText={"Circulating Supply"}
-                    amount={"8463821"}
+                    amount={"$8463821"}
                     returnIndicator={
                       data2?.market_data.price_change_percentage_24h
                     }
@@ -396,7 +399,7 @@ export default function CryptoItemPage() {
                   width: "50%",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: buySellButton ? "rgb(54, 54, 153)" : "gray",
+                  color: buySellButton ? "#5266fe" : "gray",
                   borderBottom: "3px solid",
                 }}
                 onClick={() => setBuySellButton(true)}
@@ -410,7 +413,7 @@ export default function CryptoItemPage() {
                   alignItems: "center",
                   width: "50%",
                   justifyContent: "center",
-                  color: buySellButton ? "gray" : "rgb(54, 54, 153)",
+                  color: buySellButton ? "gray" : "#5266fe",
                   borderBottom: "3px solid",
                 }}
                 onClick={() => setBuySellButton(false)}
@@ -439,24 +442,120 @@ export default function CryptoItemPage() {
                 Market
               </div>
             </div>
-            <div className={styles.inputbuttondiv}>
-              <input
-                placeholder=" $ to invest "
-                className={styles.inputdiv}
-                type="text"
-                value={inputValue}
-                style={{ paddingBottom: "10px", paddingTop: "10px" }}
-                onChange={handleInputChange}
-              />
-
-              <div style={{ fontSize: "1.5rem" }} className={styles.amounthof}>
-                <img src={data2?.image?.small}></img>Amounth of {data2?.name}
-                {" : "}
-                {data2?.market_data.current_price.usd &&
-                !isNaN(parseInt(inputValue))
-                  ? parseInt(inputValue) / data2?.market_data.current_price.usd
-                  : "0"}{" "}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+                gap: "100px",
+                marginTop: "15px",
+              }}
+            >
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+                  gap: "15px",
+                }}
+              >
+                <Card fill="white" />
+                {"$"}
+                {data2?.market_data.current_price.usd}
               </div>
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+
+                  gap: "15px",
+                }}
+              >
+                <img
+                  style={{ marginBottom: "4px" }}
+                  src={data2?.image?.small}
+                ></img>
+                {"$"}
+                {data2?.market_data.current_price.usd}
+              </div>
+            </div>
+
+            <div className={styles.inputbuttondiv}>
+              <div className={styles.inputdiv}>
+                <div>
+                  <div style={{ color: "gray" }}>
+                    Quantity of {data2?.symbol.toLocaleUpperCase()}
+                  </div>
+                  <div style={{ color: "gray" }}>
+                    {data2?.market_data.current_price.usd &&
+                    !isNaN(parseInt(inputValue))
+                      ? parseInt(inputValue) /
+                        data2?.market_data.current_price.usd
+                      : "|0$"}{" "}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    gap: "10px",
+                  }}
+                >
+                  <img
+                    src={data2?.image?.small}
+                    style={{ marginTop: "6px", marginBottom: "1px" }}
+                  ></img>
+                  <div
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: "2px",
+                    }}
+                  >
+                    {data2?.symbol.toLocaleUpperCase()}
+                    {<DownArrow />}
+                  </div>
+                </div>
+              </div>
+              <div className={styles.inputdiv}>
+                <div>
+                  <div style={{ color: "gray" }}>
+                    {buySellButton ? "Buy " : "Sell "} For (USD)
+                  </div>
+                  <div>
+                    <input
+                      placeholder="| 0$  "
+                      className={styles.inputstyle}
+                      type="text"
+                      value={inputValue}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "center",
+                    marginTop: "2px",
+                  }}
+                >
+                  <Dollar />
+                  <div
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: "2px",
+                    }}
+                  >
+                    USD
+                    {<DownArrow />}
+                  </div>
+                </div>
+              </div>
+
               <div
                 style={{ color: "gray", display: "flex", alignItems: "center" }}
               >
