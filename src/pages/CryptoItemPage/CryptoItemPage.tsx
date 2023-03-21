@@ -3,8 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import styles from "./CryptoItemPage.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+
 import Plot from "react-plotly.js";
 import DownArrow from "../../assets/icons/DownArrow";
 import TrendingDown from "../../assets/icons/TrendingDown";
@@ -15,9 +14,7 @@ import db from "../../../firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import Star from "../../assets/icons/Star";
-import { async } from "@firebase/util";
-import { update } from "plotly.js";
-import Portfolio from "../../assets/icons/Portfolio";
+
 import { updateDoc } from "firebase/firestore";
 import { arrayUnion } from "firebase/firestore";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
@@ -50,15 +47,12 @@ export default function CryptoItemPage() {
 
   const { id } = useParams();
   const [historicData, setHistoricData] = useState([]);
-  const [days, setDays] = useState(1);
-  const high = 1000;
-  const low = 500;
 
   const price_change_percentage_24h: number = -1;
   const fav = false;
 
   const [buySellButton, setBuySellButton] = useState(true);
-  const [blue, setBlue] = useState("blue");
+
   const [data2, setData2] = useState<CryptoItemType | undefined>(undefined);
   const [inputValue, setInputValue] = useState<string>("0");
   const [wallet, setWallet] = useState<{
@@ -72,7 +66,6 @@ export default function CryptoItemPage() {
   } | null>(null);
   const user = useAppSelector((state) => state.profile);
 
-  //console.log(user);
   const handleButtonClick = async () => {
     const inputValueToSave = inputValue;
 
@@ -115,14 +108,13 @@ export default function CryptoItemPage() {
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365`
       );
-      console.log(data);
+
       setHistoricData(data.prices);
       const dataFromDb = await getDoc(doc(db, "users", user.userId));
-      console.log(dataFromDb.data());
+
       if (dataFromDb.exists()) {
         setWallet(dataFromDb.data().wallet);
       }
-      //console.log(wallet);
     };
     fetchHistoricData();
 
@@ -141,9 +133,8 @@ export default function CryptoItemPage() {
           (data2?.market_data?.high_24h?.usd -
             data2?.market_data?.low_24h?.usd);
       }
-      //console.log(response.data);
+
       setData2(response.data);
-      //console.log(data2);
     }
     fetchData();
   }, []);
@@ -152,8 +143,6 @@ export default function CryptoItemPage() {
     setInputValue("");
   }
 
-  console.log(buySellButton);
-  // console.log(wallet);
   return (
     <Layout>
       <div className={styles.overall}>
