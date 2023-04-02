@@ -200,8 +200,22 @@
 
   margin-top: 40px;
 }
+.graph {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #131218;
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
 
 @media only screen and (min-width: 1400px) {
+  .graph{
+    width: 90%;
+  }
   .container {
     display: flex;
     justify-content: center;
@@ -240,7 +254,4 @@
     font-size: 1.6rem;
   }
 }
-.graph {
-  display: flex;
-  justify-content: center;
-}
+

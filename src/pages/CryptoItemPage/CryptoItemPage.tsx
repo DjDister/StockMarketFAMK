@@ -67,12 +67,6 @@ export default function CryptoItemPage() {
   const user = useAppSelector((state) => state.profile);
 
   const handleButtonClick = async () => {
-    const inputValueToSave = inputValue;
-
-    if (inputValueToSave !== "") {
-      console.log(`Input value "${inputValueToSave}" saved.`);
-    }
-
     if (
       inputValue !== "" &&
       data2?.market_data.current_price?.usd &&
@@ -90,7 +84,6 @@ export default function CryptoItemPage() {
       const walletState =
         parseInt(wallet ? wallet.totalBalanceDollars : "") -
         parseInt(inputValue);
-      console.log(walletState);
       await updateDoc(doc(db, "users", user.userId), {
         wallet: {
           totalBalanceDollars: walletState.toString(),
@@ -265,7 +258,7 @@ export default function CryptoItemPage() {
                                     data2?.market_data?.low_24h?.usd) /
                                   (data2?.market_data?.high_24h?.usd -
                                     data2?.market_data?.low_24h?.usd)
-                                : 40) * 100
+                                : 1) * 100
                             }%`,
                           }}
                         ></div>
@@ -343,32 +336,41 @@ export default function CryptoItemPage() {
                 </div>
               </div>
             </div>
-            <div className={styles.graph} style={{ width: "100%" }}>
-              <>
-                {historicData ? (
-                  <Plot
-                    data={[
-                      {
-                        x: historicData.map((item: any) => {
-                          const date = new Date(item[0]);
-                          return date;
-                        }),
-                        y: historicData.map((item: any) => {
-                          return item[1];
-                        }),
-                        type: "scatter",
-                        mode: "lines+markers",
-                        marker: { color: "red" },
+            <div className={styles.graph}>
+              {historicData ? (
+                <Plot
+                  data={[
+                    {
+                      x: historicData.map((item: any) => {
+                        const date = new Date(item[0]);
+                        return date;
+                      }),
+                      y: historicData.map((item: any) => {
+                        return item[1];
+                      }),
+                      type: "scatter",
+                      mode: "lines",
+                      marker: {
+                        color:
+                          data2 && data2?.price_change_24h > 0
+                            ? "green"
+                            : "red",
                       },
-                    ]}
-                    layout={{
-                      width: 500,
-                      height: 500,
-                      title: `A ${data2 && data2.name} chart`,
-                    }}
-                  />
-                ) : null}
-              </>
+                    },
+                  ]}
+                  layout={{
+                    title: `A ${data2 && data2.name} chart`,
+                    showlegend: false,
+                    plot_bgcolor: "#131218",
+                    paper_bgcolor: "#131218",
+                  }}
+                  style={{
+                    width: "100%",
+                    height: "450px",
+                  }}
+                  config={{ responsive: true }}
+                />
+              ) : null}
             </div>
           </div>
           <div className={styles.part3}>
