@@ -16,6 +16,7 @@ interface MarketListProps {
   columnsTitleElements?: { name: string }[];
   titleElement?: JSX.Element;
   allowNavigateToDetails?: boolean;
+  emptyElement?: JSX.Element;
 }
 
 export default function MarketList({
@@ -29,6 +30,7 @@ export default function MarketList({
   columnsTitleElements,
   titleElement,
   allowNavigateToDetails,
+  emptyElement,
 }: MarketListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const coinNameElem = columnsTitleElements?.find(
@@ -299,23 +301,25 @@ export default function MarketList({
       )}
 
       <div className={styles.cryptoListContainer}>
-        {cryptoCoinsSorted
-          ?.slice(
-            currentPage * howManyToShowPerPage - howManyToShowPerPage,
-            currentPage * howManyToShowPerPage
-          )
-          .map((cryptoCoin, index) => {
-            return (
-              <ElementToRenderInList
-                allowNavigateToDetails={allowNavigateToDetails}
-                key={index}
-                howManyDetails={howManyDetails}
-                graph={cryptoCoin.graph ?? undefined}
-                index={cryptoCoin.index}
-                {...cryptoCoin}
-              />
-            );
-          })}
+        {cryptoCoinsSorted?.length !== 0
+          ? cryptoCoinsSorted
+              ?.slice(
+                currentPage * howManyToShowPerPage - howManyToShowPerPage,
+                currentPage * howManyToShowPerPage
+              )
+              .map((cryptoCoin, index) => {
+                return (
+                  <ElementToRenderInList
+                    allowNavigateToDetails={allowNavigateToDetails}
+                    key={index}
+                    howManyDetails={howManyDetails}
+                    graph={cryptoCoin.graph ?? undefined}
+                    index={cryptoCoin.index}
+                    {...cryptoCoin}
+                  />
+                );
+              })
+          : emptyElement}
       </div>
       {showPagination && (
         <div className={styles.pagination}>
