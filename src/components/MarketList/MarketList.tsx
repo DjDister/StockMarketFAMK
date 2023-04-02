@@ -15,6 +15,7 @@ interface MarketListProps {
   showPagination?: boolean;
   columnsTitleElements?: { name: string }[];
   titleElement?: JSX.Element;
+  allowNavigateToDetails?: boolean;
   emptyElement?: JSX.Element;
 }
 
@@ -28,6 +29,7 @@ export default function MarketList({
   showPagination,
   columnsTitleElements,
   titleElement,
+  allowNavigateToDetails,
   emptyElement,
 }: MarketListProps) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -308,6 +310,7 @@ export default function MarketList({
               .map((cryptoCoin, index) => {
                 return (
                   <ElementToRenderInList
+                    allowNavigateToDetails={allowNavigateToDetails}
                     key={index}
                     howManyDetails={howManyDetails}
                     graph={cryptoCoin.graph ?? undefined}

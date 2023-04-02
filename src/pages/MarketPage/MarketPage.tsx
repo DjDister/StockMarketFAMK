@@ -38,6 +38,7 @@ export default function MarketPage() {
       );
 
       setData(response.data);
+      console.log(response.data);
     }
     fetchData();
   }, []);
@@ -127,6 +128,7 @@ export default function MarketPage() {
                 };
               })}
             howManyDetails={5}
+            allowNavigateToDetails={true}
             ElementToRenderInList={MarketItem}
             showPagination
             columnsTitleElements={SortElement}

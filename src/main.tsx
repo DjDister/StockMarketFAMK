@@ -12,6 +12,7 @@ import ProtectedRoute from "./redux/ProtectedRoute";
 import ProfilPage from "./pages/ProfilePage/ProfilPage";
 import WalletPage from "./pages/Wallet/WalletPage";
 import MarketPage from "./pages/MarketPage/MarketPage";
+import CryptoItemPage from "./pages/CryptoItemPage/CryptoItemPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 
 const RootRouter = () => {
@@ -20,6 +21,7 @@ const RootRouter = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/market" element={<MarketPage />} />
+        <Route path="/crypto/:id" element={<CryptoItemPage />} />
         <Route path="/watchlist" element={<App />} />
         <Route
           path="/portfolio"

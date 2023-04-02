@@ -1,0 +1,257 @@
+.overall {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #080808;
+}
+.container {
+  width: 90%;
+  justify-content: center;
+
+  margin-top: 40px;
+  height: 100%;
+}
+.part1 {
+  width: 100%;
+
+  align-items: center;
+  border-radius: 10px;
+}
+.part2 {
+  width: 100%;
+}
+.part3 {
+  border-radius: 8px;
+  background-color: #131218;
+}
+.inputbuttondiv {
+  height: 100%;
+  background-color: #131218;
+  font-size: 1.4rem;
+  margin-top: 30px;
+}
+.inputstyle::placeholder {
+  color: gray;
+}
+.cryptoTitleContainer {
+  background-color: #131218;
+
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.widthSet {
+  width: 90%;
+}
+.marketStats {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+.cryptoName {
+  display: flex;
+  justify-content: space-between;
+}
+.symbol {
+  display: flex;
+  justify-content: center;
+}
+.symbolName {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.cryptoDetailsContainer {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cryptoDetail {
+  color: gray;
+}
+.priceContainer {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.priceInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+}
+
+.price {
+  font-size: 1rem;
+  display: flex;
+  gap: 5px;
+}
+.highLowPrice24h {
+  display: flex;
+  justify-content: space-between;
+}
+.highlowprice {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.timeFrame {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  width: 70px;
+  justify-content: center;
+  gap: 7px;
+}
+
+.line {
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  border-radius: 2px;
+}
+.blueLine {
+  position: absolute;
+  height: 100%;
+  background-color: #5266fe;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 2px;
+}
+.underLinePrices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.components {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding-bottom: 40px;
+  padding-top: 30px;
+}
+.buyselldiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #131218;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 20px;
+}
+.inputbuttondiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputdiv {
+  width: 82%;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border: 1px gray solid;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+.amounthof {
+  width: 90%;
+  margin-top: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.buttondiv {
+  width: 90%;
+  margin-top: 30px;
+  background-color: #5266fe;
+  color: white;
+  border-radius: 8px;
+  height: 70px;
+  font-size: 1.7rem;
+}
+
+.marketlimitdiv {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 5px;
+
+  margin-top: 40px;
+}
+.graph {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #131218;
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+
+@media only screen and (min-width: 1400px) {
+  .graph{
+    width: 90%;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  .cryptoTitleContainer {
+    width: 90%;
+  }
+  .partdivide {
+    display: flex;
+    gap: 30px;
+  }
+  .part1 {
+    width: 70%;
+  }
+  .part3 {
+    width: 30%;
+    height: 40vb;
+    border-radius: 8px;
+  }
+  .cryptoName {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 50px;
+  }
+  .querySymbolName {
+    display: flex;
+    gap: 20px;
+  }
+  .cryptoDetailsContainer {
+    margin-top: 30px;
+  }
+
+  .price {
+    color: white;
+    font-size: 1.6rem;
+  }
+}
+
